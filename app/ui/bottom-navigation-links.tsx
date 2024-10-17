@@ -3,20 +3,16 @@
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import clsx from "clsx";
-import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
-} from '@heroicons/react/24/outline';
+import { IconCards, IconDeviceIpadHorizontal, IconSettings } from '@tabler/icons-react';
 
 const links = [
-  { name: 'My cards', href: '/my-cards', icon: HomeIcon },
+  { name: 'My cards', href: '/my-cards', icon: IconCards },
   {
     name: 'Add cards',
     href: '/add-cards',
-    icon: DocumentDuplicateIcon,
+    icon: IconDeviceIpadHorizontal,
   },
-  { name: 'Settings', href: '/settings', icon: UserGroupIcon },
+  { name: 'Settings', href: '/settings', icon: IconSettings },
 ];
 
 export default function BottomNavigationLinks() {
