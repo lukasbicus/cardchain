@@ -17,6 +17,6 @@ jobs:
           node-version: 22
           cache: npm
       - name: Run prettier
-        run: npm format:check
+        run: npm run format:check
       - name: Run lint
         run: npm run lint
