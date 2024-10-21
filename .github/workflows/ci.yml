@@ -19,4 +19,4 @@ jobs:
       - name: Run prettier
         run: npm format:check
       - name: Run lint
-      - run: npm run lint
+        run: npm run lint
