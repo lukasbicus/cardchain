@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Tilda',
+  title: 'Tilda 3',
   description: 'Loyalty card app',
 };
 

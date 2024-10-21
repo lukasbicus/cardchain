@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'The loyalty app application',
+    name: 'The loyalty app application 1',
     short_name: 'Tilda',
     description: 'A loyalty card app',
     start_url: '/',
