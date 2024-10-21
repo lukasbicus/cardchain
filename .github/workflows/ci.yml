@@ -11,10 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Run static tests on node v22.x
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 22.x
-      - run: npm test
-      - run: npm run build --if-present
+          node-version: 22
+          cache: npm
+      - name: Run prettier
+        run: npm format:check
+      - name: Run lint
+      - run: npm run lint
