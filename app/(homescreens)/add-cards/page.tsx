@@ -1,5 +1,3 @@
 export default function Page() {
-  return (
-    <main>Add cards</main>
-  )
+  return <main>Add cards</main>;
 }

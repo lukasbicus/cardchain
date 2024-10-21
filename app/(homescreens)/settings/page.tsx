@@ -1,5 +1,3 @@
 export default function Page() {
-  return (
-    <main>Settings</main>
-  )
+  return <main>Settings</main>;
 }
