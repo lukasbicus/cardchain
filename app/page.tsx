@@ -1,6 +1,14 @@
-import Link from 'next/link';
+import { saveLandingPageCookieAndRedirect } from '@/app/actions';
+import { Cookies } from '@/app/lib/shared';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
+  const cookieStore = cookies();
+  const landingPage = cookieStore.get(Cookies.LandingPage)?.value;
+  if (landingPage) {
+    redirect(landingPage);
+  }
   return (
     <main
       className="hero min-h-screen"
@@ -18,9 +26,11 @@ export default function Home() {
             that puts you in charge of your data and cards.
           </p>
           <div className="flex justify-center gap-4">
-            <Link className="btn btn-primary " href="/my-cards">
-              Get Started
-            </Link>
+            <form action={saveLandingPageCookieAndRedirect}>
+              <button className="btn btn-primary" type="submit">
+                Get Started
+              </button>
+            </form>
             <button className="btn">About</button>
           </div>
         </div>
