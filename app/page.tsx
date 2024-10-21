@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
               Simplify your loyalty card management with LoyaltyControl, the app that puts you in charge of your data and cards.
             </p>
             <div className="flex justify-center gap-4">
-              <button className="btn btn-primary ">Get Started</button>
+              <Link className="btn btn-primary " href="/my-cards">Get Started</Link>
               <button className="btn">About</button>
             </div>
           </div>
