@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: 'Loyalty card app',
   applicationName: 'Tilda 4',
   appleWebApp: true,
+  authors: [{ name: 'Lukas Bicus', url: 'https://github.com/LukasBicus' }],
 };
 
 export default function RootLayout({
