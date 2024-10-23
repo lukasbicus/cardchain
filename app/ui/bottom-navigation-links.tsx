@@ -31,6 +31,7 @@ export default function BottomNavigationLinks() {
             href={link.href}
             className={clsx({
               active: pathname === link.href,
+              ['text-primary']: pathname === link.href,
             })}
           >
             <LinkIcon className="w-6" />

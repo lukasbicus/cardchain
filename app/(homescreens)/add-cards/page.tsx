@@ -43,12 +43,12 @@ export default function Page() {
         <div>Search + grid button</div>
       </PrimaryHeader>
       <div>start</div>
-      <div className="navbar bg-base-100 text-primary">
+      <div className="navbar bg-base-100 text-base-content">
         <div className="navbar-start">
           <Image
             src="/logo.svg"
             alt="Tilda logo"
-            className="w-8 bg-white rounded-lg"
+            className="w-8 rounded-lg bg-base-content"
             width={24}
             height={24}
           />
@@ -64,7 +64,7 @@ export default function Page() {
           </Link>
         </div>
       </div>
-      <div className="navbar bg-base-100 text-primary gap-2">
+      <div className="navbar bg-base-100 text-base-content gap-2">
         <div className="form-control flex-1">
           <label className="input input-bordered flex items-center gap-2 w-full">
             <input type="text" className="grow w-full" placeholder="Search" />
