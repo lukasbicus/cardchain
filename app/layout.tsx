@@ -1,6 +1,11 @@
+// import { ICON_COLOR } from '@/app/lib/shared';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+//
+// export const viewport: Viewport = {
+//   themeColor: ICON_COLOR,
+// };
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -14,8 +19,11 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Tilda',
+  title: 'Tilda 3',
   description: 'Loyalty card app',
+  applicationName: 'Tilda 4',
+  appleWebApp: true,
+  authors: [{ name: 'Lukas Bicus', url: 'https://github.com/LukasBicus' }],
 };
 
 export default function RootLayout({
@@ -39,7 +47,7 @@ export default function RootLayout({
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50`}

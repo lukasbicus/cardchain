@@ -1,6 +1,7 @@
 import { saveLandingPageCookieAndRedirect } from '@/app/actions';
-import { Cookies } from '@/app/lib/shared';
+import { Cookies, Routes } from '@/app/lib/shared';
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default function Home() {
@@ -31,7 +32,9 @@ export default function Home() {
                 Get Started
               </button>
             </form>
-            <button className="btn">About</button>
+            <Link className="btn" href={Routes.MyCards}>
+              About
+            </Link>
           </div>
         </div>
       </div>
