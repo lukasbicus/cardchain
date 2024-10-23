@@ -21,5 +21,6 @@ const serwist = new Serwist({
   navigationPreload: true,
   runtimeCaching: defaultCache,
 });
+console.log('serwist.getPrecachedUrls()', serwist.getPrecachedUrls());
 
 serwist.addEventListeners();
