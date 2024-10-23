@@ -7,11 +7,11 @@ Features:
 3. optional are with normal font
 
 - [ ] **Welcome page**
-  - [ ] **add navigation to my cards page**
+  - [x] **add navigation to add cards page**
   - [ ] **add navigation to about page**
 - [ ] Utils
   - [ ] add theme switching
-  - [ ] **implement PWA**
+  - [x] **implement PWA**
   - [x] **add homescreen menu**
   - [ ] **create a general search component**
   - [ ] **implement primary header**
