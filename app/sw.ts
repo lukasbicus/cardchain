@@ -20,6 +20,17 @@ const serwist = new Serwist({
   clientsClaim: true,
   navigationPreload: true,
   runtimeCaching: defaultCache,
+  fallbacks: {
+    entries: [
+      {
+        url: '/offline',
+        matcher({ request }) {
+          console.log('request', request);
+          return request.destination === 'document';
+        },
+      },
+    ],
+  },
 });
 console.log('serwist.getPrecachedUrls()', serwist.getPrecachedUrls());
 
