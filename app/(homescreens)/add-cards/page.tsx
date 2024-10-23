@@ -63,33 +63,13 @@ export default function Page() {
             </button>
           </Link>
         </div>
-
-        {/*<div className="navbar-end">*/}
-        {/*  <button className="btn btn-ghost btn-circle">*/}
-        {/*    <svg*/}
-        {/*      xmlns="http://www.w3.org/2000/svg"*/}
-        {/*      className="h-5 w-5"*/}
-        {/*      fill="none"*/}
-        {/*      viewBox="0 0 24 24"*/}
-        {/*      stroke="currentColor"*/}
-        {/*    >*/}
-        {/*      <path*/}
-        {/*        strokeLinecap="round"*/}
-        {/*        strokeLinejoin="round"*/}
-        {/*        strokeWidth="2"*/}
-        {/*        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"*/}
-        {/*      />*/}
-        {/*    </svg>*/}
-        {/*  </button>*/}
-        {/*</div>*/}
       </div>
       <div className="navbar bg-base-100 text-primary gap-2">
         <div className="form-control flex-1">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-full"
-          />
+          <label className="input input-bordered flex items-center gap-2 w-full">
+            <input type="text" className="grow w-full" placeholder="Search" />
+            <IconSearch className="h-4 w-4 opacity-70"></IconSearch>
+          </label>
         </div>
         <button className="btn btn-circle btn-ghost">
           <IconLayoutGrid className="w-6 h-6" />
