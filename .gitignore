@@ -38,4 +38,8 @@ next-env.d.ts
 .idea
 
 /public/sw.js
+/public/sw.js.map
 /public/workbox-*.js
+/public/workbox-*.js.map
+
+certificates
