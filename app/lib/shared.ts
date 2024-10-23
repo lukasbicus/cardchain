@@ -7,3 +7,5 @@ export enum Routes {
 export enum Cookies {
   LandingPage = 'LandingPage',
 }
+
+export const ICON_COLOR = '#db924b';

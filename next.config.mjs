@@ -1,11 +1,11 @@
-import withPWA from 'next-pwa';
+import withSerwistInit from '@serwist/next';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 
-export default withPWA({
-  dest: 'public',
-  // disable: process.env.NODE_ENV === 'development', // disable PWA in the development environment
-  register: true, // register the PWA service worker
-  skipWaiting: true, // skip waiting for service worker activation
-})(nextConfig);
+const withSerwist = withSerwistInit({
+  swSrc: 'app/sw.ts',
+  swDest: 'public/sw.js',
+});
+
+export default withSerwist(nextConfig);

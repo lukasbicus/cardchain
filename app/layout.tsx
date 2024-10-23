@@ -1,6 +1,11 @@
+// import { ICON_COLOR } from '@/app/lib/shared';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+//
+// export const viewport: Viewport = {
+//   themeColor: ICON_COLOR,
+// };
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
