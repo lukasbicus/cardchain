@@ -3,6 +3,8 @@ export enum Routes {
   MyCards = '/my-cards',
   Settings = '/settings',
   Offline = '/offline',
+  AddCard = '/add-card',
+  ScanCard = '/scan-card',
 }
 
 export enum Cookies {
