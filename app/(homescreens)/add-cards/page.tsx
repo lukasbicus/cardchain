@@ -1,11 +1,16 @@
-import { Routes } from '@/app/lib/shared';
+import { PredefinedCompanies, Routes } from '@/app/lib/shared';
 import { PrimaryHeader } from '@/app/ui/primary-header';
-import { IconLayoutGrid, IconPlus, IconSearch } from '@tabler/icons-react';
+import {
+  IconGift,
+  IconLayoutGrid,
+  IconPlus,
+  IconSearch,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 
 export default function Page() {
   return (
-    <div>
+    <div className="h-full flex flex-col">
       <PrimaryHeader
         title="Add cards"
         actions={
@@ -29,11 +34,17 @@ export default function Page() {
           </button>
         </>
       </PrimaryHeader>
-      <main>
-        <div>Card 1</div>
-        <div>Card 2</div>
-        <div>Card 3</div>
-        <div>Card 4</div>
+      <main className="overflow-y-auto flex-1">
+        <ul className="menu menu-lg rounded-box text-base-content">
+          {Object.values(PredefinedCompanies).map(company => (
+            <li key={company}>
+              <span>
+                <IconGift className="w-8 h-8" />
+                {company}
+              </span>
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );

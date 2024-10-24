@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bottom-bar-height: 5rem;
   /*--primary: #fc9581;*/
 }
 
