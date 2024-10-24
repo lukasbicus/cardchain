@@ -34,7 +34,7 @@ export default function Page() {
           </button>
         </>
       </PrimaryHeader>
-      <main className="overflow-y-auto flex-1">
+      <main className="overflow-y-auto flex-1 bg-base-100">
         <ul className="menu menu-lg rounded-box text-base-content">
           {Object.values(PredefinedCompanies).map(company => (
             <li key={company}>
