@@ -30,8 +30,8 @@ Features:
   - [ ] _implement barcode scan_
   - [ ] _implement navigation to qrcode scan + scan itself_
 - [ ] **Create card page**
-  - [ ] **implement form**
-  - [ ] _implement navigation to scan code page_
+  - [x] **implement form**
+  - [x] _implement navigation to scan code page_
   - [ ] implement color picker
   - [ ] **implement creation of card (add it to other cards in local storage (); navigate to my cards page)**
 - [ ] **My cards page**
