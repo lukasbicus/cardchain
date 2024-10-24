@@ -14,8 +14,8 @@ Features:
   - [x] **implement PWA**
   - [x] **add homescreen menu**
   - [ ] **create a general search component**
-  - [ ] **implement primary header**
-  - [ ] **implement secondary header**
+  - [x] **implement primary header**
+  - [x] **implement secondary header**
   - [ ] **implement sync between local storage and app state**
   - [ ] **unit tests**
   - [ ] _fe unit tests_
