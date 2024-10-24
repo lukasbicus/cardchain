@@ -7,7 +7,7 @@ export default function PageTemplate({
 }) {
   return (
     <div className="h-full flex flex-col text-base-content">
-      <header>{header}</header>
+      {header}
       <main className="overflow-y-auto flex-1 bg-base-100">{children}</main>
     </div>
   );
