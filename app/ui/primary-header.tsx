@@ -20,7 +20,7 @@ export function PrimaryHeader({
             width={24}
             height={24}
           />
-          <h1 className="btn btn-ghost text-lg">{title}</h1>
+          <h1 className="text-lg pl-4">{title}</h1>
         </div>
         {actions && <div className="navbar-end">{actions}</div>}
       </div>

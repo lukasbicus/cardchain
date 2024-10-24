@@ -1,30 +1,11 @@
 import { CardIcon, Colors, iconsMap, Routes } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import PageTemplate from '@/app/ui/page-template';
+import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
-import { IconArrowLeft, IconCamera, IconPalette } from '@tabler/icons-react';
-import Link, { LinkProps } from 'next/link';
-
-export function SecondaryHeader({
-  title,
-  href,
-}: {
-  title?: string;
-  href: LinkProps['href'];
-}) {
-  return (
-    <header className="navbar bg-base-200">
-      <div className="navbar-start">
-        <Link className="btn btn-square btn-ghost" href={href} replace>
-          <IconArrowLeft />
-        </Link>
-      </div>
-      <div className="navbar-center">{title}</div>
-      <div className="navbar-end"></div>
-    </header>
-  );
-}
+import { IconCamera, IconPalette } from '@tabler/icons-react';
+import Link from 'next/link';
 
 export default function Page() {
   return (
@@ -32,7 +13,7 @@ export default function Page() {
       header={<SecondaryHeader title="Create a card" href={Routes.AddCards} />}
     >
       <form className="px-4 py-6 w-full h-full">
-        <div className="flex gap-8">
+        <div className="flex gap-4">
           <TextField label="Card number" />
           <Link
             className="btn btn-primary btn-square mt-9"
@@ -43,7 +24,7 @@ export default function Page() {
         </div>
         <TextField label="Card name" />
         <TextAreaField label="Note" />
-        <div className="flex gap-8">
+        <div className="flex gap-4">
           <DropdownField
             label="Color"
             dropdownClassName="dropdown-top"
@@ -76,7 +57,7 @@ export default function Page() {
           }))}
         />
         <div className="h-32" />
-        <footer className="btm-nav btm-nav-md text-base-content">
+        <footer className="btm-nav btm-nav-md text-base-content px-4">
           <button className="btn btn-primary w-full">Submit</button>
         </footer>
       </form>
