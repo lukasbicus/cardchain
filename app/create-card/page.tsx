@@ -1,32 +1,45 @@
-import { CardIcon, Colors, iconsMap } from '@/app/lib/shared';
+import { CardIcon, Colors, iconsMap, Routes } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import PageTemplate from '@/app/ui/page-template';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
-import { IconCamera, IconPalette } from '@tabler/icons-react';
+import { IconArrowLeft, IconCamera, IconPalette } from '@tabler/icons-react';
+import Link, { LinkProps } from 'next/link';
+
+export function SecondaryHeader({
+  title,
+  href,
+}: {
+  title?: string;
+  href: LinkProps['href'];
+}) {
+  return (
+    <header className="navbar bg-base-200">
+      <div className="navbar-start">
+        <Link className="btn btn-square btn-ghost" href={href} replace>
+          <IconArrowLeft />
+        </Link>
+      </div>
+      <div className="navbar-center">{title}</div>
+      <div className="navbar-end"></div>
+    </header>
+  );
+}
 
 export default function Page() {
   return (
     <PageTemplate
-      header={
-        <div>
-          secondary header
-          <div>Header</div>
-          <div>Header</div>
-          <div>Header</div>
-          <div>Header</div>
-          <div>Header</div>
-          <div>Header</div>
-          <div>Header</div>
-        </div>
-      }
+      header={<SecondaryHeader title="Create a card" href={Routes.AddCards} />}
     >
       <form className="px-4 py-6 w-full h-full">
         <div className="flex gap-8">
           <TextField label="Card number" />
-          <button className="btn btn-primary btn-square mt-9">
+          <Link
+            className="btn btn-primary btn-square mt-9"
+            href={Routes.ScanCard}
+          >
             <IconCamera className="w-6 h-6" />
-          </button>
+          </Link>
         </div>
         <TextField label="Card name" />
         <TextAreaField label="Note" />

@@ -16,7 +16,7 @@ export default function Page() {
         <PrimaryHeader
           title="Add cards"
           actions={
-            <Link href={Routes.ScanCard}>
+            <Link href={Routes.CreateCard}>
               <button className="btn btn-primary">
                 <IconPlus className="w-6 h-6" />
                 Add card
@@ -47,7 +47,7 @@ export default function Page() {
           <li key={company}>
             <Link
               href={{
-                pathname: Routes.ScanCard,
+                pathname: Routes.CreateCard,
                 query: { predefinedCompany: company },
               }}
               prefetch={false}
