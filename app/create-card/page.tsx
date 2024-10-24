@@ -1,20 +1,15 @@
 import PageTemplate from '@/app/ui/page-template';
+import { TextAreaField } from '@/app/ui/text-area-field';
+import { TextField } from '@/app/ui/text-field';
 
 export default function Page() {
   return (
     <PageTemplate header={<>secondary header</>}>
       <div>Scan card page</div>
-      <form>
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text">What is your name?</span>
-          </div>
-          <input
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-        </label>
+      <form className="px-4 py-6">
+        <TextField label="Card number" />
+        <TextField label="Card name" />
+        <TextAreaField label="Note" />
       </form>
     </PageTemplate>
   );
