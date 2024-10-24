@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 export type Option<T> = {
-  label: string;
+  label: string | React.ReactNode;
   value: T;
 };
 
@@ -21,9 +21,6 @@ export function DropdownField<T = string>({
         <span className="label-text">{label}</span>
       </div>
       <div className="dropdown dropdown-end">
-        {/*<div tabIndex={0} role="button" className="btn m-1">*/}
-        {/*  Click*/}
-        {/*</div>*/}
         <input
           tabIndex={0}
           type="text"

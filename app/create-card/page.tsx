@@ -1,3 +1,4 @@
+import { iconsMap } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import PageTemplate from '@/app/ui/page-template';
 import { TextAreaField } from '@/app/ui/text-area-field';
@@ -22,12 +23,14 @@ export default function Page() {
         />
         <DropdownField
           label="Category"
-          options={[
-            {
-              label: 'sport',
-              value: 'sport',
-            },
-          ]}
+          options={Object.entries(iconsMap).map(([key, Icon]) => ({
+            label: (
+              <span>
+                <Icon className="w-6 h-6" />
+              </span>
+            ),
+            value: key,
+          }))}
         />
       </form>
     </PageTemplate>
