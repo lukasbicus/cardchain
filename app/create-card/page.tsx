@@ -7,8 +7,21 @@ import { IconCamera, IconPalette } from '@tabler/icons-react';
 
 export default function Page() {
   return (
-    <PageTemplate header={<div>secondary header</div>}>
-      <form className="px-4 py-6 w-full min-h-full">
+    <PageTemplate
+      header={
+        <div>
+          secondary header
+          <div>Header</div>
+          <div>Header</div>
+          <div>Header</div>
+          <div>Header</div>
+          <div>Header</div>
+          <div>Header</div>
+          <div>Header</div>
+        </div>
+      }
+    >
+      <form className="px-4 py-6 w-full h-full">
         <div className="flex gap-8">
           <TextField label="Card number" />
           <button className="btn btn-primary btn-square mt-9">
@@ -20,6 +33,7 @@ export default function Page() {
         <div className="flex gap-8">
           <DropdownField
             label="Color"
+            dropdownClassName="dropdown-top"
             value={Colors.Khaki}
             options={Object.entries(Colors).map(([name, hex]) => ({
               label: (
@@ -37,6 +51,7 @@ export default function Page() {
         </div>
         <DropdownField
           label="Category"
+          dropdownClassName="dropdown-top"
           value={CardIcon.Airlines}
           options={Object.entries(iconsMap).map(([key, Icon]) => ({
             label: (
@@ -47,9 +62,10 @@ export default function Page() {
             value: key,
           }))}
         />
-        {/*<button className="absolute bottom-6 btn btn-primary w-full">*/}
-        {/*  Submit*/}
-        {/*</button>*/}
+        <div className="h-32" />
+        <footer className="btm-nav btm-nav-md text-base-content">
+          <button className="btn btn-primary w-full">Submit</button>
+        </footer>
       </form>
     </PageTemplate>
   );

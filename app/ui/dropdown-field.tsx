@@ -8,11 +8,13 @@ export type Option<T> = {
 export function DropdownField<T = string>({
   label,
   className,
+  dropdownClassName,
   options,
   value,
 }: {
   label: string;
   className?: string;
+  dropdownClassName?: string;
   options: Option<T>[];
   value?: T;
 }) {
@@ -23,7 +25,7 @@ export function DropdownField<T = string>({
       <div className="label">
         <span className="label-text">{label}</span>
       </div>
-      <div className="dropdown dropdown-end">
+      <div className={clsx('dropdown dropdown-end', dropdownClassName)}>
         <div className="input input-bordered w-full flex items-center">
           {currentOption ? (
             <div tabIndex={0} role="button" className="w-full">
@@ -35,7 +37,7 @@ export function DropdownField<T = string>({
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow"
+          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow max-h-96 overflow-auto"
         >
           {options.map(option => (
             <li key={String(option.value)}>{option.label}</li>
