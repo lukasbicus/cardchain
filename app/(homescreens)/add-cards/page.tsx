@@ -38,10 +38,16 @@ export default function Page() {
         <ul className="menu menu-lg rounded-box text-base-content">
           {Object.values(PredefinedCompanies).map(company => (
             <li key={company}>
-              <span>
+              <Link
+                href={{
+                  pathname: Routes.ScanCard,
+                  query: { predefinedCompany: company },
+                }}
+                prefetch={false}
+              >
                 <IconGift className="w-8 h-8" />
                 {company}
-              </span>
+              </Link>
             </li>
           ))}
         </ul>
