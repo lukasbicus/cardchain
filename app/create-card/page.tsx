@@ -26,7 +26,7 @@ export default function Page() {
         <TextAreaField label="Note" />
         <div className="flex gap-4">
           <DropdownField
-            label="Color"
+            label="Background color"
             dropdownClassName="dropdown-top"
             value={Colors.Khaki}
             options={Object.entries(Colors).map(([name, hex]) => ({
@@ -44,7 +44,7 @@ export default function Page() {
           </button>
         </div>
         <DropdownField
-          label="Category"
+          label="Icon"
           dropdownClassName="dropdown-top"
           value={CardIcon.Airlines}
           options={Object.entries(iconsMap).map(([key, Icon]) => ({
@@ -58,7 +58,7 @@ export default function Page() {
         />
         <div className="h-32" />
         <footer className="btm-nav btm-nav-md text-base-content px-4">
-          <button className="btn btn-primary w-full">Submit</button>
+          <button className="btn btn-primary w-full">Create card</button>
         </footer>
       </form>
     </PageTemplate>
