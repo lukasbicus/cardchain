@@ -1,4 +1,4 @@
-import { iconsMap } from '@/app/lib/shared';
+import { CardIcon, Colors, iconsMap } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import PageTemplate from '@/app/ui/page-template';
 import { TextAreaField } from '@/app/ui/text-area-field';
@@ -14,15 +14,20 @@ export default function Page() {
         <TextAreaField label="Note" />
         <DropdownField
           label="Color"
-          options={[
-            {
-              label: 'red',
-              value: 'red',
-            },
-          ]}
+          value={Colors.Khaki}
+          options={Object.entries(Colors).map(([name, hex]) => ({
+            label: (
+              <div className="flex gap-2 items-center">
+                <div className="w-4 h-4" style={{ backgroundColor: hex }} />
+                <span>{name}</span>
+              </div>
+            ),
+            value: hex,
+          }))}
         />
         <DropdownField
           label="Category"
+          value={CardIcon.Airlines}
           options={Object.entries(iconsMap).map(([key, Icon]) => ({
             label: (
               <span>

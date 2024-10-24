@@ -99,3 +99,21 @@ export const iconsMap = {
   [CardIcon.Gaming]: IconChess,
   [CardIcon.Entertainment]: IconTicket,
 };
+
+export enum Colors {
+  SkyBlue = '#87CEEB',
+  Coral = '#FF7F50',
+  LightGreen = '#90EE90',
+  SandyBrown = '#F4A460',
+  Plum = '#DDA0DD',
+  CadetBlue = '#5F9EA0',
+  Salmon = '#FA8072',
+  Khaki = '#F0E68C',
+  SlateGray = '#708090',
+  Thistle = '#D8BFD8',
+  LightCoral = '#F08080',
+  PaleTurquoise = '#AFEEEE',
+  Tan = '#D2B48C',
+  LightSlateGray = '#778899',
+  Burlywood = '#DEB887',
+}
