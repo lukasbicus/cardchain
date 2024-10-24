@@ -7,11 +7,11 @@ Features:
 3. optional are with normal font
 
 - [ ] **Welcome page**
-  - [ ] **add navigation to my cards page**
+  - [x] **add navigation to add cards page**
   - [ ] **add navigation to about page**
 - [ ] Utils
   - [ ] add theme switching
-  - [ ] **implement PWA**
+  - [x] **implement PWA**
   - [x] **add homescreen menu**
   - [ ] **create a general search component**
   - [ ] **implement primary header**
@@ -21,11 +21,11 @@ Features:
   - [ ] _fe unit tests_
   - [ ] e2e tests
 - [ ] **Add cards page**
-  - [ ] **display list of predefined companies**
+  - [x] **display list of predefined companies**
   - [ ] display grid of predefined companies + switch to grid
   - [ ] _implement search in predefined companies_
-  - [ ] **implement add card button + navigation to scan code page**
-  - [ ] _implement click on predefined company + navigation to create card page_
+  - [x] **implement add card button + navigation to scan code page**
+  - [x] _implement click on predefined company + navigation to create card page_
 - [ ] _Scan code page_
   - [ ] _implement barcode scan_
   - [ ] _implement navigation to qrcode scan + scan itself_

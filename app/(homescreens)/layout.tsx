@@ -1,10 +1,17 @@
 import BottomNavigationLinks from '@/app/ui/bottom-navigation-links';
+import clsx from 'clsx';
+import styles from './layout.module.css';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col">
-      <div>{children}</div>
-      <div className="btm-nav btm-nav-lg text-primary">
+    <div className="h-screen">
+      <div className={styles.childrenHeight}>{children}</div>
+      <div
+        className={clsx(
+          `btm-nav btm-nav-lg text-base-content bg-base-200`,
+          styles.bottomBarNavHeight
+        )}
+      >
         <BottomNavigationLinks />
       </div>
     </div>

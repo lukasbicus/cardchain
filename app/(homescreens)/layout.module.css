@@ -1,0 +1,6 @@
+.bottomBarNavHeight {
+  height: var(--bottom-bar-height);
+}
+.childrenHeight {
+  height: calc(100vh - var(--bottom-bar-height));
+}
