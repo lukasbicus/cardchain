@@ -19,6 +19,18 @@ import {
   IconTicket,
   IconToolsKitchen2,
 } from '@tabler/icons-react';
+import dmSvg from '@/public/company-logos/dm.svg';
+import albertSvg from '@/public/company-logos/albert.svg';
+import bataSvg from '@/public/company-logos/bata.svg';
+import biedronkaSvg from '@/public/company-logos/biedronka.svg';
+import freshSvg from '@/public/company-logos/fresh.svg';
+import ikeaSvg from '@/public/company-logos/ikea.svg';
+import kauflandSvg from '@/public/company-logos/kaufland.svg';
+import lidlSvg from '@/public/company-logos/lidl.svg';
+import billaSvg from '@/public/company-logos/billa.svg';
+import o2Svg from '@/public/company-logos/o2.svg';
+import rossmannSvg from '@/public/company-logos/rossmann.svg';
+import tescoSvg from '@/public/company-logos/tesco.svg';
 
 export enum Routes {
   AddCards = '/add-cards',
@@ -41,20 +53,13 @@ export enum PredefinedCompanies {
   IKEA = 'Ikea',
   BILLA = 'Billa',
   LIDL = 'Lidl',
-  TERNO = 'Terno',
-  PET_CENTER = 'Pet center',
+  BATA = 'Bata',
+  BIEDRONKA = 'Biedronka',
   ALBERT = 'Albert',
-  GLOBUS = 'Globus',
+  FRESH = 'Fresh',
   ROSSMANN = 'Rossmann',
-  AUPARK = 'Aupark',
-  DATART = 'Datart',
   KAUFLAND = 'Kaufland',
-  MALL = 'Mall',
-  NOTINO = 'Notino',
   O2 = 'O2',
-  SPORTISIMO = 'Sportisimo',
-  TETA = 'Teta',
-  ZOOT = 'Zoot',
 }
 
 export enum CardIcon {
@@ -140,3 +145,70 @@ export enum CodeType {
   QrCode = 'QrCode',
   Barcode = 'Barcode',
 }
+
+export const predefinedCompaniesMap: {
+  name: string;
+  svg: string;
+  bgColor: string;
+}[] = [
+  {
+    name: 'DM',
+    svg: dmSvg,
+    bgColor: '#30318b',
+  },
+  {
+    name: 'Albert',
+    svg: albertSvg,
+    bgColor: '#f2d740',
+  },
+  {
+    name: 'Bata',
+    svg: bataSvg,
+    bgColor: '#cc2229',
+  },
+  {
+    name: 'Biedronka',
+    svg: biedronkaSvg,
+    bgColor: '#fff22d',
+  },
+  {
+    name: 'Fresh',
+    svg: freshSvg,
+    bgColor: '#fff',
+  },
+  {
+    name: 'IKEA',
+    svg: ikeaSvg,
+    bgColor: '#2360a5',
+  },
+  {
+    name: 'Kaufland',
+    svg: kauflandSvg,
+    bgColor: '#e10915',
+  },
+  {
+    name: 'Lidl',
+    svg: lidlSvg,
+    bgColor: '#003278',
+  },
+  {
+    name: 'Billa',
+    svg: billaSvg,
+    bgColor: '#d2091e',
+  },
+  {
+    name: 'O2',
+    svg: o2Svg,
+    bgColor: '#fff',
+  },
+  {
+    name: 'Rossmann',
+    svg: rossmannSvg,
+    bgColor: '#fff',
+  },
+  {
+    name: 'Tesco',
+    svg: tescoSvg,
+    bgColor: '#fff',
+  },
+];

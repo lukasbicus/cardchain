@@ -16,6 +16,8 @@ import { IconCamera, IconPalette } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import dm from '@/public/company-logos/dm.svg';
+import Image from 'next/image';
 
 enum FormNames {
   Name = 'name',
@@ -63,6 +65,9 @@ export default function CreateCardForm() {
         router.replace(Routes.MyCards);
       })}
     >
+      <div>
+        <Image src={dm} alt="dm" className="w-10 h-10" />
+      </div>
       <div className="flex gap-4">
         <TextField
           label="Card code"
