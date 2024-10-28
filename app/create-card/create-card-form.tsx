@@ -1,6 +1,6 @@
 'use client';
 
-import { CardIcon, Colors, iconsMap, Routes } from '@/app/lib/shared';
+import { Colors, iconsMap, Routes } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
@@ -25,7 +25,11 @@ type CreateCardForm = {
 };
 
 export default function CreateCardForm() {
-  const { register, handleSubmit } = useForm<CreateCardForm>();
+  const { register, handleSubmit, control, watch } = useForm<CreateCardForm>({
+    defaultValues: {
+      [FormNames.Color]: Colors.Khaki,
+    },
+  });
   return (
     <form
       className="px-4 py-6 w-full h-full"
@@ -52,7 +56,6 @@ export default function CreateCardForm() {
         <DropdownField
           label="Background color"
           dropdownClassName="dropdown-top"
-          value={Colors.Khaki}
           options={Object.entries(Colors).map(([name, hex]) => ({
             label: (
               <div className="flex gap-2 items-center">
@@ -62,6 +65,9 @@ export default function CreateCardForm() {
             ),
             value: hex,
           }))}
+          control={control}
+          name={FormNames.Color}
+          watch={watch}
         />
         <button className="btn btn-primary btn-square mt-9">
           <IconPalette className="w-6 h-6" />
@@ -70,7 +76,6 @@ export default function CreateCardForm() {
       <DropdownField
         label="Icon"
         dropdownClassName="dropdown-top"
-        value={CardIcon.Airlines}
         options={Object.entries(iconsMap).map(([key, Icon]) => ({
           label: (
             <span>
@@ -79,6 +84,9 @@ export default function CreateCardForm() {
           ),
           value: key,
         }))}
+        control={control}
+        name={FormNames.Icon}
+        watch={watch}
       />
       <div className="h-32" />
       <footer className="btm-nav btm-nav-md text-base-content px-4">
