@@ -13,7 +13,9 @@ import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
 import { IconCamera, IconPalette } from '@tabler/icons-react';
+import clsx from 'clsx';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
@@ -115,7 +117,19 @@ export default function CreateCardForm() {
         </div>
       )}
       {predefinedCompany ? (
-        <input type="hidden" {...register(FormNames.Icon)} />
+        <label className={'form-control w-full'}>
+          <div className="label">
+            <span className="label-text">Company logo</span>
+          </div>
+          <div style={{ backgroundColor: predefinedCompany.bgColor }}>
+            <input type="hidden" {...register(FormNames.Icon)} />
+            <Image
+              src={predefinedCompany.svg}
+              alt={predefinedCompany.name}
+              className="w-24 h-24"
+            />
+          </div>
+        </label>
       ) : (
         <DropdownField
           label="Icon"
