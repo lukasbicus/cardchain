@@ -1,8 +1,16 @@
 // Define the Card type
+import { CardIcon, CodeType } from '@/app/lib/shared';
+import { v4 as uuid } from 'uuid';
+
 export type Card = {
   name: string;
   id: string;
   code: string;
+  note?: string;
+  bgColor: string | null;
+  icon: CardIcon | null;
+  favorite?: boolean;
+  codeType: CodeType;
 };
 
 // Define the state type
@@ -13,7 +21,7 @@ export type AppState = {
 // Define action types
 export type AddCardAction = {
   type: 'ADD_CARD';
-  payload: Card;
+  payload: Omit<Card, 'id'>;
 };
 
 export type EditCardAction = {
@@ -42,7 +50,7 @@ export const appReducer = (
     case 'ADD_CARD':
       return {
         ...state,
-        cards: [...state.cards, action.payload],
+        cards: [...state.cards, { ...action.payload, id: uuid() }],
       };
     case 'EDIT_CARD':
       return {

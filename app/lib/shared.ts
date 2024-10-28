@@ -135,3 +135,8 @@ export const colorNames = {
   [Colors.LightSlateGray]: 'Light slate gray',
   [Colors.Burlywood]: 'Burlywood',
 };
+
+export enum CodeType {
+  QrCode = 'QrCode',
+  Barcode = 'Barcode',
+}
