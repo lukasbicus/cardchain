@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 
 export default function Page() {
   return (
-    <main>
+    <main className="h-full">
       My cards
       <Suspense fallback={<Loading />}>
         <MyCards />

@@ -120,7 +120,7 @@ export default function CreateCardForm() {
           <div className="label">
             <span className="label-text">Company logo</span>
           </div>
-          <div style={{ backgroundColor: predefinedCompany.bgColor }}>
+          <div className="bg-background">
             <input type="hidden" {...register(FormNames.Icon)} />
             <Image
               src={predefinedCompany.svg}
