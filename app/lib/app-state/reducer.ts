@@ -1,5 +1,6 @@
 // Define the Card type
 import { CardIcon, CodeType } from '@/app/lib/shared';
+import { StaticImageData } from 'next/image';
 import { v4 as uuid } from 'uuid';
 
 export type Card = {
@@ -8,7 +9,7 @@ export type Card = {
   code: string;
   note?: string;
   bgColor: string | null;
-  icon: CardIcon | null | object;
+  icon: CardIcon | null | StaticImageData;
   favorite?: boolean;
   codeType: CodeType;
 };
