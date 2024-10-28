@@ -1,16 +1,26 @@
 'use client';
 
-import { colorNames, Colors, iconsMap, Routes } from '@/app/lib/shared';
+import useAppState from '@/app/lib/app-state/app-state';
+import {
+  CardIcon,
+  CodeType,
+  colorNames,
+  Colors,
+  iconsMap,
+  Routes,
+} from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
 import { IconCamera, IconPalette } from '@tabler/icons-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 enum FormNames {
   Name = 'name',
   Code = 'code',
+  CodeType = 'codeType',
   Note = 'note',
   Color = 'color',
   Icon = 'Icon',
@@ -19,6 +29,7 @@ enum FormNames {
 type CreateCardForm = {
   [FormNames.Name]: string;
   [FormNames.Code]: string;
+  [FormNames.CodeType]: string;
   [FormNames.Note]: string;
   [FormNames.Color]: string;
   [FormNames.Icon]: string;
@@ -28,13 +39,28 @@ export default function CreateCardForm() {
   const { register, handleSubmit, control, watch } = useForm<CreateCardForm>({
     defaultValues: {
       [FormNames.Color]: Colors.Khaki,
+      [FormNames.CodeType]: CodeType.Barcode,
     },
   });
+  const [, dispatch] = useAppState();
+  const router = useRouter();
   return (
     <form
       className="px-4 py-6 w-full h-full"
       onSubmit={handleSubmit(data => {
         console.log('data', data);
+        dispatch({
+          type: 'ADD_CARD',
+          payload: {
+            name: data[FormNames.Name],
+            code: data[FormNames.Code],
+            note: data[FormNames.Note] || undefined,
+            bgColor: data[FormNames.Color] || null,
+            icon: (data[FormNames.Icon] as CardIcon) || null,
+            codeType: data[FormNames.CodeType] as CodeType,
+          },
+        });
+        router.replace(Routes.MyCards);
       })}
     >
       <div className="flex gap-4">
