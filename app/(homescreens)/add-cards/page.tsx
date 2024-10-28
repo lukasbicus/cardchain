@@ -1,4 +1,5 @@
-import { Routes, predefinedCompaniesMap } from '@/app/lib/shared';
+import { predefinedCompanies } from '@/app/lib/predefined-companies';
+import { Routes } from '@/app/lib/shared';
 import PageTemplate from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
 import { IconLayoutGrid, IconPlus, IconSearch } from '@tabler/icons-react';
@@ -39,7 +40,7 @@ export default function Page() {
       }
     >
       <ul className="menu menu-lg rounded-box text-base-content">
-        {predefinedCompaniesMap.map(company => (
+        {predefinedCompanies.map(company => (
           <li key={company.name}>
             <Link
               href={{

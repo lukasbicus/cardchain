@@ -8,7 +8,7 @@ export type Card = {
   code: string;
   note?: string;
   bgColor: string | null;
-  icon: CardIcon | null;
+  icon: CardIcon | null | object;
   favorite?: boolean;
   codeType: CodeType;
 };

@@ -1,12 +1,12 @@
 'use client';
 
 import useAppState from '@/app/lib/app-state/app-state';
+import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
   CardIcon,
   CodeType,
   colorNames,
   iconsMap,
-  predefinedCompaniesMap,
   Routes,
 } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
@@ -38,7 +38,7 @@ type CreateCardForm = {
 export default function CreateCardForm() {
   const searchParams = useSearchParams();
   const predefinedCompanyName = searchParams.get('predefinedCompany');
-  const predefinedCompany = predefinedCompaniesMap.find(
+  const predefinedCompany = predefinedCompanies.find(
     c => c.name === predefinedCompanyName
   );
   const { register, handleSubmit, control, watch } = useForm<CreateCardForm>({
