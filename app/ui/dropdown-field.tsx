@@ -75,10 +75,7 @@ export function DropdownField<T extends FieldValues, U = string>({
                     key={String(option.value)}
                     onClick={() => {
                       field.onChange(option.value);
-                      console.log('dropdownRef.current', dropdownRef.current);
                       dropdownRef.current?.blur();
-                      // event.
-                      // control.
                     }}
                   >
                     {option.label}

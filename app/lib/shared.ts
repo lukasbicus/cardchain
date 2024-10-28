@@ -117,3 +117,21 @@ export enum Colors {
   LightSlateGray = '#778899',
   Burlywood = '#DEB887',
 }
+
+export const colorNames = {
+  [Colors.SkyBlue]: 'Sky blue',
+  [Colors.Coral]: 'Coral',
+  [Colors.LightGreen]: 'Light green',
+  [Colors.SandyBrown]: 'Sandy brown',
+  [Colors.Plum]: 'Plum',
+  [Colors.CadetBlue]: 'Cadet blue',
+  [Colors.Salmon]: 'Salmon',
+  [Colors.Khaki]: 'Khaki',
+  [Colors.SlateGray]: 'Slate gray',
+  [Colors.Thistle]: 'Thistle',
+  [Colors.LightCoral]: 'Light coral',
+  [Colors.PaleTurquoise]: 'Pale turquoise',
+  [Colors.Tan]: 'Tan',
+  [Colors.LightSlateGray]: 'Light slate gray',
+  [Colors.Burlywood]: 'Burlywood',
+};

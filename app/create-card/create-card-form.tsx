@@ -1,6 +1,6 @@
 'use client';
 
-import { Colors, iconsMap, Routes } from '@/app/lib/shared';
+import { colorNames, Colors, iconsMap, Routes } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
@@ -56,7 +56,7 @@ export default function CreateCardForm() {
         <DropdownField
           label="Background color"
           dropdownClassName="dropdown-top"
-          options={Object.entries(Colors).map(([name, hex]) => ({
+          options={Object.entries(colorNames).map(([hex, name]) => ({
             label: (
               <div className="flex gap-2 items-center">
                 <div className="w-4 h-4" style={{ backgroundColor: hex }} />
