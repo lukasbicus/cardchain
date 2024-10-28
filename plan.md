@@ -16,8 +16,8 @@ Features:
   - [ ] **create a general search component**
   - [x] **implement primary header**
   - [x] **implement secondary header**
-  - [ ] **implement sync between local storage and app state**
-  - [ ] **unit tests**
+  - [x] **implement sync between local storage and app state**
+  - [x] **unit tests**
   - [ ] _fe unit tests_
   - [ ] e2e tests
 - [ ] **Add cards page**
