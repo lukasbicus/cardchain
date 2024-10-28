@@ -5,8 +5,8 @@ import {
   CardIcon,
   CodeType,
   colorNames,
-  Colors,
   iconsMap,
+  predefinedCompaniesMap,
   Routes,
 } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
@@ -14,10 +14,8 @@ import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
 import { IconCamera, IconPalette } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import dm from '@/public/company-logos/dm.svg';
-import Image from 'next/image';
 
 enum FormNames {
   Name = 'name',
@@ -38,11 +36,22 @@ type CreateCardForm = {
 };
 
 export default function CreateCardForm() {
+  const searchParams = useSearchParams();
+  const predefinedCompanyName = searchParams.get('predefinedCompany');
+  const predefinedCompany = predefinedCompaniesMap.find(
+    c => c.name === predefinedCompanyName
+  );
   const { register, handleSubmit, control, watch } = useForm<CreateCardForm>({
-    defaultValues: {
-      [FormNames.Color]: Colors.Khaki,
-      [FormNames.CodeType]: CodeType.Barcode,
-    },
+    defaultValues: predefinedCompany
+      ? {
+          [FormNames.Name]: predefinedCompany.name,
+          [FormNames.Color]: predefinedCompany.bgColor,
+          [FormNames.Icon]: predefinedCompany.svg,
+          [FormNames.CodeType]: predefinedCompany.codeType,
+        }
+      : {
+          [FormNames.CodeType]: CodeType.Barcode,
+        },
   });
   const [, dispatch] = useAppState();
   const router = useRouter();
@@ -65,9 +74,6 @@ export default function CreateCardForm() {
         router.replace(Routes.MyCards);
       })}
     >
-      <div>
-        <Image src={dm} alt="dm" className="w-10 h-10" />
-      </div>
       <div className="flex gap-4">
         <TextField
           label="Card code"
@@ -83,42 +89,50 @@ export default function CreateCardForm() {
       </div>
       <TextField label="Card name" name={FormNames.Name} register={register} />
       <TextAreaField label="Note" name={FormNames.Note} register={register} />
-      <div className="flex gap-4">
+      {predefinedCompany ? (
+        <input type="hidden" {...register(FormNames.Color)} />
+      ) : (
+        <div className="flex gap-4">
+          <DropdownField
+            label="Background color"
+            dropdownClassName="dropdown-top"
+            options={Object.entries(colorNames).map(([hex, name]) => ({
+              label: (
+                <div className="flex gap-2 items-center">
+                  <div className="w-4 h-4" style={{ backgroundColor: hex }} />
+                  <span>{name}</span>
+                </div>
+              ),
+              value: hex,
+            }))}
+            control={control}
+            name={FormNames.Color}
+            watch={watch}
+          />
+          <button className="btn btn-primary btn-square mt-9">
+            <IconPalette className="w-6 h-6" />
+          </button>
+        </div>
+      )}
+      {predefinedCompany ? (
+        <input type="hidden" {...register(FormNames.Icon)} />
+      ) : (
         <DropdownField
-          label="Background color"
+          label="Icon"
           dropdownClassName="dropdown-top"
-          options={Object.entries(colorNames).map(([hex, name]) => ({
+          options={Object.entries(iconsMap).map(([key, Icon]) => ({
             label: (
-              <div className="flex gap-2 items-center">
-                <div className="w-4 h-4" style={{ backgroundColor: hex }} />
-                <span>{name}</span>
-              </div>
+              <span>
+                <Icon className="w-6 h-6" />
+              </span>
             ),
-            value: hex,
+            value: key,
           }))}
           control={control}
-          name={FormNames.Color}
+          name={FormNames.Icon}
           watch={watch}
         />
-        <button className="btn btn-primary btn-square mt-9">
-          <IconPalette className="w-6 h-6" />
-        </button>
-      </div>
-      <DropdownField
-        label="Icon"
-        dropdownClassName="dropdown-top"
-        options={Object.entries(iconsMap).map(([key, Icon]) => ({
-          label: (
-            <span>
-              <Icon className="w-6 h-6" />
-            </span>
-          ),
-          value: key,
-        }))}
-        control={control}
-        name={FormNames.Icon}
-        watch={watch}
-      />
+      )}
       <div className="h-32" />
       <footer className="btm-nav btm-nav-md text-base-content px-4">
         <button className="btn btn-primary w-full" type="submit">
