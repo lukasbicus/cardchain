@@ -6,7 +6,7 @@ export type Card = {
 };
 
 // Define the state type
-export type CardState = {
+export type AppState = {
   cards: Card[];
 };
 
@@ -18,7 +18,7 @@ export type AddCardAction = {
 
 export type EditCardAction = {
   type: 'EDIT_CARD';
-  payload: { id: string; updatedCard: Partial<Card> };
+  payload: { id: string; updatedCard: Card };
 };
 
 export type DeleteCardAction = {
@@ -26,19 +26,18 @@ export type DeleteCardAction = {
   payload: { id: string };
 };
 
-// Union type for card actions
-export type CardActions = AddCardAction | EditCardAction | DeleteCardAction;
+export type AppActions = AddCardAction | EditCardAction | DeleteCardAction;
 
 // Initial state
-export const initialState: CardState = {
+export const initialState: AppState = {
   cards: [],
 };
 
 // Reducer function
-export const cardReducer = (
-  state: CardState = initialState,
-  action: CardActions
-): CardState => {
+export const appReducer = (
+  state: AppState = initialState,
+  action: AppActions
+): AppState => {
   switch (action.type) {
     case 'ADD_CARD':
       return {
