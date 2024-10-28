@@ -35,28 +35,6 @@ export enum Cookies {
 
 export const ICON_COLOR = '#db924b';
 
-export enum PredefinedCompanies {
-  TESCO = 'Tesco',
-  DM = 'Dm',
-  IKEA = 'Ikea',
-  BILLA = 'Billa',
-  LIDL = 'Lidl',
-  TERNO = 'Terno',
-  PET_CENTER = 'Pet center',
-  ALBERT = 'Albert',
-  GLOBUS = 'Globus',
-  ROSSMANN = 'Rossmann',
-  AUPARK = 'Aupark',
-  DATART = 'Datart',
-  KAUFLAND = 'Kaufland',
-  MALL = 'Mall',
-  NOTINO = 'Notino',
-  O2 = 'O2',
-  SPORTISIMO = 'Sportisimo',
-  TETA = 'Teta',
-  ZOOT = 'Zoot',
-}
-
 export enum CardIcon {
   Grocery = 'Grocery',
   Retail = 'Retail',
@@ -116,4 +94,27 @@ export enum Colors {
   Tan = '#D2B48C',
   LightSlateGray = '#778899',
   Burlywood = '#DEB887',
+}
+
+export const colorNames = {
+  [Colors.SkyBlue]: 'Sky blue',
+  [Colors.Coral]: 'Coral',
+  [Colors.LightGreen]: 'Light green',
+  [Colors.SandyBrown]: 'Sandy brown',
+  [Colors.Plum]: 'Plum',
+  [Colors.CadetBlue]: 'Cadet blue',
+  [Colors.Salmon]: 'Salmon',
+  [Colors.Khaki]: 'Khaki',
+  [Colors.SlateGray]: 'Slate gray',
+  [Colors.Thistle]: 'Thistle',
+  [Colors.LightCoral]: 'Light coral',
+  [Colors.PaleTurquoise]: 'Pale turquoise',
+  [Colors.Tan]: 'Tan',
+  [Colors.LightSlateGray]: 'Light slate gray',
+  [Colors.Burlywood]: 'Burlywood',
+};
+
+export enum CodeType {
+  QrCode = 'QrCode',
+  Barcode = 'Barcode',
 }

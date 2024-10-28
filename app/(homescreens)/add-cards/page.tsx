@@ -1,13 +1,10 @@
-import { PredefinedCompanies, Routes } from '@/app/lib/shared';
+import { predefinedCompanies } from '@/app/lib/predefined-companies';
+import { Routes } from '@/app/lib/shared';
 import PageTemplate from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
-import {
-  IconGift,
-  IconLayoutGrid,
-  IconPlus,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconLayoutGrid, IconPlus, IconSearch } from '@tabler/icons-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Page() {
   return (
@@ -43,17 +40,21 @@ export default function Page() {
       }
     >
       <ul className="menu menu-lg rounded-box text-base-content">
-        {Object.values(PredefinedCompanies).map(company => (
-          <li key={company}>
+        {predefinedCompanies.map(company => (
+          <li key={company.name}>
             <Link
               href={{
                 pathname: Routes.CreateCard,
-                query: { predefinedCompany: company },
+                query: { predefinedCompany: company.name },
               }}
               prefetch={false}
             >
-              <IconGift className="w-8 h-8" />
-              {company}
+              <Image
+                src={company.svg}
+                alt={company.name}
+                className="w-10 h-10"
+              />
+              {company.name}
             </Link>
           </li>
         ))}

@@ -1,13 +1,18 @@
 import clsx from 'clsx';
+import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
 
-export function TextField({
+export function TextField<T extends FieldValues>({
   label,
   placeholder = `Your ${label.toLowerCase()}`,
   className,
+  name,
+  register,
 }: {
   label: string;
   placeholder?: string;
   className?: string;
+  name: Path<T>;
+  register: UseFormRegister<T>;
 }) {
   return (
     <label className={clsx('form-control w-full', className)}>
@@ -17,6 +22,7 @@ export function TextField({
       <input
         type="text"
         placeholder={placeholder}
+        {...register(name)}
         className="input input-bordered w-full"
       />
     </label>
