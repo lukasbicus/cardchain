@@ -13,7 +13,6 @@ import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
 import { IconCamera, IconPalette } from '@tabler/icons-react';
-import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
