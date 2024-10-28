@@ -19,7 +19,6 @@ const dummyCard: Card = {
 };
 
 describe('appReducer', () => {
-  // Test for adding a card
   it('should handle ADD_CARD', () => {
     const initialState = { cards: [] };
     const newCard: Omit<Card, 'id'> = {
@@ -36,7 +35,6 @@ describe('appReducer', () => {
     expect(state.cards[0]).toMatchObject(newCard);
   });
 
-  // Test for editing a card
   it('should handle EDIT_CARD', () => {
     const initialState = {
       cards: [
@@ -57,7 +55,6 @@ describe('appReducer', () => {
     });
   });
 
-  // Test for deleting a card
   it('should handle DELETE_CARD', () => {
     const initialState = {
       cards: [
@@ -73,7 +70,6 @@ describe('appReducer', () => {
     expect(state.cards).toHaveLength(0);
   });
 
-  // Test for default case
   it('should return the initial state for an unknown action type', () => {
     const initialState = { cards: [] };
     const unknownAction = { type: 'UNKNOWN_ACTION' };

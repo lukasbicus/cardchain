@@ -1,4 +1,3 @@
-// Define the Card type
 import { CardIcon, CodeType } from '@/app/lib/shared';
 import { StaticImageData } from 'next/image';
 import { v4 as uuid } from 'uuid';
@@ -14,12 +13,10 @@ export type Card = {
   codeType: CodeType;
 };
 
-// Define the state type
 export type AppState = {
   cards: Card[];
 };
 
-// Define action types
 export type AddCardAction = {
   type: 'ADD_CARD';
   payload: Omit<Card, 'id'>;
@@ -37,12 +34,10 @@ export type DeleteCardAction = {
 
 export type AppActions = AddCardAction | EditCardAction | DeleteCardAction;
 
-// Initial state
 export const initialState: AppState = {
   cards: [],
 };
 
-// Reducer function
 export const appReducer = (
   state: AppState = initialState,
   action: AppActions
