@@ -11,12 +11,14 @@ import { Dispatch, Reducer, useEffect, useReducer } from 'react';
 const APP_STATE = 'app-state';
 
 function getDefaultAppState(): AppState {
-  const stateString = localStorage.getItem(APP_STATE);
-  if (stateString) {
-    try {
-      return JSON.parse(stateString);
-    } catch {
-      return initialState;
+  if (typeof window === 'object') {
+    const stateString = localStorage.getItem(APP_STATE);
+    if (stateString) {
+      try {
+        return JSON.parse(stateString);
+      } catch {
+        return initialState;
+      }
     }
   }
   return initialState;

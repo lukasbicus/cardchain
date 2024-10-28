@@ -1,12 +1,14 @@
 import MyCards from '@/app/(homescreens)/my-cards/my-cards';
+import Loading from '@/app/ui/loading';
+import { Suspense } from 'react';
 
 export default function Page() {
   return (
     <main>
       My cards
-      <div>
+      <Suspense fallback={<Loading />}>
         <MyCards />
-      </div>
+      </Suspense>
     </main>
   );
 }
