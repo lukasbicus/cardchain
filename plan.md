@@ -20,6 +20,7 @@ Features:
   - [x] **unit tests**
   - [ ] _fe unit tests_
   - [ ] e2e tests
+  - [ ] add notifications after creating/deleting a card
 - [ ] **Add cards page**
   - [x] **display list of predefined companies**
   - [ ] display grid of predefined companies + switch to grid
@@ -33,14 +34,14 @@ Features:
   - [x] **implement form**
   - [x] _implement navigation to scan code page_
   - [ ] implement color picker
-  - [ ] **implement creation of card (add it to other cards in local storage (); navigate to my cards page)**
-- [ ] **My cards page**
-  - [ ] **display list of cards**
+  - [x] **implement creation of card (add it to other cards in local storage (); navigate to my cards page)**
+- [x] **My cards page**
+  - [x] **display list of cards**
   - [ ] display grid of cards
   - [ ] **filter collection based on search**
   - [ ] filter collection based on favorites
   - [ ] _implement (un) mark favorite_
-  - [ ] **implement navigation to card detail**
+  - [x] **implement navigation to card detail**
 - [ ] **Card detail page**
   - [ ] **display page with bar / qr code**
   - [ ] implement switch note visibility
