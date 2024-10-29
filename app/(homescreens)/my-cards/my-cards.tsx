@@ -1,35 +1,25 @@
 'use client';
 
 import useAppState from '@/app/lib/app-state/app-state';
-import { Card } from '@/app/lib/app-state/reducer';
-import { iconsMap } from '@/app/lib/shared';
-import Image from 'next/image';
-
-function Icon({ icon, name }: Pick<Card, 'icon' | 'name'>) {
-  if (typeof icon === 'string') {
-    if (iconsMap[icon]) {
-      const TheIcon = iconsMap[icon];
-      return <TheIcon name={name} className="w-10 h-10" />;
-    }
-    return icon;
-  }
-  if (icon === null) {
-    return null;
-  }
-  return <Image {...icon} alt={name} className="w-10 h-10" />;
-}
+import CompanyIcon from '@/app/ui/company-icon';
+import { IconStar } from '@tabler/icons-react';
 
 export default function MyCards() {
   const [state] = useAppState();
 
   return (
-    <ul className="menu menu-lg rounded-box">
+    <ul className="menu menu-sm rounded-box gap-2">
       {state.cards.map(card => (
         <li key={card.name}>
-          <div>
-            <Icon {...card} />
+          <div className="grid grid-cols-[auto_1fr_auto] justify-between flex-row gap-2 border items-center">
+            <span className="w-10 h-10">
+              <CompanyIcon {...card} />
+            </span>
+            <span>{card.name}</span>
+            <button className="btn btn-ghost btn-square btn-primary">
+              <IconStar className="h-6 w-6" />
+            </button>
           </div>
-          {card.name}
         </li>
       ))}
     </ul>

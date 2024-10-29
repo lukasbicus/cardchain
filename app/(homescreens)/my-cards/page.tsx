@@ -37,7 +37,6 @@ export default function Page() {
         </PrimaryHeader>
       }
     >
-      My cards
       <Suspense fallback={<Loading />}>
         <MyCards />
       </Suspense>
