@@ -22,7 +22,7 @@ export function PrimaryHeader({
           />
           <h1 className="text-lg pl-4">{title}</h1>
         </div>
-        {actions && <div className="navbar-end">{actions}</div>}
+        {actions && <div className="navbar-end flex gap-2">{actions}</div>}
       </div>
       {children && (
         <div className="navbar bg-base-100 text-base-content gap-2">

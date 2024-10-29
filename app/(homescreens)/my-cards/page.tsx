@@ -14,18 +14,18 @@ export default function Page() {
         <PrimaryHeader
           title="My cards"
           actions={
-            <div>
+            <>
               <Link href={Routes.CreateCard}>
-                <button className="btn btn-square">
+                <button className="btn btn-square btn-primary btn-outline">
                   <IconStar className="w-6 h-6" />
                 </button>
               </Link>
               <Link href={Routes.CreateCard}>
-                <button className="btn btn-square">
+                <button className="btn btn-square btn-primary btn-outline">
                   <IconLayoutGrid className="w-6 h-6" />
                 </button>
               </Link>
-            </div>
+            </>
           }
         >
           <div className="form-control flex-1">
