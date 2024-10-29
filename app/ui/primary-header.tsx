@@ -16,7 +16,7 @@ export function PrimaryHeader({
           <Image
             src="/logo.svg"
             alt="Tilda logo"
-            className="w-8 rounded-lg bg-base-content"
+            className="w-8 rounded-lg bg-white"
             width={24}
             height={24}
           />
