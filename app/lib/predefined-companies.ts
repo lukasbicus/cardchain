@@ -3,7 +3,6 @@ import { CodeType, SvgProps } from '@/app/lib/shared';
 export const predefinedCompanies: {
   name: string;
   svg: SvgProps;
-  bgColor: string;
   codeType: CodeType;
 }[] = [
   {
@@ -13,7 +12,6 @@ export const predefinedCompanies: {
       height: 1620,
       width: 2500,
     },
-    bgColor: '#30318b',
     codeType: CodeType.Barcode,
   },
   {
@@ -23,7 +21,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#f2d740',
     codeType: CodeType.Barcode,
   },
   {
@@ -33,7 +30,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#cc2229',
     codeType: CodeType.Barcode,
   },
   {
@@ -43,7 +39,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#fff22d',
     codeType: CodeType.Barcode,
   },
   {
@@ -53,17 +48,15 @@ export const predefinedCompanies: {
       width: 510.5,
       height: 182.7,
     },
-    bgColor: '#fff',
     codeType: CodeType.Barcode,
   },
   {
-    name: 'IKEA',
+    name: 'Ikea',
     svg: {
       src: '/company-logos/ikea.svg',
       width: 2500,
       height: 2500,
     },
-    bgColor: '#2360a5',
     codeType: CodeType.Barcode,
   },
   {
@@ -73,7 +66,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#e10915',
     codeType: CodeType.Barcode,
   },
   {
@@ -83,7 +75,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#003278',
     codeType: CodeType.QrCode,
   },
   {
@@ -93,7 +84,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#d2091e',
     codeType: CodeType.Barcode,
   },
   {
@@ -103,7 +93,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#fff',
     codeType: CodeType.Barcode,
   },
   {
@@ -113,7 +102,6 @@ export const predefinedCompanies: {
       width: 116.6,
       height: 14.3,
     },
-    bgColor: '#fff',
     codeType: CodeType.Barcode,
   },
   {
@@ -123,7 +111,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    bgColor: '#fff',
     codeType: CodeType.Barcode,
   },
 ];
