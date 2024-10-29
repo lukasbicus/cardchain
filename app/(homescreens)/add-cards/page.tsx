@@ -50,11 +50,9 @@ export default function Page() {
               prefetch={false}
             >
               <Image
-                src={company.svg}
+                {...company.svg}
                 alt={company.name}
                 className="w-10 h-10"
-                width={company.width}
-                height={company.height}
               />
               {company.name}
             </Link>

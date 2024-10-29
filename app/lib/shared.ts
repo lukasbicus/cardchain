@@ -118,3 +118,9 @@ export enum CodeType {
   QrCode = 'QrCode',
   Barcode = 'Barcode',
 }
+
+export type SvgProps = {
+  src: string;
+  width: number;
+  height: number;
+};

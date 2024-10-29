@@ -1,5 +1,4 @@
-import { CardIcon, CodeType } from '@/app/lib/shared';
-import { StaticImageData } from 'next/image';
+import { CardIcon, CodeType, SvgProps } from '@/app/lib/shared';
 import { v4 as uuid } from 'uuid';
 
 export type Card = {
@@ -8,7 +7,7 @@ export type Card = {
   code: string;
   note?: string;
   bgColor: string | null;
-  icon: CardIcon | null | StaticImageData;
+  icon: CardIcon | null | SvgProps;
   favorite?: boolean;
   codeType: CodeType;
 };
