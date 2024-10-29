@@ -126,6 +126,8 @@ export default function CreateCardForm() {
               src={predefinedCompany.svg}
               alt={predefinedCompany.name}
               className="w-24 h-24"
+              width={predefinedCompany.width}
+              height={predefinedCompany.height}
             />
           </div>
         </label>

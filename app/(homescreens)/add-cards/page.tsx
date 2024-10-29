@@ -53,6 +53,8 @@ export default function Page() {
                 src={company.svg}
                 alt={company.name}
                 className="w-10 h-10"
+                width={company.width}
+                height={company.height}
               />
               {company.name}
             </Link>
