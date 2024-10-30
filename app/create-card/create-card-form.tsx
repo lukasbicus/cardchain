@@ -70,7 +70,7 @@ export default function CreateCardForm() {
       }
       cameraModalRef.current?.close();
     },
-    []
+    [setValue]
   );
   return (
     <>
@@ -99,6 +99,7 @@ export default function CreateCardForm() {
             label="Card code"
             name={FormNames.Code}
             register={register}
+            disabled
           />
           <button
             className="btn btn-primary btn-square mt-9"
