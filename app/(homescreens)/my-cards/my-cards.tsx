@@ -12,7 +12,7 @@ export default function MyCards() {
   return (
     <ul className="menu menu-sm rounded-box gap-2">
       {state.cards.map(card => (
-        <li key={card.name}>
+        <li key={card.id}>
           <Link
             href={{
               pathname: Routes.Card,
