@@ -4,7 +4,7 @@ import { Html5QrcodeSupportedFormats } from 'html5-qrcode';
 export const predefinedCompanies: {
   name: string;
   svg: SvgProps;
-  codeType: Html5QrcodeSupportedFormats;
+  codeFormat: Html5QrcodeSupportedFormats;
 }[] = [
   {
     name: 'DM',
@@ -13,7 +13,7 @@ export const predefinedCompanies: {
       height: 1620,
       width: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Albert',
@@ -22,7 +22,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Bata',
@@ -31,7 +31,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Biedronka',
@@ -40,7 +40,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Fresh',
@@ -49,7 +49,7 @@ export const predefinedCompanies: {
       width: 510.5,
       height: 182.7,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Ikea',
@@ -58,7 +58,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Kaufland',
@@ -67,7 +67,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Lidl',
@@ -76,7 +76,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.QR_CODE,
+    codeFormat: Html5QrcodeSupportedFormats.QR_CODE,
   },
   {
     name: 'Billa',
@@ -85,7 +85,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'O2',
@@ -94,7 +94,7 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Rossmann',
@@ -103,7 +103,7 @@ export const predefinedCompanies: {
       width: 116.6,
       height: 14.3,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
   {
     name: 'Tesco',
@@ -112,6 +112,6 @@ export const predefinedCompanies: {
       width: 2500,
       height: 2500,
     },
-    codeType: Html5QrcodeSupportedFormats.EAN_13,
+    codeFormat: Html5QrcodeSupportedFormats.EAN_13,
   },
 ];

@@ -23,7 +23,7 @@ import { useForm } from 'react-hook-form';
 enum FormNames {
   Name = 'name',
   Code = 'code',
-  CodeType = 'codeType',
+  CodeFormat = 'codeFormat',
   Note = 'note',
   Color = 'color',
   Icon = 'Icon',
@@ -32,7 +32,7 @@ enum FormNames {
 type CreateCardForm = {
   [FormNames.Name]: string;
   [FormNames.Code]: string;
-  [FormNames.CodeType]: number;
+  [FormNames.CodeFormat]: number;
   [FormNames.Note]: string;
   [FormNames.Color]: string | null;
   [FormNames.Icon]: string | SvgProps;
@@ -51,10 +51,10 @@ export default function CreateCardForm() {
             [FormNames.Name]: predefinedCompany.name,
             [FormNames.Color]: null,
             [FormNames.Icon]: predefinedCompany.svg,
-            [FormNames.CodeType]: predefinedCompany.codeType,
+            [FormNames.CodeFormat]: predefinedCompany.codeFormat,
           }
         : {
-            [FormNames.CodeType]: Html5QrcodeSupportedFormats.EAN_13,
+            [FormNames.CodeFormat]: Html5QrcodeSupportedFormats.EAN_13,
           },
     });
   const [, dispatch] = useAppState();
@@ -66,7 +66,7 @@ export default function CreateCardForm() {
       setValue(FormNames.Code, text);
       if (result.format?.format) {
         console.log('result.format.format', result.format.format);
-        setValue(FormNames.CodeType, result.format.format);
+        setValue(FormNames.CodeFormat, result.format.format);
       }
       cameraModalRef.current?.close();
     },
@@ -86,7 +86,9 @@ export default function CreateCardForm() {
               note: data[FormNames.Note] || undefined,
               bgColor: data[FormNames.Color] || null,
               icon: (data[FormNames.Icon] as CardIcon) || null,
-              codeType: data[FormNames.CodeType] as Html5QrcodeSupportedFormats,
+              codeFormat: data[
+                FormNames.CodeFormat
+              ] as Html5QrcodeSupportedFormats,
             },
           });
           router.replace(Routes.MyCards);

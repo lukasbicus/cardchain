@@ -10,7 +10,7 @@ export type Card = {
   bgColor: string | null;
   icon: CardIcon | null | SvgProps;
   favorite?: boolean;
-  codeType: Html5QrcodeSupportedFormats;
+  codeFormat: Html5QrcodeSupportedFormats;
 };
 
 export type AppState = {

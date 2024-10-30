@@ -16,7 +16,7 @@ const dummyCard: Card = {
   code: '123adfa657SFV',
   bgColor: '#4523C9',
   icon: CardIcon.Retail,
-  codeType: Html5QrcodeSupportedFormats.QR_CODE,
+  codeFormat: Html5QrcodeSupportedFormats.QR_CODE,
 };
 
 describe('appReducer', () => {
@@ -25,7 +25,7 @@ describe('appReducer', () => {
     const newCard: Omit<Card, 'id'> = {
       bgColor: '#4523C9',
       icon: CardIcon.Retail,
-      codeType: Html5QrcodeSupportedFormats.QR_CODE,
+      codeFormat: Html5QrcodeSupportedFormats.QR_CODE,
       name: 'Test Card',
       code: 'ABC123',
     };
