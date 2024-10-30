@@ -6,7 +6,7 @@ import {
   Html5QrcodeScannerState,
   Html5QrcodeCameraScanConfig,
 } from 'html5-qrcode';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const readerIds = ['reader1', 'reader2'];
 
@@ -46,6 +46,8 @@ export default function Scanner({
   onCodeDetected: (decodedText: string, result: Html5QrcodeResult) => void;
 }) {
   const parentDiv = useRef<HTMLDivElement>(null);
+  const [isRequestNoticeVisible, setIsRequestNoticeVisible] =
+    useState<boolean>(true);
   const activeReaderId = useRef<string | null>(null);
   useEffect(() => {
     let readerId: string;
@@ -69,6 +71,7 @@ export default function Scanner({
         undefined
       )
       .then(() => {
+        setIsRequestNoticeVisible(false);
         cleanup = () => {
           if (reader.getState() === Html5QrcodeScannerState.SCANNING) {
             reader.stop().finally(() => reader.clear());
@@ -94,10 +97,17 @@ export default function Scanner({
       }}
       ref={parentDiv}
     >
-      <div id="reader1" className="max-h-full">
-        Please grant camera permissions for this website
-      </div>
+      <div id="reader1" className="max-h-full"></div>
       <div id="reader2" className="max-h-full" />
+      {isRequestNoticeVisible && (
+        <div className="text-center">
+          <p className="text-xl py-4">Please grant camera permissions.</p>
+          <p className="text-sm text-gray-500 pb-4">
+            Without those permissions, it will be impossible to scan and save
+            your cards.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
