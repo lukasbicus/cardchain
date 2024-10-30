@@ -27,6 +27,7 @@ export enum Routes {
   Offline = '/offline',
   CreateCard = '/create-card',
   ScanCard = '/scan-card',
+  Card = '/card',
 }
 
 export enum Cookies {

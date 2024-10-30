@@ -1,8 +1,10 @@
 'use client';
 
 import useAppState from '@/app/lib/app-state/app-state';
-import CompanyIcon from '@/app/ui/company-icon';
+import { Routes } from '@/app/lib/shared';
 import { IconStar } from '@tabler/icons-react';
+import CompanyIcon from '@/app/ui/company-icon';
+import Link from 'next/link';
 
 export default function MyCards() {
   const [state] = useAppState();
@@ -11,7 +13,11 @@ export default function MyCards() {
     <ul className="menu menu-sm rounded-box gap-2">
       {state.cards.map(card => (
         <li key={card.name}>
-          <div
+          <Link
+            href={{
+              pathname: Routes.Card,
+              query: { id: card.id },
+            }}
             className="grid grid-cols-[auto_1fr_auto] justify-between flex-row gap-2 border items-center"
             style={
               card.bgColor
@@ -28,7 +34,7 @@ export default function MyCards() {
             <button className="btn btn-ghost btn-square btn-primary">
               <IconStar className="h-6 w-6" />
             </button>
-          </div>
+          </Link>
         </li>
       ))}
     </ul>
