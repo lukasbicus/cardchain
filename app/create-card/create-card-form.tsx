@@ -1,5 +1,6 @@
 'use client';
 
+import Scanner from '@/app/create-card/scanner';
 import useAppState from '@/app/lib/app-state/app-state';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
@@ -14,9 +15,10 @@ import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
 import { IconCamera, IconPalette, IconX } from '@tabler/icons-react';
+import { Html5QrcodeResult } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 enum FormNames {
@@ -58,6 +60,12 @@ export default function CreateCardForm() {
   const [, dispatch] = useAppState();
   const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
+  const handleCodeDetected = useCallback(
+    (text: string, result: Html5QrcodeResult) => {
+      console.log('Detected', text, result);
+    },
+    []
+  );
   return (
     <>
       <form
@@ -167,6 +175,7 @@ export default function CreateCardForm() {
         <div className="modal-box w-11/12 h-5/6 max-w-5xl max-h-5xl">
           <h3 className="font-bold text-lg">Hello!</h3>
           <p className="py-4">Click the button below to close</p>
+          <Scanner onCodeDetected={handleCodeDetected} />
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button, it will close the modal */}
