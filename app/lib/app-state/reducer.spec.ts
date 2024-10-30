@@ -5,8 +5,9 @@ import {
   DeleteCardAction,
   EditCardAction,
 } from '@/app/lib/app-state/reducer';
-import { CardIcon, CodeType } from '@/app/lib/shared';
+import { CardIcon } from '@/app/lib/shared';
 import { describe, expect, it } from '@jest/globals';
+import { Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { v4 as uuid } from 'uuid';
 
 const dummyCard: Card = {
@@ -15,7 +16,7 @@ const dummyCard: Card = {
   code: '123adfa657SFV',
   bgColor: '#4523C9',
   icon: CardIcon.Retail,
-  codeType: CodeType.QrCode,
+  codeType: Html5QrcodeSupportedFormats.QR_CODE,
 };
 
 describe('appReducer', () => {
@@ -24,7 +25,7 @@ describe('appReducer', () => {
     const newCard: Omit<Card, 'id'> = {
       bgColor: '#4523C9',
       icon: CardIcon.Retail,
-      codeType: CodeType.QrCode,
+      codeType: Html5QrcodeSupportedFormats.QR_CODE,
       name: 'Test Card',
       code: 'ABC123',
     };

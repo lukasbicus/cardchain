@@ -5,7 +5,6 @@ import useAppState from '@/app/lib/app-state/app-state';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
   CardIcon,
-  CodeType,
   colorNames,
   iconsMap,
   Routes,
@@ -15,7 +14,7 @@ import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
 import { IconCamera, IconPalette, IconX } from '@tabler/icons-react';
-import { Html5QrcodeResult } from 'html5-qrcode';
+import { Html5QrcodeResult, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useRef } from 'react';
@@ -33,7 +32,7 @@ enum FormNames {
 type CreateCardForm = {
   [FormNames.Name]: string;
   [FormNames.Code]: string;
-  [FormNames.CodeType]: string;
+  [FormNames.CodeType]: number;
   [FormNames.Note]: string;
   [FormNames.Color]: string | null;
   [FormNames.Icon]: string | SvgProps;
@@ -45,24 +44,31 @@ export default function CreateCardForm() {
   const predefinedCompany = predefinedCompanies.find(
     c => c.name === predefinedCompanyName
   );
-  const { register, handleSubmit, control, watch } = useForm<CreateCardForm>({
-    defaultValues: predefinedCompany
-      ? {
-          [FormNames.Name]: predefinedCompany.name,
-          [FormNames.Color]: null,
-          [FormNames.Icon]: predefinedCompany.svg,
-          [FormNames.CodeType]: predefinedCompany.codeType,
-        }
-      : {
-          [FormNames.CodeType]: CodeType.Barcode,
-        },
-  });
+  const { register, handleSubmit, control, watch, setValue } =
+    useForm<CreateCardForm>({
+      defaultValues: predefinedCompany
+        ? {
+            [FormNames.Name]: predefinedCompany.name,
+            [FormNames.Color]: null,
+            [FormNames.Icon]: predefinedCompany.svg,
+            [FormNames.CodeType]: predefinedCompany.codeType,
+          }
+        : {
+            [FormNames.CodeType]: Html5QrcodeSupportedFormats.EAN_13,
+          },
+    });
   const [, dispatch] = useAppState();
   const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const handleCodeDetected = useCallback(
-    (text: string, result: Html5QrcodeResult) => {
+    (text: string, { result }: Html5QrcodeResult) => {
       console.log('Detected', text, result);
+      setValue(FormNames.Code, text);
+      if (result.format?.format) {
+        console.log('result.format.format', result.format.format);
+        setValue(FormNames.CodeType, result.format.format);
+      }
+      cameraModalRef.current?.close();
     },
     []
   );
@@ -80,7 +86,7 @@ export default function CreateCardForm() {
               note: data[FormNames.Note] || undefined,
               bgColor: data[FormNames.Color] || null,
               icon: (data[FormNames.Icon] as CardIcon) || null,
-              codeType: data[FormNames.CodeType] as CodeType,
+              codeType: data[FormNames.CodeType] as Html5QrcodeSupportedFormats,
             },
           });
           router.replace(Routes.MyCards);
