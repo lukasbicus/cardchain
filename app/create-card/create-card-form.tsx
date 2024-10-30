@@ -33,7 +33,7 @@ type CreateCardForm = {
   [FormNames.Code]: string;
   [FormNames.CodeType]: string;
   [FormNames.Note]: string;
-  [FormNames.Color]: string;
+  [FormNames.Color]: string | null;
   [FormNames.Icon]: string | SvgProps;
 };
 
@@ -47,7 +47,7 @@ export default function CreateCardForm() {
     defaultValues: predefinedCompany
       ? {
           [FormNames.Name]: predefinedCompany.name,
-          [FormNames.Color]: predefinedCompany.bgColor,
+          [FormNames.Color]: null,
           [FormNames.Icon]: predefinedCompany.svg,
           [FormNames.CodeType]: predefinedCompany.codeType,
         }
