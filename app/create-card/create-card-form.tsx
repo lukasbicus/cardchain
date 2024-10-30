@@ -17,7 +17,7 @@ import { IconCamera, IconPalette, IconX } from '@tabler/icons-react';
 import { Html5QrcodeResult, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 enum FormNames {
@@ -60,6 +60,7 @@ export default function CreateCardForm() {
   const [, dispatch] = useAppState();
   const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
+  const [isScannerVisible, setIsScannerVisible] = useState(false);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
       console.log('Detected', text, result);
@@ -72,6 +73,35 @@ export default function CreateCardForm() {
     },
     [setValue]
   );
+  useEffect(() => {
+    const cameraModal = cameraModalRef.current;
+    const callback2 = function (mutations: MutationRecord[]) {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'open'
+        ) {
+          console.log(
+            `The open attribute of the dialog changed. Current value: ${cameraModal?.open}`
+          );
+          if (cameraModal) {
+            setIsScannerVisible(cameraModal.open);
+          }
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback2);
+
+    if (cameraModal) {
+      observer.observe(cameraModal, { attributes: true });
+    }
+    return () => {
+      if (cameraModal) {
+        observer.disconnect();
+      }
+    };
+  }, []);
   return (
     <>
       <form
@@ -181,18 +211,17 @@ export default function CreateCardForm() {
         </footer>
       </form>
       <dialog id="camera-modal" className="modal" ref={cameraModalRef}>
-        <div className="modal-box w-11/12 h-5/6 max-w-5xl max-h-5xl">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Click the button below to close</p>
-          <Scanner onCodeDetected={handleCodeDetected} />
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button, it will close the modal */}
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                <IconX className="w-6 h-6" />
-              </button>
-            </form>
+        <div className="modal-box w-11/12 h-5/6 max-w-5xl max-h-5xl overflow-clip">
+          <div className="flex justify-between items-center pb-4">
+            <h3 className="font-bold text-lg">Scan your code!</h3>
+            <button
+              className="btn btn-sm btn-circle btn-ghost"
+              onClick={() => cameraModalRef.current?.close()}
+            >
+              <IconX className="w-6 h-6" />
+            </button>
           </div>
+          {isScannerVisible && <Scanner onCodeDetected={handleCodeDetected} />}
         </div>
       </dialog>
     </>
