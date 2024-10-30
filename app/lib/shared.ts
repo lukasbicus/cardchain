@@ -27,6 +27,7 @@ export enum Routes {
   Offline = '/offline',
   CreateCard = '/create-card',
   ScanCard = '/scan-card',
+  Card = '/card',
 }
 
 export enum Cookies {
@@ -118,3 +119,9 @@ export enum CodeType {
   QrCode = 'QrCode',
   Barcode = 'Barcode',
 }
+
+export type SvgProps = {
+  src: string;
+  width: number;
+  height: number;
+};

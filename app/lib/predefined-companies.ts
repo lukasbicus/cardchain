@@ -1,93 +1,116 @@
-import { CodeType } from '@/app/lib/shared';
-import albertSvg from '@/public/company-logos/albert.svg';
-import bataSvg from '@/public/company-logos/bata.svg';
-import biedronkaSvg from '@/public/company-logos/biedronka.svg';
-import billaSvg from '@/public/company-logos/billa.svg';
-import dmSvg from '@/public/company-logos/dm.svg';
-import freshSvg from '@/public/company-logos/fresh.svg';
-import ikeaSvg from '@/public/company-logos/ikea.svg';
-import kauflandSvg from '@/public/company-logos/kaufland.svg';
-import lidlSvg from '@/public/company-logos/lidl.svg';
-import o2Svg from '@/public/company-logos/o2.svg';
-import rossmannSvg from '@/public/company-logos/rossmann.svg';
-import tescoSvg from '@/public/company-logos/tesco.svg';
+import { CodeType, SvgProps } from '@/app/lib/shared';
 
 export const predefinedCompanies: {
   name: string;
-  svg: string;
-  bgColor: string;
+  svg: SvgProps;
   codeType: CodeType;
 }[] = [
   {
     name: 'DM',
-    svg: dmSvg,
-    bgColor: '#30318b',
+    svg: {
+      src: '/company-logos/dm.svg',
+      height: 1620,
+      width: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Albert',
-    svg: albertSvg,
-    bgColor: '#f2d740',
+    svg: {
+      src: '/company-logos/albert.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Bata',
-    svg: bataSvg,
-    bgColor: '#cc2229',
+    svg: {
+      src: '/company-logos/bata.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Biedronka',
-    svg: biedronkaSvg,
-    bgColor: '#fff22d',
+    svg: {
+      src: '/company-logos/biedronka.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Fresh',
-    svg: freshSvg,
-    bgColor: '#fff',
+    svg: {
+      src: '/company-logos/fresh.svg',
+      width: 510.5,
+      height: 182.7,
+    },
     codeType: CodeType.Barcode,
   },
   {
-    name: 'IKEA',
-    svg: ikeaSvg,
-    bgColor: '#2360a5',
+    name: 'Ikea',
+    svg: {
+      src: '/company-logos/ikea.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Kaufland',
-    svg: kauflandSvg,
-    bgColor: '#e10915',
+    svg: {
+      src: '/company-logos/kaufland.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Lidl',
-    svg: lidlSvg,
-    bgColor: '#003278',
+    svg: {
+      src: '/company-logos/lidl.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.QrCode,
   },
   {
     name: 'Billa',
-    svg: billaSvg,
-    bgColor: '#d2091e',
+    svg: {
+      src: '/company-logos/billa.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'O2',
-    svg: o2Svg,
-    bgColor: '#fff',
+    svg: {
+      src: '/company-logos/o2.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Rossmann',
-    svg: rossmannSvg,
-    bgColor: '#fff',
+    svg: {
+      src: '/company-logos/rossmann.svg',
+      width: 116.6,
+      height: 14.3,
+    },
     codeType: CodeType.Barcode,
   },
   {
     name: 'Tesco',
-    svg: tescoSvg,
-    bgColor: '#fff',
+    svg: {
+      src: '/company-logos/tesco.svg',
+      width: 2500,
+      height: 2500,
+    },
     codeType: CodeType.Barcode,
   },
 ];

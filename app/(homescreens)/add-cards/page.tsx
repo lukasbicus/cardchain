@@ -50,11 +50,11 @@ export default function Page() {
               prefetch={false}
             >
               <Image
-                src={company.svg}
+                {...company.svg}
                 alt={company.name}
                 className="w-10 h-10"
               />
-              {company.name}
+              <span className="text-xl">{company.name}</span>
             </Link>
           </li>
         ))}

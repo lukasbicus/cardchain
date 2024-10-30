@@ -16,13 +16,13 @@ export function PrimaryHeader({
           <Image
             src="/logo.svg"
             alt="Tilda logo"
-            className="w-8 rounded-lg bg-base-content"
+            className="w-8 rounded-lg bg-white"
             width={24}
             height={24}
           />
           <h1 className="text-lg pl-4">{title}</h1>
         </div>
-        {actions && <div className="navbar-end">{actions}</div>}
+        {actions && <div className="navbar-end flex gap-2">{actions}</div>}
       </div>
       {children && (
         <div className="navbar bg-base-100 text-base-content gap-2">

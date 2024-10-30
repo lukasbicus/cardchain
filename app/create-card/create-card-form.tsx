@@ -8,6 +8,7 @@ import {
   colorNames,
   iconsMap,
   Routes,
+  SvgProps,
 } from '@/app/lib/shared';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
@@ -32,8 +33,8 @@ type CreateCardForm = {
   [FormNames.Code]: string;
   [FormNames.CodeType]: string;
   [FormNames.Note]: string;
-  [FormNames.Color]: string;
-  [FormNames.Icon]: string;
+  [FormNames.Color]: string | null;
+  [FormNames.Icon]: string | SvgProps;
 };
 
 export default function CreateCardForm() {
@@ -46,7 +47,7 @@ export default function CreateCardForm() {
     defaultValues: predefinedCompany
       ? {
           [FormNames.Name]: predefinedCompany.name,
-          [FormNames.Color]: predefinedCompany.bgColor,
+          [FormNames.Color]: null,
           [FormNames.Icon]: predefinedCompany.svg,
           [FormNames.CodeType]: predefinedCompany.codeType,
         }
@@ -123,7 +124,7 @@ export default function CreateCardForm() {
           <div className="bg-background">
             <input type="hidden" {...register(FormNames.Icon)} />
             <Image
-              src={predefinedCompany.svg}
+              {...predefinedCompany.svg}
               alt={predefinedCompany.name}
               className="w-24 h-24"
             />
