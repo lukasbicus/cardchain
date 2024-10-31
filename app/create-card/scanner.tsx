@@ -24,6 +24,7 @@ const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
       height: Math.max(50, Math.ceil(boundingRect.height * 0.8)),
     };
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const videoConstraints = boundingRect
     ? {
         width: {
@@ -37,7 +38,7 @@ const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
   const config: Html5QrcodeCameraScanConfig = {
     fps: 4,
     qrbox,
-    videoConstraints,
+    // videoConstraints,
   };
   console.log('config', config);
   return config;
