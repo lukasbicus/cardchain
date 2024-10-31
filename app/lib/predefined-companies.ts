@@ -1,6 +1,10 @@
 import { SvgProps } from '@/app/lib/shared';
 import { Html5QrcodeSupportedFormats } from 'html5-qrcode';
 
+/**
+ * @see https://worldvectorlogo.com/search/terno for logos
+ */
+
 export const predefinedCompanies: {
   name: string;
   svg: SvgProps;

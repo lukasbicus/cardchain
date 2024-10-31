@@ -2,6 +2,7 @@
 
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
+import { Barcode } from '@/app/ui/barcode';
 import CompanyIcon from '@/app/ui/company-icon';
 import { MainMessage } from '@/app/ui/main-message';
 import PageTemplate from '@/app/ui/page-template';
@@ -61,8 +62,7 @@ export function CardDetailPage() {
     >
       <div className="h-full w-full grid grid-col grid-rows-[1fr_auto]">
         <div>
-          Code
-          <div>{card.code}</div>
+          <Barcode code={card.code} />
           <div>{card.codeFormat}</div>
         </div>
         <div
