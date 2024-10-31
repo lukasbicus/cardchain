@@ -7,10 +7,12 @@ export function TextField<T extends FieldValues>({
   className,
   name,
   register,
+  disabled,
 }: {
   label: string;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
   name: Path<T>;
   register: UseFormRegister<T>;
 }) {
@@ -23,6 +25,7 @@ export function TextField<T extends FieldValues>({
         type="text"
         placeholder={placeholder}
         {...register(name)}
+        disabled={disabled}
         className="input input-bordered w-full"
       />
     </label>

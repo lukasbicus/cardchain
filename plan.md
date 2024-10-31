@@ -27,9 +27,9 @@ Features:
   - [ ] _implement search in predefined companies_
   - [x] **implement add card button + navigation to scan code page**
   - [x] _implement click on predefined company + navigation to create card page_
-- [ ] _Scan code page_
-  - [ ] _implement barcode scan_
-  - [ ] _implement navigation to qrcode scan + scan itself_
+- [x] _Scan code page_
+  - [x] _implement barcode scan_
+  - [x] _implement navigation to qrcode scan + scan itself_
 - [ ] **Create card page**
   - [x] **implement form**
   - [x] _implement navigation to scan code page_
