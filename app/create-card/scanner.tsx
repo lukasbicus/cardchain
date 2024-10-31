@@ -104,8 +104,8 @@ export default function Scanner({
     <div
       className="max-w-full overflow-clip"
       style={{
-        height: 'calc(100% - 2.5rem)',
-        maxHeight: 'calc(100% - 2.5rem)',
+        height: 'calc(100% - 4rem)',
+        maxHeight: 'calc(100% - 4rem)',
       }}
       ref={parentDiv}
     >
