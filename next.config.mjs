@@ -2,7 +2,7 @@ import withSerwistInit from '@serwist/next';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  // reactStrictMode: false,
 };
 
 const withSerwist = withSerwistInit({
