@@ -29,14 +29,7 @@ import {
 import { Html5QrcodeResult, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import {
-  Reducer,
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from 'react';
+import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 enum FormNames {
@@ -77,12 +70,11 @@ export default function CreateCardForm() {
           },
     });
   const [, appDispatch] = useAppState();
-  const [{ devices, activeDevice }, dispatch] = useReducer<
+  const [{ devices, activeDevice, isModalVisible }, dispatch] = useReducer<
     Reducer<ScannerState, ScannerActions>
   >(scannerReducer, initialState);
   const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
-  const [isScannerVisible, setIsScannerVisible] = useState(false);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
       setValue(FormNames.Code, text);
@@ -105,7 +97,10 @@ export default function CreateCardForm() {
           mutation.attributeName === 'open'
         ) {
           if (cameraModal) {
-            setIsScannerVisible(cameraModal.open);
+            dispatch({
+              type: ScannerActionTypes.UPDATE_MODAL_VISIBILITY,
+              payload: cameraModal.open,
+            });
           }
         }
       }
@@ -251,7 +246,7 @@ export default function CreateCardForm() {
               </button>
             ) : null}
           </div>
-          {isScannerVisible && (
+          {isModalVisible && (
             <Scanner
               onCodeDetected={handleCodeDetected}
               activeDevice={activeDevice}
