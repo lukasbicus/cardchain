@@ -2,9 +2,17 @@
 
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
+import { MainMessage } from '@/app/ui/main-message';
 import PageTemplate from '@/app/ui/page-template';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
-import { IconEdit, IconTrash } from '@tabler/icons-react';
+import {
+  IconCards,
+  IconEdit,
+  IconHome,
+  IconPlus,
+  IconTrash,
+} from '@tabler/icons-react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 export function CardDetailPage() {
@@ -17,7 +25,19 @@ export function CardDetailPage() {
       <PageTemplate
         header={<SecondaryHeader title="Card detail" href={Routes.MyCards} />}
       >
-        card not found
+        <div className="flex h-2/3 w-full items-center justify-center">
+          <MainMessage
+            title="Card not found"
+            description={`Something went wrong. Found with id ${id} not found.`}
+          >
+            <Link href={Routes.MyCards} replace>
+              <button className="btn btn-primary">
+                <IconCards className="w-6 h-6" />
+                My cards
+              </button>
+            </Link>
+          </MainMessage>
+        </div>
       </PageTemplate>
     );
   }
