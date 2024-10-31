@@ -116,6 +116,10 @@ export default function CreateCardForm() {
     };
   }, []);
 
+  useEffect(() => {
+    cameraModalRef.current?.showModal();
+  }, []);
+
   return (
     <>
       <form
@@ -223,7 +227,7 @@ export default function CreateCardForm() {
           </button>
         </footer>
       </form>
-      <dialog id="camera-modal" className="modal" ref={cameraModalRef}>
+      <dialog className="modal" ref={cameraModalRef}>
         <div className="modal-box w-full h-full max-h-full max-w-full overflow-clip lg:w-11/12 lg:h-5/6 lg:max-w-5xl lg:max-h-5xl">
           <div className="grid justify-between items-center pb-4 grid-cols-[auto_1fr_auto] gap-4">
             <button
