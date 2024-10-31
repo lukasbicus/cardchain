@@ -85,10 +85,8 @@ export default function CreateCardForm() {
   const [isScannerVisible, setIsScannerVisible] = useState(false);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
-      console.log('Detected', text, result);
       setValue(FormNames.Code, text);
       if (result.format?.format) {
-        console.log('result.format.format', result.format.format);
         setValue(FormNames.CodeFormat, result.format.format);
       }
       cameraModalRef.current?.close();
@@ -97,23 +95,21 @@ export default function CreateCardForm() {
   );
   useEffect(() => {
     const cameraModal = cameraModalRef.current;
-    const callback2 = function (mutations: MutationRecord[]) {
+
+    const observer = new MutationObserver(function observerCallback(
+      mutations: MutationRecord[]
+    ) {
       for (const mutation of mutations) {
         if (
           mutation.type === 'attributes' &&
           mutation.attributeName === 'open'
         ) {
-          console.log(
-            `The open attribute of the dialog changed. Current value: ${cameraModal?.open}`
-          );
           if (cameraModal) {
             setIsScannerVisible(cameraModal.open);
           }
         }
       }
-    };
-
-    const observer = new MutationObserver(callback2);
+    });
 
     if (cameraModal) {
       observer.observe(cameraModal, { attributes: true });
@@ -123,14 +119,6 @@ export default function CreateCardForm() {
         observer.disconnect();
       }
     };
-  }, []);
-
-  const handleToggleCameraButtonClick = useCallback(function () {
-    console.log('toggle button click');
-    debugger;
-    pageDispatch({
-      type: ScannerActionTypes.TOGGLE_ACTIVE_DEVICE,
-    });
   }, []);
 
   return (
@@ -253,7 +241,11 @@ export default function CreateCardForm() {
             <h3 className="font-bold text-lg">Scan your code!</h3>
             <button
               className="btn btn-sm btn-circle btn-ghost"
-              onClick={handleToggleCameraButtonClick}
+              onClick={() => {
+                pageDispatch({
+                  type: ScannerActionTypes.TOGGLE_ACTIVE_DEVICE,
+                });
+              }}
             >
               <IconRefresh className="w-6 h-6" />
             </button>
