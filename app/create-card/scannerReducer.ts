@@ -30,6 +30,7 @@ export const scannerReducer = (
   state: ScannerState,
   action: ScannerActions
 ): ScannerState => {
+  console.log(action.type);
   switch (action.type) {
     case ScannerActionTypes.SET_DEVICES:
       return {
@@ -38,7 +39,6 @@ export const scannerReducer = (
         activeDevice: action.payload[0] ?? null,
       };
     case ScannerActionTypes.TOGGLE_ACTIVE_DEVICE:
-      console.log('TOGGLE_ACTIVE_DEVICE');
       if (state.activeDevice === null || state.devices.length < 2) {
         return state;
       }

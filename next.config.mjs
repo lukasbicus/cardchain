@@ -1,7 +1,9 @@
 import withSerwistInit from '@serwist/next';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  reactStrictMode: false,
+};
 
 const withSerwist = withSerwistInit({
   swSrc: 'app/sw.ts',
