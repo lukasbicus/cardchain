@@ -44,8 +44,8 @@ Features:
   - [ ] filter collection based on favorites
   - [ ] _implement (un) mark favorite_
   - [x] **implement navigation to card detail**
-- [ ] **Card detail page**
-  - [ ] **display page with bar / qr code**
+- [x] **Card detail page**
+  - [x] **display page with bar / qr code**
   - [ ] implement switch note visibility
   - [ ] _implement delete card dialog + remove card from local storage_
   - [ ] _implement navigation to edit card page_
