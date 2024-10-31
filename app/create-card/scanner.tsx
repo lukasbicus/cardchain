@@ -34,7 +34,7 @@ const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
         },
       }
     : undefined;
-  const config = {
+  const config: Html5QrcodeCameraScanConfig = {
     fps: 4,
     qrbox,
     videoConstraints,
@@ -78,7 +78,7 @@ export default function Scanner({
       const reader: Html5Qrcode = new Html5Qrcode('reader1');
       reader
         .start(
-          { facingMode: 'environment', deviceId: activeDeviceId },
+          activeDeviceId,
           getConfig(parentDiv.current?.getBoundingClientRect()),
           onCodeDetected,
           undefined
