@@ -1,19 +1,17 @@
 'use client';
 
 import {
-  initialState,
   ScannerActions,
   ScannerActionTypes,
-  scannerReducer,
-  ScannerState,
 } from '@/app/create-card/scannerReducer';
 import {
   Html5Qrcode,
   Html5QrcodeResult,
   Html5QrcodeScannerState,
   Html5QrcodeCameraScanConfig,
+  CameraDevice,
 } from 'html5-qrcode';
-import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
+import { Dispatch, useCallback, useEffect, useRef } from 'react';
 
 const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
   let qrbox = {
@@ -47,14 +45,15 @@ const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
 
 export default function Scanner({
   onCodeDetected,
+  activeDevice,
+  dispatch,
 }: {
   onCodeDetected: (decodedText: string, result: Html5QrcodeResult) => void;
+  activeDevice: CameraDevice | null;
+  dispatch: Dispatch<ScannerActions>;
 }) {
   const parentDiv = useRef<HTMLDivElement>(null);
   const alreadyRequestedRef = useRef<boolean | null>(null);
-  const [{ activeDevice }, dispatch] = useReducer<
-    Reducer<ScannerState, ScannerActions>
-  >(scannerReducer, initialState);
 
   const getCameraDevices = useCallback(async function (): Promise<void> {
     try {

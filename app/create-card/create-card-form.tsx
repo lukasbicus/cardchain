@@ -1,6 +1,13 @@
 'use client';
 
 import Scanner from '@/app/create-card/scanner';
+import {
+  initialState,
+  ScannerActions,
+  ScannerActionTypes,
+  scannerReducer,
+  ScannerState,
+} from '@/app/create-card/scannerReducer';
 import useAppState from '@/app/lib/app-state/app-state';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
@@ -22,7 +29,14 @@ import {
 import { Html5QrcodeResult, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Reducer,
+  useCallback,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import { useForm } from 'react-hook-form';
 
 enum FormNames {
@@ -63,6 +77,9 @@ export default function CreateCardForm() {
           },
     });
   const [, dispatch] = useAppState();
+  const [{ activeDevice }, pageDispatch] = useReducer<
+    Reducer<ScannerState, ScannerActions>
+  >(scannerReducer, initialState);
   const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const [isScannerVisible, setIsScannerVisible] = useState(false);
@@ -107,6 +124,15 @@ export default function CreateCardForm() {
       }
     };
   }, []);
+
+  const handleToggleCameraButtonClick = useCallback(function () {
+    console.log('toggle button click');
+    debugger;
+    pageDispatch({
+      type: ScannerActionTypes.TOGGLE_ACTIVE_DEVICE,
+    });
+  }, []);
+
   return (
     <>
       <form
@@ -227,12 +253,18 @@ export default function CreateCardForm() {
             <h3 className="font-bold text-lg">Scan your code!</h3>
             <button
               className="btn btn-sm btn-circle btn-ghost"
-              onClick={() => cameraModalRef.current?.close()}
+              onClick={handleToggleCameraButtonClick}
             >
               <IconRefresh className="w-6 h-6" />
             </button>
           </div>
-          {isScannerVisible && <Scanner onCodeDetected={handleCodeDetected} />}
+          {isScannerVisible && (
+            <Scanner
+              onCodeDetected={handleCodeDetected}
+              activeDevice={activeDevice}
+              dispatch={pageDispatch}
+            />
+          )}
         </div>
       </dialog>
     </>
