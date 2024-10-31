@@ -21,6 +21,11 @@ export type ToggleActiveDeviceAction = {
 
 export type ScannerActions = SetDevicesAction | ToggleActiveDeviceAction;
 
+export const initialState: ScannerState = {
+  activeDevice: null,
+  devices: [],
+};
+
 export const scannerReducer = (
   state: ScannerState,
   action: ScannerActions
@@ -33,6 +38,7 @@ export const scannerReducer = (
         activeDevice: action.payload[0] ?? null,
       };
     case ScannerActionTypes.TOGGLE_ACTIVE_DEVICE:
+      console.log('TOGGLE_ACTIVE_DEVICE');
       if (state.activeDevice === null || state.devices.length < 2) {
         return state;
       }

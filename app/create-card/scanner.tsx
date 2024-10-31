@@ -1,13 +1,19 @@
 'use client';
 
 import {
+  initialState,
+  ScannerActions,
+  ScannerActionTypes,
+  scannerReducer,
+  ScannerState,
+} from '@/app/create-card/scannerReducer';
+import {
   Html5Qrcode,
   Html5QrcodeResult,
   Html5QrcodeScannerState,
   Html5QrcodeCameraScanConfig,
-  CameraDevice,
 } from 'html5-qrcode';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
 
 const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
   let qrbox = {
@@ -46,27 +52,35 @@ export default function Scanner({
 }) {
   const parentDiv = useRef<HTMLDivElement>(null);
   const alreadyRequestedRef = useRef<boolean | null>(null);
-  const [cameraDevices, setCameraDevices] = useState<CameraDevice[]>([]);
+  const [{ activeDevice }, dispatch] = useReducer<
+    Reducer<ScannerState, ScannerActions>
+  >(scannerReducer, initialState);
 
   const getCameraDevices = useCallback(async function (): Promise<void> {
     try {
       alreadyRequestedRef.current = true;
       const devices = await Html5Qrcode.getCameras();
       console.log('devices', devices);
-      setCameraDevices(devices);
+      dispatch({
+        type: ScannerActionTypes.SET_DEVICES,
+        payload: devices,
+      });
     } catch (e) {
       console.log('error while querying cameras', e);
       alreadyRequestedRef.current = false;
-      setCameraDevices([]);
+      dispatch({
+        type: ScannerActionTypes.SET_DEVICES,
+        payload: [],
+      });
     }
   }, []);
 
   const startScanning = useCallback(
-    (device: CameraDevice): (() => void) => {
+    (activeDeviceId: string): (() => void) => {
       const reader: Html5Qrcode = new Html5Qrcode('reader1');
       reader
         .start(
-          { facingMode: 'environment', deviceId: device.id },
+          { facingMode: 'environment', deviceId: activeDeviceId },
           getConfig(parentDiv.current?.getBoundingClientRect()),
           onCodeDetected,
           undefined
@@ -91,15 +105,13 @@ export default function Scanner({
 
   useEffect(() => {
     let cleanup: () => void;
-    console.log('cameraDevices,', cameraDevices);
-    if (cameraDevices.length > 0) {
-      cleanup = startScanning(cameraDevices[0]);
+    if (activeDevice?.id) {
+      cleanup = startScanning(activeDevice.id);
     }
     return () => {
-      console.log('running cleanup');
       cleanup?.();
     };
-  }, [cameraDevices, startScanning]);
+  }, [activeDevice?.id, startScanning]);
 
   return (
     <div
@@ -112,7 +124,7 @@ export default function Scanner({
     >
       <div id="reader1" className="max-h-full"></div>
       <div id="reader2" className="max-h-full" />
-      {cameraDevices.length === 0 && (
+      {!activeDevice && (
         <div className="text-center">
           <p className="text-xl py-4">Please grant camera permissions.</p>
           <p className="text-sm text-gray-500 pb-4">
