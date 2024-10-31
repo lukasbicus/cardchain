@@ -19,29 +19,19 @@ const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
     height: 250,
   };
   if (boundingRect) {
+    const width = Math.max(50, Math.ceil(boundingRect.width * 0.8));
     qrbox = {
-      width: Math.max(50, Math.ceil(boundingRect.width * 0.8)),
-      height: Math.max(50, Math.ceil(boundingRect.height * 0.8)),
+      width,
+      height: Math.max(
+        50,
+        Math.min(Math.ceil(boundingRect.height * 0.8), width)
+      ),
     };
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const videoConstraints = boundingRect
-    ? {
-        width: {
-          max: boundingRect.width,
-        },
-        height: {
-          max: boundingRect.height,
-        },
-      }
-    : undefined;
-  const config: Html5QrcodeCameraScanConfig = {
-    fps: 4,
+  return {
+    fps: 10,
     qrbox,
-    // videoConstraints,
   };
-  console.log('config', config);
-  return config;
 };
 
 export default function Scanner({
