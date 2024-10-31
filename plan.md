@@ -30,6 +30,8 @@ Features:
 - [x] _Scan code page_
   - [x] _implement barcode scan_
   - [x] _implement navigation to qrcode scan + scan itself_
+  - [x] open scan dialog on create card page init
+  - [ ] add notification/info, when camera permission is denied
 - [ ] **Create card page**
   - [x] **implement form**
   - [x] _implement navigation to scan code page_

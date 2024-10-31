@@ -91,6 +91,7 @@ export default function Scanner({
   }, [getCameraDevices]);
 
   useEffect(() => {
+    console.log('use effect called');
     let cleanup: () => void;
     if (activeDevice?.id) {
       cleanup = startScanning(activeDevice.id);
@@ -104,8 +105,8 @@ export default function Scanner({
     <div
       className="max-w-full overflow-clip"
       style={{
-        height: 'calc(100% - 2.5rem)',
-        maxHeight: 'calc(100% - 2.5rem)',
+        height: 'calc(100% - 4rem)',
+        maxHeight: 'calc(100% - 4rem)',
       }}
       ref={parentDiv}
     >
