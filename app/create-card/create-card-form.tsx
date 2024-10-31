@@ -76,8 +76,8 @@ export default function CreateCardForm() {
             [FormNames.CodeFormat]: Html5QrcodeSupportedFormats.EAN_13,
           },
     });
-  const [, dispatch] = useAppState();
-  const [{ activeDevice }, pageDispatch] = useReducer<
+  const [, appDispatch] = useAppState();
+  const [{ activeDevice }, dispatch] = useReducer<
     Reducer<ScannerState, ScannerActions>
   >(scannerReducer, initialState);
   const router = useRouter();
@@ -127,7 +127,7 @@ export default function CreateCardForm() {
         className="px-4 py-6 w-full h-full"
         onSubmit={handleSubmit(data => {
           console.log('data', data);
-          dispatch({
+          appDispatch({
             type: 'ADD_CARD',
             payload: {
               name: data[FormNames.Name],
@@ -242,7 +242,7 @@ export default function CreateCardForm() {
             <button
               className="btn btn-sm btn-circle btn-ghost"
               onClick={() => {
-                pageDispatch({
+                dispatch({
                   type: ScannerActionTypes.TOGGLE_ACTIVE_DEVICE,
                 });
               }}
@@ -254,7 +254,7 @@ export default function CreateCardForm() {
             <Scanner
               onCodeDetected={handleCodeDetected}
               activeDevice={activeDevice}
-              dispatch={pageDispatch}
+              dispatch={dispatch}
             />
           )}
         </div>
