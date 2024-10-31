@@ -5,10 +5,9 @@ import {
   Html5QrcodeResult,
   Html5QrcodeScannerState,
   Html5QrcodeCameraScanConfig,
+  CameraDevice,
 } from 'html5-qrcode';
-import { useEffect, useRef, useState } from 'react';
-
-const readerIds = ['reader1', 'reader2'];
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const getConfig = (boundingRect?: DOMRect): Html5QrcodeCameraScanConfig => {
   let qrbox = {
@@ -46,48 +45,62 @@ export default function Scanner({
   onCodeDetected: (decodedText: string, result: Html5QrcodeResult) => void;
 }) {
   const parentDiv = useRef<HTMLDivElement>(null);
-  const [isRequestNoticeVisible, setIsRequestNoticeVisible] =
-    useState<boolean>(true);
-  const activeReaderId = useRef<string | null>(null);
-  useEffect(() => {
-    let readerId: string;
-    if (activeReaderId.current === null) {
-      readerId = readerIds[0];
-    } else {
-      readerId = readerIds[1];
-    }
-    activeReaderId.current = readerId;
-    const reader: Html5Qrcode = new Html5Qrcode(readerId);
-    let cleanup = () => {
-      reader.clear();
-      document.getElementById(readerId)?.remove();
-    };
+  const alreadyRequestedRef = useRef<boolean | null>(null);
+  const [cameraDevices, setCameraDevices] = useState<CameraDevice[]>([]);
 
-    reader
-      .start(
-        { facingMode: 'environment' },
-        getConfig(parentDiv.current?.getBoundingClientRect()),
-        onCodeDetected,
-        undefined
-      )
-      .then(() => {
-        setIsRequestNoticeVisible(false);
-        cleanup = () => {
-          if (reader.getState() === Html5QrcodeScannerState.SCANNING) {
-            reader.stop().finally(() => reader.clear());
-          } else {
-            reader.clear();
-          }
-          document.getElementById(readerId)?.remove();
-        };
-      })
-      .catch(e => {
-        console.log('error', e);
-      });
+  const getCameraDevices = useCallback(async function (): Promise<void> {
+    try {
+      alreadyRequestedRef.current = true;
+      const devices = await Html5Qrcode.getCameras();
+      console.log('devices', devices);
+      setCameraDevices(devices);
+    } catch (e) {
+      console.log('error while querying cameras', e);
+      alreadyRequestedRef.current = false;
+      setCameraDevices([]);
+    }
+  }, []);
+
+  const startScanning = useCallback(
+    (device: CameraDevice): (() => void) => {
+      const reader: Html5Qrcode = new Html5Qrcode('reader1');
+      reader
+        .start(
+          { facingMode: 'environment', deviceId: device.id },
+          getConfig(parentDiv.current?.getBoundingClientRect()),
+          onCodeDetected,
+          undefined
+        )
+        .catch(e => {
+          console.log('error', e);
+        });
+      return () => {
+        if (reader.getState() === Html5QrcodeScannerState.SCANNING) {
+          reader.stop().finally(() => reader.clear());
+        } else {
+          reader.clear();
+        }
+      };
+    },
+    [onCodeDetected]
+  );
+
+  useEffect(() => {
+    getCameraDevices();
+  }, [getCameraDevices]);
+
+  useEffect(() => {
+    let cleanup: () => void;
+    console.log('cameraDevices,', cameraDevices);
+    if (cameraDevices.length > 0) {
+      cleanup = startScanning(cameraDevices[0]);
+    }
     return () => {
-      cleanup();
+      console.log('running cleanup');
+      cleanup?.();
     };
-  }, [onCodeDetected]);
+  }, [cameraDevices, startScanning]);
+
   return (
     <div
       className="max-w-full overflow-clip"
@@ -99,13 +112,16 @@ export default function Scanner({
     >
       <div id="reader1" className="max-h-full"></div>
       <div id="reader2" className="max-h-full" />
-      {isRequestNoticeVisible && (
+      {cameraDevices.length === 0 && (
         <div className="text-center">
           <p className="text-xl py-4">Please grant camera permissions.</p>
           <p className="text-sm text-gray-500 pb-4">
             Without those permissions, it will be impossible to scan and save
             your cards.
           </p>
+          <button className="btn btn-primary" onClick={getCameraDevices}>
+            Request devices
+          </button>
         </div>
       )}
     </div>

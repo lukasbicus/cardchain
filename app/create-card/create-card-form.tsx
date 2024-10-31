@@ -13,7 +13,12 @@ import {
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
-import { IconCamera, IconPalette, IconX } from '@tabler/icons-react';
+import {
+  IconCamera,
+  IconPalette,
+  IconRefresh,
+  IconX,
+} from '@tabler/icons-react';
 import { Html5QrcodeResult, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -211,14 +216,20 @@ export default function CreateCardForm() {
         </footer>
       </form>
       <dialog id="camera-modal" className="modal" ref={cameraModalRef}>
-        <div className="modal-box w-11/12 h-5/6 max-w-5xl max-h-5xl overflow-clip">
-          <div className="flex justify-between items-center pb-4">
-            <h3 className="font-bold text-lg">Scan your code!</h3>
+        <div className="modal-box w-full h-full max-h-full max-w-full overflow-clip lg:w-11/12 lg:h-5/6 lg:max-w-5xl lg:max-h-5xl">
+          <div className="grid justify-between items-center pb-4 grid-cols-[auto_1fr_auto] gap-4">
             <button
               className="btn btn-sm btn-circle btn-ghost"
               onClick={() => cameraModalRef.current?.close()}
             >
               <IconX className="w-6 h-6" />
+            </button>
+            <h3 className="font-bold text-lg">Scan your code!</h3>
+            <button
+              className="btn btn-sm btn-circle btn-ghost"
+              onClick={() => cameraModalRef.current?.close()}
+            >
+              <IconRefresh className="w-6 h-6" />
             </button>
           </div>
           {isScannerVisible && <Scanner onCodeDetected={handleCodeDetected} />}
