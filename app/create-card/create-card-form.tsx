@@ -239,7 +239,7 @@ export default function CreateCardForm() {
               <IconX className="w-6 h-6" />
             </button>
             <h3 className="font-bold text-lg">Scan your code!</h3>
-            {devices.length > 0 ? (
+            {devices.length > 1 ? (
               <button
                 className="btn btn-sm btn-circle btn-ghost"
                 onClick={() => {
