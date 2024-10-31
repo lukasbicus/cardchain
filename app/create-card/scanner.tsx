@@ -47,26 +47,24 @@ export default function Scanner({
 
   const getCameraDevices = useCallback(
     async function (): Promise<void> {
+      let devices: CameraDevice[];
       try {
-        const devices = await Html5Qrcode.getCameras();
-        dispatch({
-          type: ScannerActionTypes.SET_DEVICES,
-          payload: devices,
-        });
+        devices = await Html5Qrcode.getCameras();
       } catch (e) {
         console.log('error while querying cameras', e);
-        dispatch({
-          type: ScannerActionTypes.SET_DEVICES,
-          payload: [],
-        });
+        devices = [];
       }
+      dispatch({
+        type: ScannerActionTypes.SET_DEVICES,
+        payload: devices,
+      });
     },
     [dispatch]
   );
 
   const startScanning = useCallback(
     (activeDeviceId: string): (() => void) => {
-      const reader: Html5Qrcode = new Html5Qrcode('reader1');
+      const reader: Html5Qrcode = new Html5Qrcode('reader');
       reader
         .start(
           activeDeviceId,
@@ -106,12 +104,12 @@ export default function Scanner({
     <div
       className="max-w-full overflow-clip"
       style={{
-        height: 'calc(100% - 48px)',
-        maxHeight: 'calc(100% - 48px)',
+        height: 'calc(100% - 2.5rem)',
+        maxHeight: 'calc(100% - 2.5rem)',
       }}
       ref={parentDiv}
     >
-      <div id="reader1" className="max-h-full"></div>
+      <div id="reader" className="max-h-full"></div>
       {!activeDevice && (
         <div className="text-center">
           <p className="text-xl py-4">Please grant camera permissions.</p>

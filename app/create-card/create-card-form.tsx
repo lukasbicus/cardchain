@@ -126,7 +126,6 @@ export default function CreateCardForm() {
       <form
         className="px-4 py-6 w-full h-full"
         onSubmit={handleSubmit(data => {
-          console.log('data', data);
           appDispatch({
             type: 'ADD_CARD',
             payload: {
