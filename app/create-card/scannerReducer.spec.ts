@@ -5,12 +5,14 @@ import {
   ScannerState,
   SetDevicesAction,
   ToggleActiveDeviceAction,
+  UpdateModalVisibilityAction,
 } from './scannerReducer';
 
 describe('scannerReducer', () => {
   const initialState: ScannerState = {
     devices: [],
     activeDevice: null,
+    isModalVisible: false,
   };
 
   it('should handle SET_DEVICES action', () => {
@@ -54,6 +56,15 @@ describe('scannerReducer', () => {
     };
     const stateAfterToggle = scannerReducer(initialState, action);
     expect(stateAfterToggle.activeDevice).toEqual(null);
+  });
+
+  it('should handle UPDATE_MODAL_VISIBILITY action for initial state', () => {
+    const action: UpdateModalVisibilityAction = {
+      type: ScannerActionTypes.UPDATE_MODAL_VISIBILITY,
+      payload: true,
+    };
+    const stateAfterToggle = scannerReducer(initialState, action);
+    expect(stateAfterToggle.isModalVisible).toEqual(true);
   });
 
   it('should return the initial state for an unknown action type', () => {
