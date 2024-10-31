@@ -53,26 +53,25 @@ export default function Scanner({
   dispatch: Dispatch<ScannerActions>;
 }) {
   const parentDiv = useRef<HTMLDivElement>(null);
-  const alreadyRequestedRef = useRef<boolean | null>(null);
 
-  const getCameraDevices = useCallback(async function (): Promise<void> {
-    try {
-      alreadyRequestedRef.current = true;
-      const devices = await Html5Qrcode.getCameras();
-      console.log('devices', devices);
-      dispatch({
-        type: ScannerActionTypes.SET_DEVICES,
-        payload: devices,
-      });
-    } catch (e) {
-      console.log('error while querying cameras', e);
-      alreadyRequestedRef.current = false;
-      dispatch({
-        type: ScannerActionTypes.SET_DEVICES,
-        payload: [],
-      });
-    }
-  }, []);
+  const getCameraDevices = useCallback(
+    async function (): Promise<void> {
+      try {
+        const devices = await Html5Qrcode.getCameras();
+        dispatch({
+          type: ScannerActionTypes.SET_DEVICES,
+          payload: devices,
+        });
+      } catch (e) {
+        console.log('error while querying cameras', e);
+        dispatch({
+          type: ScannerActionTypes.SET_DEVICES,
+          payload: [],
+        });
+      }
+    },
+    [dispatch]
+  );
 
   const startScanning = useCallback(
     (activeDeviceId: string): (() => void) => {
@@ -122,7 +121,6 @@ export default function Scanner({
       ref={parentDiv}
     >
       <div id="reader1" className="max-h-full"></div>
-      <div id="reader2" className="max-h-full" />
       {!activeDevice && (
         <div className="text-center">
           <p className="text-xl py-4">Please grant camera permissions.</p>
