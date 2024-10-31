@@ -3,11 +3,11 @@
 import Scanner from '@/app/create-card/scanner';
 import {
   initialState,
-  ScannerActions,
-  ScannerActionTypes,
-  scannerReducer,
-  ScannerState,
-} from '@/app/create-card/scannerReducer';
+  CreateCardFormActions,
+  CreateCardFormActionTypes,
+  createCardFormReducer,
+  CreateCardFormState,
+} from '@/app/create-card/createCardFormReducer';
 import useAppState from '@/app/lib/app-state/app-state';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
@@ -71,8 +71,8 @@ export default function CreateCardForm() {
     });
   const [, appDispatch] = useAppState();
   const [{ devices, activeDevice, isModalVisible }, dispatch] = useReducer<
-    Reducer<ScannerState, ScannerActions>
-  >(scannerReducer, initialState);
+    Reducer<CreateCardFormState, CreateCardFormActions>
+  >(createCardFormReducer, initialState);
   const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const handleCodeDetected = useCallback(
@@ -98,7 +98,7 @@ export default function CreateCardForm() {
         ) {
           if (cameraModal) {
             dispatch({
-              type: ScannerActionTypes.UPDATE_MODAL_VISIBILITY,
+              type: CreateCardFormActionTypes.UPDATE_MODAL_VISIBILITY,
               payload: cameraModal.open,
             });
           }
@@ -238,7 +238,7 @@ export default function CreateCardForm() {
                 className="btn btn-sm btn-circle btn-ghost"
                 onClick={() => {
                   dispatch({
-                    type: ScannerActionTypes.TOGGLE_ACTIVE_DEVICE,
+                    type: CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
                   });
                 }}
               >

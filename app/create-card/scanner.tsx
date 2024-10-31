@@ -1,9 +1,9 @@
 'use client';
 
 import {
-  ScannerActions,
-  ScannerActionTypes,
-} from '@/app/create-card/scannerReducer';
+  CreateCardFormActions,
+  CreateCardFormActionTypes,
+} from '@/app/create-card/createCardFormReducer';
 import {
   Html5Qrcode,
   Html5QrcodeResult,
@@ -41,7 +41,7 @@ export default function Scanner({
 }: {
   onCodeDetected: (decodedText: string, result: Html5QrcodeResult) => void;
   activeDevice: CameraDevice | null;
-  dispatch: Dispatch<ScannerActions>;
+  dispatch: Dispatch<CreateCardFormActions>;
 }) {
   const parentDiv = useRef<HTMLDivElement>(null);
 
@@ -55,7 +55,7 @@ export default function Scanner({
         devices = [];
       }
       dispatch({
-        type: ScannerActionTypes.SET_DEVICES,
+        type: CreateCardFormActionTypes.SET_DEVICES,
         payload: devices,
       });
     },
