@@ -2,16 +2,11 @@
 
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
+import CompanyIcon from '@/app/ui/company-icon';
 import { MainMessage } from '@/app/ui/main-message';
 import PageTemplate from '@/app/ui/page-template';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
-import {
-  IconCards,
-  IconEdit,
-  IconHome,
-  IconPlus,
-  IconTrash,
-} from '@tabler/icons-react';
+import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -49,26 +44,58 @@ export function CardDetailPage() {
           href={Routes.MyCards}
           rightAction={
             <div className="flex gap-2">
-              <button className="btn btn-square btn-ghost">
-                <IconTrash />
-              </button>
-              <button className="btn btn-square btn-ghost">
-                <IconEdit />
-              </button>
+              <Link href={Routes.MyCards} replace>
+                <button className="btn btn-square btn-ghost">
+                  <IconTrash />
+                </button>
+              </Link>
+              <Link href={Routes.MyCards} replace>
+                <button className="btn btn-square btn-ghost">
+                  <IconEdit />
+                </button>
+              </Link>
             </div>
           }
         />
       }
     >
-      <div>card</div>
-      <div>{card.name}</div>
-      <div>{card.id}</div>
-      <div>{card.code}</div>
-      <div>{card.note}</div>
-      <div>{card.bgColor}</div>
-      <div>{JSON.stringify(card.icon)}</div>
-      <div>{card.favorite}</div>
-      <div>{card.codeFormat}</div>
+      <div className="h-full w-full grid grid-col grid-rows-[1fr_auto]">
+        <div>
+          Code
+          <div>{card.code}</div>
+          <div>{card.codeFormat}</div>
+        </div>
+        <div
+          className="bg-base-300 p-6"
+          style={card.bgColor ? { backgroundColor: card.bgColor } : {}}
+        >
+          <div className="flex gap-6 items-center">
+            <CompanyIcon {...card} className="w-16 h-16" />
+            <label className="form-control flex-1">
+              <div className="label">
+                <span className="label-text">Card name</span>
+              </div>
+              <input
+                type="text"
+                disabled
+                value={card.name}
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+
+          <label className="form-control">
+            <div className="label">
+              <span className="label-text">Card note</span>
+            </div>
+            <textarea
+              className="textarea textarea-bordered h-24"
+              value={card.note}
+              disabled
+            />
+          </label>
+        </div>
+      </div>
     </PageTemplate>
   );
 }

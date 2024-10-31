@@ -11,7 +11,7 @@ export function SecondaryHeader({
   href: LinkProps['href'];
 }) {
   return (
-    <header className="navbar bg-base-200">
+    <header className="navbar bg-base-300">
       <div className="navbar-start">
         <Link className="btn btn-square btn-ghost" href={href} replace>
           <IconArrowLeft />

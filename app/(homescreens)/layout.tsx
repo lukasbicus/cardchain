@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className={styles.childrenHeight}>{children}</div>
       <footer
         className={clsx(
-          `btm-nav btm-nav-lg text-base-content bg-base-200`,
+          `btm-nav btm-nav-lg text-base-content bg-base-300`,
           styles.bottomBarNavHeight
         )}
       >

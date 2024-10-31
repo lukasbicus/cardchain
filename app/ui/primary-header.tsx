@@ -11,7 +11,7 @@ export function PrimaryHeader({
 }) {
   return (
     <header>
-      <div className="navbar bg-base-200">
+      <div className="navbar bg-base-300">
         <div className="navbar-start">
           <Image
             src="/logo.svg"
