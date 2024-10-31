@@ -17,7 +17,9 @@ export function SecondaryHeader({
           <IconArrowLeft />
         </Link>
       </div>
-      <div className="navbar-center">{title}</div>
+      <div className="navbar-center">
+        <span className="font-bold text-lg">{title}</span>
+      </div>
       <div className="navbar-end">{rightAction}</div>
     </header>
   );
