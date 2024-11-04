@@ -76,7 +76,7 @@ export default function CreateCardForm() {
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
       setValue(FormNames.Code, text);
-      if (result.format?.format) {
+      if (typeof result.format?.format === 'number') {
         setValue(
           FormNames.CodeFormat,
           mapHtml5QrcodeFormatToJsbarcodeFormat(result.format.format)
