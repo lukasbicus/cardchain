@@ -25,7 +25,6 @@ export function Barcode({ code }: { code: string }) {
   return (
     <div>
       <svg ref={barcodeRef} className="p-3" />
-      <div>{code}</div>;
     </div>
   );
 }

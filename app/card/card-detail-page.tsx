@@ -14,7 +14,7 @@ import { useSearchParams } from 'next/navigation';
 export function CardDetailPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const [state, dispatch] = useAppState();
+  const [state] = useAppState();
   const card = state.cards.find(c => c.id === id);
   if (!card) {
     return (
@@ -61,10 +61,7 @@ export function CardDetailPage() {
       }
     >
       <div className="h-full w-full grid grid-col grid-rows-[1fr_auto]">
-        <div>
-          <Barcode code={card.code} />
-          <div>{card.codeFormat}</div>
-        </div>
+        <Barcode code={card.code} />
         <div
           className="bg-base-300 p-6"
           style={card.bgColor ? { backgroundColor: card.bgColor } : {}}
@@ -84,6 +81,12 @@ export function CardDetailPage() {
             </label>
           </div>
 
+          <label className="form-control">
+            <div className="label">
+              <span className="label-text">Toggle note visibility</span>
+            </div>
+            <input type="checkbox" className="toggle" defaultChecked />
+          </label>
           <label className="form-control">
             <div className="label">
               <span className="label-text">Card note</span>
