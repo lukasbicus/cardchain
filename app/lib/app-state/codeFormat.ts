@@ -1,4 +1,4 @@
-import { Html5QrcodeSupportedFormats } from 'html5-qrcode/src/core';
+import { Html5QrcodeSupportedFormats } from 'html5-qrcode';
 
 /**
  * @param codeFormat

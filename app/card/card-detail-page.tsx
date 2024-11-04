@@ -61,7 +61,7 @@ export function CardDetailPage() {
       }
     >
       <div className="h-full w-full grid grid-col grid-rows-[1fr_auto]">
-        <Barcode code={card.code} />
+        <Barcode code={card.code} codeFormat={card.codeFormat} />
         <div
           className="bg-base-300 p-6"
           style={card.bgColor ? { backgroundColor: card.bgColor } : {}}

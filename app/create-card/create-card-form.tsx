@@ -9,6 +9,7 @@ import {
   CreateCardFormState,
 } from '@/app/create-card/createCardFormReducer';
 import useAppState from '@/app/lib/app-state/app-state';
+import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/lib/app-state/codeFormat';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
   CardIcon,
@@ -26,7 +27,7 @@ import {
   IconRefresh,
   IconX,
 } from '@tabler/icons-react';
-import { Html5QrcodeResult, Html5QrcodeSupportedFormats } from 'html5-qrcode';
+import { Html5QrcodeResult } from 'html5-qrcode';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
@@ -44,7 +45,7 @@ enum FormNames {
 type CreateCardForm = {
   [FormNames.Name]: string;
   [FormNames.Code]: string;
-  [FormNames.CodeFormat]: number;
+  [FormNames.CodeFormat]: string;
   [FormNames.Note]: string;
   [FormNames.Color]: string | null;
   [FormNames.Icon]: string | SvgProps;
@@ -63,11 +64,8 @@ export default function CreateCardForm() {
             [FormNames.Name]: predefinedCompany.name,
             [FormNames.Color]: null,
             [FormNames.Icon]: predefinedCompany.svg,
-            [FormNames.CodeFormat]: predefinedCompany.codeFormat,
           }
-        : {
-            [FormNames.CodeFormat]: Html5QrcodeSupportedFormats.EAN_13,
-          },
+        : {},
     });
   const [, appDispatch] = useAppState();
   const [{ devices, activeDevice, isModalVisible }, dispatch] = useReducer<
@@ -79,7 +77,10 @@ export default function CreateCardForm() {
     (text: string, { result }: Html5QrcodeResult) => {
       setValue(FormNames.Code, text);
       if (result.format?.format) {
-        setValue(FormNames.CodeFormat, result.format.format);
+        setValue(
+          FormNames.CodeFormat,
+          mapHtml5QrcodeFormatToJsbarcodeFormat(result.format.format)
+        );
       }
       cameraModalRef.current?.close();
     },
@@ -133,9 +134,7 @@ export default function CreateCardForm() {
               note: data[FormNames.Note] || undefined,
               bgColor: data[FormNames.Color] || null,
               icon: (data[FormNames.Icon] as CardIcon) || null,
-              codeFormat: data[
-                FormNames.CodeFormat
-              ] as Html5QrcodeSupportedFormats,
+              codeFormat: data[FormNames.CodeFormat],
             },
           });
           router.replace(Routes.MyCards);
