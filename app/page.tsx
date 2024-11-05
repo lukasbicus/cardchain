@@ -23,8 +23,8 @@ export default function Home() {
           <h1 className="mb-5 text-5xl font-bold">Tilda</h1>
           <h2 className="mb-5 text-3xl font-bold">Manage your loyalty cards</h2>
           <p className="mb-5">
-            Simplify your loyalty card management with LoyaltyControl, the app
-            that puts you in charge of your data and cards.
+            Simplify your loyalty card management with Tilda, the app that puts
+            you in charge of your data and cards.
           </p>
           <div className="flex justify-center gap-4">
             <form action={saveLandingPageCookieAndRedirect}>
@@ -32,7 +32,7 @@ export default function Home() {
                 Get Started
               </button>
             </form>
-            <Link className="btn" href={Routes.MyCards}>
+            <Link className="btn" href={Routes.About}>
               About
             </Link>
           </div>
