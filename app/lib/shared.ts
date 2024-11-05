@@ -36,7 +36,7 @@ export enum Cookies {
   LandingPage = 'LandingPage',
 }
 
-export const ICON_COLOR = '#db924b';
+export const ICON_COLOR = '#4a00ff';
 
 export enum CardIcon {
   Grocery = 'Grocery',
