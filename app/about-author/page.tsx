@@ -47,7 +47,7 @@ export default function Page() {
             Linked in
           </Link>
         </div>
-        <div className="flex flex-col gap-2 px-2 py-3 mb-3 w-full bg-base-300">
+        <div className="flex flex-col gap-2 px-2 py-3 w-full bg-base-300">
           <h3 className="pt-2 text-xl">Support me</h3>
           <p className="py-3">
             Your support helps me to keep creating content. Thank you for your
