@@ -13,7 +13,7 @@ Features:
   - [ ] add theme switching
   - [x] **implement PWA**
   - [x] **add homescreen menu**
-  - [ ] **create a general search component**
+  - [x] **create a general search component**
   - [x] **implement primary header**
   - [x] **implement secondary header**
   - [x] **implement sync between local storage and app state**
@@ -24,7 +24,7 @@ Features:
 - [ ] **Add cards page**
   - [x] **display list of predefined companies**
   - [ ] display grid of predefined companies + switch to grid
-  - [ ] _implement search in predefined companies_
+  - [x] _implement search in predefined companies_
   - [x] **implement add card button + navigation to scan code page**
   - [x] _implement click on predefined company + navigation to create card page_
 - [x] _Scan code dialog_
@@ -41,7 +41,7 @@ Features:
 - [x] **My cards page**
   - [x] **display list of cards**
   - [ ] display grid of cards
-  - [ ] **filter collection based on search**
+  - [x] **filter collection based on search**
   - [ ] filter collection based on favorites
   - [ ] _implement (un) mark favorite_
   - [x] **implement navigation to card detail**
