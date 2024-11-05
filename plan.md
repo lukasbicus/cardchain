@@ -8,7 +8,7 @@ Features:
 
 - [ ] **Welcome page**
   - [x] **add navigation to add cards page**
-  - [ ] **add navigation to about page**
+  - [x] **add navigation to about page**
 - [ ] Utils
   - [ ] add theme switching
   - [x] **implement PWA**
@@ -27,7 +27,7 @@ Features:
   - [ ] _implement search in predefined companies_
   - [x] **implement add card button + navigation to scan code page**
   - [x] _implement click on predefined company + navigation to create card page_
-- [x] _Scan code page_
+- [x] _Scan code dialog_
   - [x] _implement barcode scan_
   - [x] _implement navigation to qrcode scan + scan itself_
   - [x] open scan dialog on create card page init
@@ -54,19 +54,19 @@ Features:
 - [ ] _Edit card page_
   - [ ] _implement edit form_
   - [ ] _implement edit card submit (in local storage)_
-- [ ] **Settings page**
-  - [ ] **display dummy page**
+- [x] **Settings page**
+  - [x] **display dummy page**
   - [ ] implement pin favorites on top switch + functionality
   - [ ] implement order cards functionality
   - [ ] implement app language switch functionality
   - [ ] implement navigation to export data page
   - [ ] implement navigation to import data page
-  - [ ] _implement navigation to about page_
-  - [ ] **implement navigation to about author page**
+  - [x] _implement navigation to about page_
+  - [x] **implement navigation to about author page**
   - [ ] _implement navigation to help page_
   - [ ] implement theme switching
 - [ ] Export data page
 - [ ] Import data page
-- [ ] _About page_
-- [ ] **About author page**
+- [x] _About page_
+- [x] **About author page**
 - [ ] Help page
