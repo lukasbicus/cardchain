@@ -12,13 +12,15 @@ export default function Page() {
       header={<SecondaryHeader title="About author" href={Routes.Settings} />}
     >
       <div className="px-2 py-6">
-        <Image
-          src="https://2.gravatar.com/avatar/539b51ba48d1d7d21abb176cc32b7c6d8d421185282f1b49458960283d44942c?size=256"
-          width="256"
-          height="256"
-          alt="Lukas Bicus"
-          className="rounded-full self-center max-w-[33%] md:max-w-none justify-self-center"
-        />
+        <div className="text-center">
+          <Image
+            src="https://2.gravatar.com/avatar/539b51ba48d1d7d21abb176cc32b7c6d8d421185282f1b49458960283d44942c?size=256"
+            width="256"
+            height="256"
+            alt="Lukas Bicus"
+            className="rounded-full max-w-[33%] md:max-w-none inline-block"
+          />
+        </div>
         <div className="py-4 text-center">
           <h1 className="text-2xl md:text-3xl font-bold">Lukáš Bičuš</h1>
           <span className="text-xl">The fullstack developer</span>
