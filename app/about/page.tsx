@@ -24,25 +24,17 @@ export default function Page() {
         <div className="px-4 py-6 bg-base-300">
           <h2 className="text-2xl font-bold">About Tilda</h2>
           <p className="pt-3 pb-6">
-            Welcome to the future of loyalty card management! Our cutting-edge
-            application is designed to revolutionize the way you store and use
-            your loyalty cards. With a focus on convenience, security, and
-            versatility, we're proud to introduce an app that's not just another
-            digital wallet - it's your personal pocket-sized companion for all
-            your shopping needs. Here's what makes our app stand out:
+            {
+              "Welcome to the future of loyalty card management! Our cutting-edge application is designed to revolutionize the way you store and use your loyalty cards. With a focus on convenience, security, and versatility, we're proud to introduce an app that's not just another digital wallet - it's your personal pocket-sized companion for all your shopping needs. Here's what makes our app stand out:"
+            }
           </p>
           <h3 className="text-lg font-bold first-letter:text-7xl first-letter:float-left first-letter:mr-3">
             🚀 Progressive Web App (PWA) Technology
           </h3>
           <p className="pt-3 pb-6">
-            Our app harnesses the power of Progressive Web App technology to
-            deliver a seamless experience across all your devices. Whether
-            you're on a smartphone, tablet, or desktop, our app is optimized to
-            work flawlessly. The best part? It's built to work offline, so you
-            can access your loyalty cards even when you're not connected to the
-            internet. Say goodbye to the frustration of poor connectivity in
-            stores - your loyalty cards are always at your fingertips, no matter
-            where you are.
+            {
+              "Our app harnesses the power of Progressive Web App technology to deliver a seamless experience across all your devices. Whether you're on a smartphone, tablet, or desktop, our app is optimized to work flawlessly. The best part? It's built to work offline, so you can access your loyalty cards even when you're not connected to the internet. Say goodbye to the frustration of poor connectivity in stores - your loyalty cards are always at your fingertips, no matter where you are."
+            }
           </p>
           <h3 className="text-lg font-bold first-letter:text-7xl first-letter:float-left first-letter:mr-3">
             🔒 Your Data, Your Privacy - Effortlessly Transferable
@@ -54,9 +46,10 @@ export default function Page() {
             straightforward privacy.
           </p>
           <p className="py-3">
-            <b>Export with Freedom:</b>&nbsp; Ready to move on? Export your data
-            quickly and carry it with you. It's yours, after all, and we've made
-            sure you can take it wherever you go, no strings attached.
+            <b>Export with Freedom:</b>{' '}
+            {
+              "Ready to move on? Export your data quickly and carry it with you. It's yours, after all, and we've made sure you can take it wherever you go, no strings attached."
+            }
           </p>
           <p className="py-3">
             <b>Import with Simplicity:</b>&nbsp; Syncing across devices is a
@@ -72,20 +65,14 @@ export default function Page() {
             🃏 Versatile Loyalty Card Management
           </h3>
           <p className="pt-3 pb-6">
-            Diverse shopping habits require a versatile solution. Our app is
-            meticulously crafted to manage a wide array of loyalty card codes.
-            From traditional <b>barcodes</b> such as EAN13, EAN8, UPC, CODE39,
-            and CODE93 to modern <b>QR codes</b>, our app is equipped to handle
-            them all. Whether it's your favorite coffee shop, the supermarket
-            down the street, or the bookstore around the corner, our app
-            simplifies your loyalty cards into one easy-to-use platform. No more
-            fumbling through a stack of cards at checkout - just a quick scan
-            from your device, and you're all set to enjoy your rewards.
+            {
+              "Diverse shopping habits require a versatile solution. Our app is meticulously crafted to manage a wide array of loyalty card codes. From traditional barcodes such as EAN13, EAN8, UPC, CODE39, and CODE93 to modern QR codes, our app is equipped to handle them all. Whether it's your favorite coffee shop, the supermarket down the street, or the bookstore around the corner, our app simplifies your loyalty cards into one easy-to-use platform. No more fumbling through a stack of cards at checkout - just a quick scan from your device, and you're all set to enjoy your rewards."
+            }
           </p>
           <p>
-            Join us on this journey to smarter shopping. With our loyalty card
-            app, you're not just a shopper; you're a savvy consumer with the
-            world of rewards right in your pocket.
+            {
+              "Join us on this journey to smarter shopping. With our loyalty card app, you're not just a shopper; you're a savvy consumer with the world of rewards right in your pocket."
+            }
           </p>
         </div>
       </div>
