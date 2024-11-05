@@ -1,7 +1,7 @@
 import { SvgProps } from '@/app/lib/shared';
 
 /**
- * @see https://worldvectorlogo.com/search/terno for logos
+ * @see https://worldvectorlogo.com/ for logos
  */
 
 export const predefinedCompanies: {
