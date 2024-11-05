@@ -30,22 +30,24 @@ export default function Page() {
             test driven development and code reviews. My expertise spans both
             frontend and backend development.
           </p>
-          <Link
-            href="https://github.com/lukasbicus/"
-            className="btn btn-primary w-full"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
-            Github
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/lukasbicus/"
-            className="btn btn-primary w-full"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
-            Linked in
-          </Link>
+          <div className="flex flex-col gap-2 w-full md:flex-row">
+            <Link
+              href="https://github.com/lukasbicus/"
+              className="btn btn-primary w-full md:w-auto flex-grow"
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
+              Github
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/lukasbicus/"
+              className="btn btn-primary w-full md:w-auto flex-grow"
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
+              Linked in
+            </Link>
+          </div>
         </div>
         <div className="flex flex-col gap-2 px-2 py-3 w-full bg-base-300">
           <h3 className="pt-2 text-xl">Support me</h3>
