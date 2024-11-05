@@ -22,6 +22,7 @@ export function Qrcode({ code }: { code: string }) {
   });
   return (
     <div className="flex justify-center items-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={dataUrl} className="w-full max-w-44 h-auto" alt={code} />
     </div>
   );
