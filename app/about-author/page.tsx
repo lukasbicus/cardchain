@@ -7,7 +7,7 @@ export default function Page() {
     <PageTemplate
       header={<SecondaryHeader title="About author" href={Routes.Settings} />}
     >
-      About
+      About author
     </PageTemplate>
   );
 }
