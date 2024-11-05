@@ -15,7 +15,7 @@ export default function Page() {
             alt="logo"
             width={512}
             height={512}
-            className="w-1/2 object-cover"
+            className="w-1/2 object-cover max-w-56"
           />
           <h1 className="text-3xl">Tilda</h1>
           <span className="text-xl">The loyalty card application</span>
