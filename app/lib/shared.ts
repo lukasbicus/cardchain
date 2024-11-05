@@ -28,6 +28,8 @@ export enum Routes {
   CreateCard = '/create-card',
   ScanCard = '/scan-card',
   Card = '/card',
+  About = '/about',
+  AboutAuthor = '/about-author',
 }
 
 export enum Cookies {
