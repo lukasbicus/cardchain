@@ -3,6 +3,15 @@ import withSerwistInit from '@serwist/next';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // reactStrictMode: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '2.gravatar.com',
+        pathname: '/avatar/**',
+      },
+    ],
+  },
 };
 
 const withSerwist = withSerwistInit({
