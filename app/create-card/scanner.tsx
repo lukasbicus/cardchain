@@ -4,6 +4,7 @@ import {
   CreateCardFormActions,
   CreateCardFormActionTypes,
 } from '@/app/create-card/createCardFormReducer';
+import { MainMessage } from '@/app/ui/main-message';
 import {
   Html5Qrcode,
   Html5QrcodeResult,
@@ -112,16 +113,14 @@ export default function Scanner({
     >
       <div id="reader" className="max-h-full"></div>
       {!activeDevice && (
-        <div className="text-center">
-          <p className="text-xl py-4">Please grant camera permissions.</p>
-          <p className="text-sm text-gray-500 pb-4">
-            Without those permissions, it will be impossible to scan and save
-            your cards.
-          </p>
+        <MainMessage
+          title="Please grant camera permissions."
+          description="Without those permissions, it will be impossible to scan and save your cards."
+        >
           <button className="btn btn-primary" onClick={getCameraDevices}>
             Request devices
           </button>
-        </div>
+        </MainMessage>
       )}
     </div>
   );

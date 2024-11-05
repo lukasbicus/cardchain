@@ -1,5 +1,4 @@
 import { CardIcon, SvgProps } from '@/app/lib/shared';
-import { Html5QrcodeSupportedFormats } from 'html5-qrcode/src/core';
 import { v4 as uuid } from 'uuid';
 
 export type Card = {
@@ -10,7 +9,7 @@ export type Card = {
   bgColor: string | null;
   icon: CardIcon | null | SvgProps;
   favorite?: boolean;
-  codeFormat: Html5QrcodeSupportedFormats;
+  codeFormat: string;
 };
 
 export type AppState = {

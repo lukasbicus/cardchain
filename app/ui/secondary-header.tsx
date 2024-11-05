@@ -11,13 +11,15 @@ export function SecondaryHeader({
   href: LinkProps['href'];
 }) {
   return (
-    <header className="navbar bg-base-200">
+    <header className="navbar bg-base-300">
       <div className="navbar-start">
         <Link className="btn btn-square btn-ghost" href={href} replace>
           <IconArrowLeft />
         </Link>
       </div>
-      <div className="navbar-center">{title}</div>
+      <div className="navbar-center">
+        <span className="font-bold text-lg">{title}</span>
+      </div>
       <div className="navbar-end">{rightAction}</div>
     </header>
   );
