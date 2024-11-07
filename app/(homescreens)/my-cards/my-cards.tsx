@@ -1,17 +1,18 @@
 'use client';
 
 import useAppState from '@/app/lib/app-state/app-state';
+import { filterByQuery } from '@/app/lib/filterByQuery';
 import { Routes } from '@/app/lib/shared';
 import { IconStar } from '@tabler/icons-react';
-import CompanyIcon from '@/app/ui/company-icon';
+import { CompanyIcon } from '@/app/ui/company-icon';
 import Link from 'next/link';
 
-export default function MyCards() {
+export default function MyCards({ query }: { query?: string }) {
   const [state] = useAppState();
 
   return (
     <ul className="menu menu-sm rounded-box gap-2">
-      {state.cards.map(card => (
+      {filterByQuery(state.cards, query).map(card => (
         <li key={card.id}>
           <Link
             href={{

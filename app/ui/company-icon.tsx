@@ -7,11 +7,7 @@ type CompanyIconProps = Pick<Card, 'icon' | 'name'> & {
   className?: string;
 };
 
-export default function CompanyIcon({
-  icon,
-  name,
-  className,
-}: CompanyIconProps) {
+export function CompanyIcon({ icon, name, className }: CompanyIconProps) {
   if (typeof icon === 'string') {
     if (iconsMap[icon]) {
       const TheIcon = iconsMap[icon];

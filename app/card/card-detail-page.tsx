@@ -3,9 +3,9 @@
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
 import { Barcode } from '@/app/ui/barcode';
-import CompanyIcon from '@/app/ui/company-icon';
+import { CompanyIcon } from '@/app/ui/company-icon';
 import { MainMessage } from '@/app/ui/main-message';
-import PageTemplate from '@/app/ui/page-template';
+import { PageTemplate } from '@/app/ui/page-template';
 import { Qrcode } from '@/app/ui/qrcode';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';

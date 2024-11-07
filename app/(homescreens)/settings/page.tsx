@@ -1,5 +1,5 @@
 import { Routes } from '@/app/lib/shared';
-import PageTemplate from '@/app/ui/page-template';
+import { PageTemplate } from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
 import Link from 'next/link';
 

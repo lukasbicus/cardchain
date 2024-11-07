@@ -1,12 +1,21 @@
+import { filterByQuery } from '@/app/lib/filterByQuery';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
-import PageTemplate from '@/app/ui/page-template';
+import { PageTemplate } from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
-import { IconLayoutGrid, IconPlus, IconSearch } from '@tabler/icons-react';
+import { Search } from '@/app/ui/search';
+import { IconLayoutGrid, IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: {
+    query?: string;
+  };
+}) {
+  const query = searchParams?.query || '';
   return (
     <PageTemplate
       header={
@@ -22,16 +31,7 @@ export default function Page() {
           }
         >
           <>
-            <div className="form-control flex-1">
-              <label className="input input-bordered flex items-center gap-2 w-full">
-                <input
-                  type="text"
-                  className="grow w-full"
-                  placeholder="Search"
-                />
-                <IconSearch className="h-4 w-4 opacity-70"></IconSearch>
-              </label>
-            </div>
+            <Search className="flex-1" />
             <button className="btn btn-circle btn-ghost">
               <IconLayoutGrid className="w-6 h-6" />
             </button>
@@ -40,7 +40,7 @@ export default function Page() {
       }
     >
       <ul className="menu menu-lg rounded-box text-base-content">
-        {predefinedCompanies.map(company => (
+        {filterByQuery(predefinedCompanies, query).map(company => (
           <li key={company.name}>
             <Link
               href={{

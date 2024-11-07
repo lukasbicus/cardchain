@@ -1,4 +1,4 @@
-export default function PageTemplate({
+export function PageTemplate({
   header,
   children,
   footer,
