@@ -1,7 +1,7 @@
 import MyCards from '@/app/(homescreens)/my-cards/my-cards';
 import { Routes } from '@/app/lib/shared';
-import Loading from '@/app/ui/loading';
-import PageTemplate from '@/app/ui/page-template';
+import { Loading } from '@/app/ui/loading';
+import { PageTemplate } from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
 import { Search } from '@/app/ui/search';
 import { IconLayoutGrid, IconStar } from '@tabler/icons-react';

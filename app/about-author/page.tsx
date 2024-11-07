@@ -1,5 +1,5 @@
 import { Routes } from '@/app/lib/shared';
-import PageTemplate from '@/app/ui/page-template';
+import { PageTemplate } from '@/app/ui/page-template';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';

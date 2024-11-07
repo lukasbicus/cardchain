@@ -1,4 +1,4 @@
-import BottomNavigationLinks from '@/app/ui/bottom-navigation-links';
+import { BottomNavigationLinks } from '@/app/ui/bottom-navigation-links';
 import clsx from 'clsx';
 import styles from './layout.module.css';
 

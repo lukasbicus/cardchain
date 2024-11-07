@@ -1,10 +1,10 @@
 import { filterByQuery } from '@/app/lib/filterByQuery';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
-import PageTemplate from '@/app/ui/page-template';
+import { PageTemplate } from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
 import { Search } from '@/app/ui/search';
-import { IconLayoutGrid, IconPlus, IconSearch } from '@tabler/icons-react';
+import { IconLayoutGrid, IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import Image from 'next/image';
 

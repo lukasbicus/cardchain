@@ -19,7 +19,7 @@ const links = [
   { name: 'Settings', href: '/settings', icon: IconSettings },
 ];
 
-export default function BottomNavigationLinks() {
+export function BottomNavigationLinks() {
   const pathname = usePathname();
   return (
     <>
