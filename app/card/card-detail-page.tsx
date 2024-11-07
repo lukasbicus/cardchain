@@ -11,7 +11,7 @@ import { Qrcode } from '@/app/ui/qrcode';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
-import { redirect, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef } from 'react';
 
 export function CardDetailPage() {
