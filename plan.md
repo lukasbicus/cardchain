@@ -48,7 +48,7 @@ Features:
 - [x] **Card detail page**
   - [x] **display page with bar / qr code**
   - [ ] implement switch note visibility
-  - [ ] _implement delete card dialog + remove card from local storage_
+  - [x] _implement delete card dialog + remove card from local storage_
   - [ ] _implement navigation to edit card page_
   - [ ] implement increment of display count
 - [ ] _Edit card page_
@@ -65,8 +65,13 @@ Features:
   - [x] **implement navigation to about author page**
   - [ ] _implement navigation to help page_
   - [ ] implement theme switching
-- [ ] Export data page
-- [ ] Import data page
+- [ ] _Export data page_
+- [ ] _Import data page_
 - [x] _About page_
 - [x] **About author page**
 - [ ] Help page
+
+# bugs
+
+- [ ] company icons are not available in offline mode
+- [ ] **scan dialog - camera doesn't appear on first load**

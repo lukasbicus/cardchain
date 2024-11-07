@@ -1,5 +1,6 @@
 'use client';
 
+import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
 import { Barcode } from '@/app/ui/barcode';
@@ -10,13 +11,16 @@ import { Qrcode } from '@/app/ui/qrcode';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useRef } from 'react';
 
 export function CardDetailPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const [state] = useAppState();
+  const [state, dispatch] = useAppState();
   const card = state.cards.find(c => c.id === id);
+  const deleteDialogRef = useRef<HTMLDialogElement>(null);
+  const router = useRouter();
   if (!card) {
     return (
       <PageTemplate
@@ -46,11 +50,14 @@ export function CardDetailPage() {
           href={Routes.MyCards}
           rightAction={
             <div className="flex gap-2">
-              <Link href={Routes.MyCards} replace>
-                <button className="btn btn-square btn-ghost">
-                  <IconTrash />
-                </button>
-              </Link>
+              <button
+                className="btn btn-square btn-ghost"
+                onClick={() => {
+                  deleteDialogRef.current?.showModal();
+                }}
+              >
+                <IconTrash />
+              </button>
               <Link href={Routes.MyCards} replace>
                 <button className="btn btn-square btn-ghost">
                   <IconEdit />
@@ -104,6 +111,22 @@ export function CardDetailPage() {
           </label>
         </div>
       </div>
+      <ConfirmDialog
+        ref={deleteDialogRef}
+        title="Delete card"
+        body={`Do you really want to delete card ${card.name}? This action is irreversible.`}
+        confirmButtonLabel="Delete"
+        onConfirmButtonClick={() => {
+          dispatch({
+            type: 'DELETE_CARD',
+            payload: { id: card.id },
+          });
+          router.replace(Routes.MyCards);
+        }}
+        onCancelButtonClick={() => {
+          deleteDialogRef.current?.close();
+        }}
+      />
     </PageTemplate>
   );
 }
