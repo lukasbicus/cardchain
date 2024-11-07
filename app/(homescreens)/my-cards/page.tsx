@@ -8,7 +8,14 @@ import { IconLayoutGrid, IconStar } from '@tabler/icons-react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+  };
+}) {
+  const query = searchParams?.query || '';
   return (
     <PageTemplate
       header={
@@ -34,7 +41,7 @@ export default function Page() {
       }
     >
       <Suspense fallback={<Loading />}>
-        <MyCards />
+        <MyCards query={query} />
       </Suspense>
     </PageTemplate>
   );
