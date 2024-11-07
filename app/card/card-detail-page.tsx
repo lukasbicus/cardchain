@@ -11,7 +11,7 @@ import { Qrcode } from '@/app/ui/qrcode';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import { useRef } from 'react';
 
 export function CardDetailPage() {
@@ -20,6 +20,7 @@ export function CardDetailPage() {
   const [state, dispatch] = useAppState();
   const card = state.cards.find(c => c.id === id);
   const deleteDialogRef = useRef<HTMLDialogElement>(null);
+  const router = useRouter();
   if (!card) {
     return (
       <PageTemplate
@@ -116,7 +117,11 @@ export function CardDetailPage() {
         body={`Do you really want to delete card ${card.name}? This action is irreversible.`}
         confirmButtonLabel="Delete"
         onConfirmButtonClick={() => {
-          console.log('Delete');
+          dispatch({
+            type: 'DELETE_CARD',
+            payload: { id: card.id },
+          });
+          router.replace(Routes.MyCards);
         }}
         onCancelButtonClick={() => {
           deleteDialogRef.current?.close();
