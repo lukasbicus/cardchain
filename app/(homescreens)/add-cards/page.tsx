@@ -1,4 +1,4 @@
-import { selectCards } from '@/app/lib/app-state/selectCards';
+import { filterByQuery } from '@/app/lib/filterByQuery';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
 import PageTemplate from '@/app/ui/page-template';
@@ -40,7 +40,7 @@ export default function Page({
       }
     >
       <ul className="menu menu-lg rounded-box text-base-content">
-        {selectCards(predefinedCompanies, query).map(company => (
+        {filterByQuery(predefinedCompanies, query).map(company => (
           <li key={company.name}>
             <Link
               href={{

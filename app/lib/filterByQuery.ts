@@ -1,6 +1,6 @@
 import { deburr } from 'lodash';
 
-export function selectCards<T extends { name: string }>(
+export function filterByQuery<T extends { name: string }>(
   cards: T[],
   query?: string
 ): T[] {
