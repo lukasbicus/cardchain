@@ -1,3 +1,4 @@
+import { selectCards } from '@/app/lib/app-state/selectCards';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
 import PageTemplate from '@/app/ui/page-template';
@@ -7,7 +8,14 @@ import { IconLayoutGrid, IconPlus, IconSearch } from '@tabler/icons-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: {
+    query?: string;
+  };
+}) {
+  const query = searchParams?.query || '';
   return (
     <PageTemplate
       header={
@@ -32,7 +40,7 @@ export default function Page() {
       }
     >
       <ul className="menu menu-lg rounded-box text-base-content">
-        {predefinedCompanies.map(company => (
+        {selectCards(predefinedCompanies, query).map(company => (
           <li key={company.name}>
             <Link
               href={{

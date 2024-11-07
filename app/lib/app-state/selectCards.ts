@@ -1,7 +1,9 @@
-import { Card } from '@/app/lib/app-state/reducer';
 import { deburr } from 'lodash';
 
-export function selectCards(cards: Card[], query?: string) {
+export function selectCards<T extends { name: string }>(
+  cards: T[],
+  query?: string
+): T[] {
   if (!query) {
     return cards;
   }
