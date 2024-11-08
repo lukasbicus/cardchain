@@ -57,16 +57,22 @@ export default function CreateCardForm() {
   const predefinedCompany = predefinedCompanies.find(
     c => c.name === predefinedCompanyName
   );
-  const { register, handleSubmit, control, watch, setValue } =
-    useForm<CreateCardForm>({
-      defaultValues: predefinedCompany
-        ? {
-            [CreateCardFormNames.Name]: predefinedCompany.name,
-            [CreateCardFormNames.Color]: null,
-            [CreateCardFormNames.Icon]: predefinedCompany.svg,
-          }
-        : {},
-    });
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    formState: { errors: formErrors },
+  } = useForm<CreateCardForm>({
+    defaultValues: predefinedCompany
+      ? {
+          [CreateCardFormNames.Name]: predefinedCompany.name,
+          [CreateCardFormNames.Color]: null,
+          [CreateCardFormNames.Icon]: predefinedCompany.svg,
+        }
+      : {},
+  });
   const [, appDispatch] = useAppState();
   const [{ devices, activeDevice, isModalVisible }, dispatch] = useReducer<
     Reducer<CreateCardFormState, CreateCardFormActions>
@@ -146,6 +152,8 @@ export default function CreateCardForm() {
             name={CreateCardFormNames.Code}
             register={register}
             disabled
+            errors={formErrors}
+            required
           />
           <button
             className="btn btn-primary btn-square mt-9"
@@ -161,6 +169,8 @@ export default function CreateCardForm() {
           label="Card name"
           name={CreateCardFormNames.Name}
           register={register}
+          required
+          errors={formErrors}
         />
         <TextAreaField
           label="Note"
