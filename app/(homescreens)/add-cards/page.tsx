@@ -1,21 +1,14 @@
-import { filterByQuery } from '@/app/lib/filterByQuery';
-import { predefinedCompanies } from '@/app/lib/predefined-companies';
+import { PredefinedCompaniesList } from '@/app/(homescreens)/add-cards/predefined-companies-list';
 import { Routes } from '@/app/lib/shared';
+import { Loading } from '@/app/ui/loading';
 import { PageTemplate } from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
 import { Search } from '@/app/ui/search';
 import { IconLayoutGrid, IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { Suspense } from 'react';
 
-export default function Page({
-  searchParams,
-}: {
-  searchParams: {
-    query?: string;
-  };
-}) {
-  const query = searchParams?.query || '';
+export default function Page() {
   return (
     <PageTemplate
       header={
@@ -31,7 +24,9 @@ export default function Page({
           }
         >
           <>
-            <Search className="flex-1" />
+            <Suspense fallback={<Loading />}>
+              <Search className="flex-1" />
+            </Suspense>
             <button className="btn btn-circle btn-ghost">
               <IconLayoutGrid className="w-6 h-6" />
             </button>
@@ -39,26 +34,9 @@ export default function Page({
         </PrimaryHeader>
       }
     >
-      <ul className="menu menu-lg rounded-box text-base-content">
-        {filterByQuery(predefinedCompanies, query).map(company => (
-          <li key={company.name}>
-            <Link
-              href={{
-                pathname: Routes.CreateCard,
-                query: { predefinedCompany: company.name },
-              }}
-              prefetch={false}
-            >
-              <Image
-                {...company.svg}
-                alt={company.name}
-                className="w-10 h-10"
-              />
-              <span className="text-xl">{company.name}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Suspense fallback={<Loading />}>
+        <PredefinedCompaniesList />
+      </Suspense>
     </PageTemplate>
   );
 }

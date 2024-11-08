@@ -1,3 +1,4 @@
 .next
 build
 coverage
+public/image-paths.json

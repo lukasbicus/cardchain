@@ -11,7 +11,9 @@
     "format:check": "prettier --check .",
     "tsc": "tsc --noEmit",
     "test:jest": "jest",
-    "test": "npm run lint && npm run format:check && npm run tsc && npm run test:jest"
+    "test": "npm run lint && npm run format:check && npm run tsc && npm run test:jest",
+    "export-image-paths": "node exportImagePaths.js",
+    "prebuild": "npm run export-image-paths"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -29,6 +31,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.1",
+    "sharp": "^0.33.5",
     "use-debounce": "^10.0.4",
     "uuid": "^11.0.1"
   },
@@ -38,7 +41,6 @@
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.13",
-    "@types/node": "^20",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",

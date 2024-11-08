@@ -18,6 +18,8 @@ export default function Page() {
             width="256"
             height="256"
             alt="Lukas Bicus"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNkYJCsZyACMI4qpK9CAC7WBfuNZKZrAAAAAElFTkSuQmCC"
             className="rounded-full max-w-[33%] md:max-w-none inline-block"
           />
         </div>

@@ -6,8 +6,11 @@ import { Routes } from '@/app/lib/shared';
 import { IconStar } from '@tabler/icons-react';
 import { CompanyIcon } from '@/app/ui/company-icon';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
-export default function MyCards({ query }: { query?: string }) {
+export default function MyCards() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query')?.toString();
   const [state] = useAppState();
 
   return (
