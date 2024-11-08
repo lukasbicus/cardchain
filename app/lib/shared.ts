@@ -122,6 +122,3 @@ export type SvgProps = {
   width: number;
   height: number;
 };
-
-export const AUTHOR_AVATAR =
-  'https://2.gravatar.com/avatar/539b51ba48d1d7d21abb176cc32b7c6d8d421185282f1b49458960283d44942c?size=256';

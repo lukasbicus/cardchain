@@ -1,4 +1,4 @@
-import { AUTHOR_AVATAR, Routes } from '@/app/lib/shared';
+import { Routes } from '@/app/lib/shared';
 import imagePaths from '@/public/image-paths.json';
 import { defaultCache } from '@serwist/next/worker';
 import * as crypto from 'crypto';
@@ -37,9 +37,7 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const urlsToCache = ['/', ...Object.values(Routes), AUTHOR_AVATAR].concat(
-  imagePaths
-);
+const urlsToCache = ['/', ...Object.values(Routes)].concat(imagePaths);
 const CACHE_NAME = `tilda-cache-v-${hashStringSha256(urlsToCache.join(', '))}`;
 
 // Install a service worker
