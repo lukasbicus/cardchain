@@ -6,24 +6,10 @@ import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
 import { Serwist } from 'serwist';
 
 function hashStringSha256(inputString: string): string {
-  // Create a new sha256 hash object
   const hash = crypto.createHash('sha256');
-
-  // Update the hash with the input string
   hash.update(inputString);
-
-  // Calculate the hash digest as a hexadecimal string
-  const hashDigest = hash.digest('hex');
-  console.log('hashDigest', hashDigest);
-
-  return hashDigest;
+  return hash.digest('hex');
 }
-
-// Example usage:
-const longString =
-  'This is a very long string that I want to hash to a shorter one.';
-const hashedString = hashStringSha256(longString);
-console.log(`The hashed string is: ${hashedString}`);
 
 // This declares the value of `injectionPoint` to TypeScript.
 // `injectionPoint` is the string that will be replaced by the

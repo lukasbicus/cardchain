@@ -73,4 +73,4 @@ Features:
 
 # bugs
 
-- [ ] company icons are not available in offline mode
+- [x] company icons are not available in offline mode
