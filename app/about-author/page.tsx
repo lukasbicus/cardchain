@@ -1,4 +1,4 @@
-import { Routes } from '@/app/lib/shared';
+import { AUTHOR_AVATAR, Routes } from '@/app/lib/shared';
 import { PageTemplate } from '@/app/ui/page-template';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,7 @@ export default function Page() {
       <div className="px-2 py-6">
         <div className="text-center">
           <Image
-            src="https://2.gravatar.com/avatar/539b51ba48d1d7d21abb176cc32b7c6d8d421185282f1b49458960283d44942c?size=256"
+            src={AUTHOR_AVATAR}
             width="256"
             height="256"
             alt="Lukas Bicus"
