@@ -16,7 +16,7 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_NAME = 'tilda-cache-v1';
+const CACHE_NAME = 'tilda-cache-v4';
 const urlsToCache = ['/', ...Object.values(Routes)].concat(imagePaths);
 
 // Install a service worker
@@ -62,6 +62,10 @@ self.addEventListener('activate', event => {
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
+  precacheOptions: {
+    // Ignore all URL parameters.
+    ignoreURLParametersMatching: [/.*/],
+  },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
