@@ -1,4 +1,5 @@
 import { Routes } from '@/app/lib/shared';
+import imagePaths from '@/public/image-paths.json';
 import { defaultCache } from '@serwist/next/worker';
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
 import { Serwist } from 'serwist';
@@ -16,7 +17,7 @@ declare global {
 declare const self: ServiceWorkerGlobalScope;
 
 const CACHE_NAME = 'tilda-cache-v1';
-const urlsToCache = ['/', ...Object.values(Routes)];
+const urlsToCache = ['/', ...Object.values(Routes)].concat(imagePaths);
 
 // Install a service worker
 self.addEventListener('install', event => {

@@ -11,7 +11,8 @@
     "format:check": "prettier --check .",
     "tsc": "tsc --noEmit",
     "test:jest": "jest",
-    "test": "npm run lint && npm run format:check && npm run tsc && npm run test:jest"
+    "test": "npm run lint && npm run format:check && npm run tsc && npm run test:jest",
+    "export-image-paths": "node exportImagePaths.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
