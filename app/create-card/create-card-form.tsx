@@ -33,7 +33,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-enum FormNames {
+enum CreateCardFormNames {
   Name = 'name',
   Code = 'code',
   CodeFormat = 'codeFormat',
@@ -43,12 +43,12 @@ enum FormNames {
 }
 
 type CreateCardForm = {
-  [FormNames.Name]: string;
-  [FormNames.Code]: string;
-  [FormNames.CodeFormat]: string;
-  [FormNames.Note]: string;
-  [FormNames.Color]: string | null;
-  [FormNames.Icon]: string | SvgProps;
+  [CreateCardFormNames.Name]: string;
+  [CreateCardFormNames.Code]: string;
+  [CreateCardFormNames.CodeFormat]: string;
+  [CreateCardFormNames.Note]: string;
+  [CreateCardFormNames.Color]: string | null;
+  [CreateCardFormNames.Icon]: string | SvgProps;
 };
 
 export default function CreateCardForm() {
@@ -61,9 +61,9 @@ export default function CreateCardForm() {
     useForm<CreateCardForm>({
       defaultValues: predefinedCompany
         ? {
-            [FormNames.Name]: predefinedCompany.name,
-            [FormNames.Color]: null,
-            [FormNames.Icon]: predefinedCompany.svg,
+            [CreateCardFormNames.Name]: predefinedCompany.name,
+            [CreateCardFormNames.Color]: null,
+            [CreateCardFormNames.Icon]: predefinedCompany.svg,
           }
         : {},
     });
@@ -75,10 +75,10 @@ export default function CreateCardForm() {
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
-      setValue(FormNames.Code, text);
+      setValue(CreateCardFormNames.Code, text);
       if (typeof result.format?.format === 'number') {
         setValue(
-          FormNames.CodeFormat,
+          CreateCardFormNames.CodeFormat,
           mapHtml5QrcodeFormatToJsbarcodeFormat(result.format.format)
         );
       }
@@ -129,12 +129,12 @@ export default function CreateCardForm() {
           appDispatch({
             type: 'ADD_CARD',
             payload: {
-              name: data[FormNames.Name],
-              code: data[FormNames.Code],
-              note: data[FormNames.Note] || undefined,
-              bgColor: data[FormNames.Color] || null,
-              icon: (data[FormNames.Icon] as CardIcon) || null,
-              codeFormat: data[FormNames.CodeFormat],
+              name: data[CreateCardFormNames.Name],
+              code: data[CreateCardFormNames.Code],
+              note: data[CreateCardFormNames.Note] || undefined,
+              bgColor: data[CreateCardFormNames.Color] || null,
+              icon: (data[CreateCardFormNames.Icon] as CardIcon) || null,
+              codeFormat: data[CreateCardFormNames.CodeFormat],
             },
           });
           router.replace(Routes.MyCards);
@@ -143,7 +143,7 @@ export default function CreateCardForm() {
         <div className="flex gap-4">
           <TextField
             label="Card code"
-            name={FormNames.Code}
+            name={CreateCardFormNames.Code}
             register={register}
             disabled
           />
@@ -159,12 +159,16 @@ export default function CreateCardForm() {
         </div>
         <TextField
           label="Card name"
-          name={FormNames.Name}
+          name={CreateCardFormNames.Name}
           register={register}
         />
-        <TextAreaField label="Note" name={FormNames.Note} register={register} />
+        <TextAreaField
+          label="Note"
+          name={CreateCardFormNames.Note}
+          register={register}
+        />
         {predefinedCompany ? (
-          <input type="hidden" {...register(FormNames.Color)} />
+          <input type="hidden" {...register(CreateCardFormNames.Color)} />
         ) : (
           <div className="flex gap-4">
             <DropdownField
@@ -180,7 +184,7 @@ export default function CreateCardForm() {
                 value: hex,
               }))}
               control={control}
-              name={FormNames.Color}
+              name={CreateCardFormNames.Color}
               watch={watch}
             />
             <button className="btn btn-primary btn-square mt-9">
@@ -194,7 +198,7 @@ export default function CreateCardForm() {
               <span className="label-text">Company logo</span>
             </div>
             <div className="bg-background">
-              <input type="hidden" {...register(FormNames.Icon)} />
+              <input type="hidden" {...register(CreateCardFormNames.Icon)} />
               <Image
                 {...predefinedCompany.svg}
                 alt={predefinedCompany.name}
@@ -215,7 +219,7 @@ export default function CreateCardForm() {
               value: key,
             }))}
             control={control}
-            name={FormNames.Icon}
+            name={CreateCardFormNames.Icon}
             watch={watch}
           />
         )}
