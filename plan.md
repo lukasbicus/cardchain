@@ -74,4 +74,3 @@ Features:
 # bugs
 
 - [ ] company icons are not available in offline mode
-- [ ] **scan dialog - camera doesn't appear on first load**
