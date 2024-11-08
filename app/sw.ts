@@ -1,8 +1,29 @@
 import { Routes } from '@/app/lib/shared';
 import imagePaths from '@/public/image-paths.json';
 import { defaultCache } from '@serwist/next/worker';
+import * as crypto from 'crypto';
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
 import { Serwist } from 'serwist';
+
+function hashStringSha256(inputString: string): string {
+  // Create a new sha256 hash object
+  const hash = crypto.createHash('sha256');
+
+  // Update the hash with the input string
+  hash.update(inputString);
+
+  // Calculate the hash digest as a hexadecimal string
+  const hashDigest = hash.digest('hex');
+  console.log('hashDigest', hashDigest);
+
+  return hashDigest;
+}
+
+// Example usage:
+const longString =
+  'This is a very long string that I want to hash to a shorter one.';
+const hashedString = hashStringSha256(longString);
+console.log(`The hashed string is: ${hashedString}`);
 
 // This declares the value of `injectionPoint` to TypeScript.
 // `injectionPoint` is the string that will be replaced by the
@@ -16,8 +37,8 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_NAME = 'tilda-cache-v4';
 const urlsToCache = ['/', ...Object.values(Routes)].concat(imagePaths);
+const CACHE_NAME = `tilda-cache-v-${hashStringSha256(urlsToCache.join(', '))}`;
 
 // Install a service worker
 self.addEventListener('install', event => {
@@ -33,7 +54,7 @@ self.addEventListener('install', event => {
 // Cache and return requests
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(response => {
+    caches.match(event.request, { ignoreSearch: true }).then(response => {
       // Cache hit - return response
       if (response) {
         return response;
@@ -62,10 +83,6 @@ self.addEventListener('activate', event => {
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: {
-    // Ignore all URL parameters.
-    ignoreURLParametersMatching: [/.*/],
-  },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
@@ -82,6 +99,10 @@ const serwist = new Serwist({
     ],
   },
 });
-console.log('serwist.getPrecachedUrls()', serwist.getPrecachedUrls());
+console.log(
+  `cache name: ${CACHE_NAME}\n`,
+  'serwist.getPrecachedUrls()',
+  serwist.getPrecachedUrls()
+);
 
 serwist.addEventListeners();
