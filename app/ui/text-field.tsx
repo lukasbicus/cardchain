@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import { UseFormRegister, FieldValues, Path, FormState } from 'react-hook-form';
 
 export function TextField<T extends FieldValues>({
   label,
@@ -8,6 +8,8 @@ export function TextField<T extends FieldValues>({
   name,
   register,
   disabled,
+  required,
+  errors,
 }: {
   label: string;
   placeholder?: string;
@@ -15,6 +17,8 @@ export function TextField<T extends FieldValues>({
   disabled?: boolean;
   name: Path<T>;
   register: UseFormRegister<T>;
+  errors: FormState<T>['errors'];
+  required?: boolean;
 }) {
   return (
     <label className={clsx('form-control w-full', className)}>
@@ -24,10 +28,20 @@ export function TextField<T extends FieldValues>({
       <input
         type="text"
         placeholder={placeholder}
-        {...register(name)}
+        {...register(name, {
+          required,
+        })}
         disabled={disabled}
         className="input input-bordered w-full"
       />
+      {errors[name] && (
+        <span className="text-sm text-error pt-2 px-1">
+          This field is required!
+        </span>
+      )}
+      {!errors[name] && required && (
+        <span className="text-sm pt-2 px-1 text-base-content/25">Required</span>
+      )}
     </label>
   );
 }

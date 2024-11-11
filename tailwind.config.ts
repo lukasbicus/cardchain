@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -12,6 +12,7 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        error: 'rgb(239 68 68)',
       },
     },
   },

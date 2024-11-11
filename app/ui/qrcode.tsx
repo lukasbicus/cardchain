@@ -5,7 +5,6 @@ import qrcode from 'qrcode';
 
 export function Qrcode({ code }: { code: string }) {
   const [dataUrl, setDataUrl] = useState('');
-  console.log('code:', code);
   useEffect(() => {
     qrcode
       .toDataURL(code, {
