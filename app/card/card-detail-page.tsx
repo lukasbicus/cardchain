@@ -1,13 +1,12 @@
 'use client';
 
+import { CodePicture } from '@/app/ui/code-picture';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
-import { Barcode } from '@/app/ui/barcode';
 import { CompanyIcon } from '@/app/ui/company-icon';
 import { MainMessage } from '@/app/ui/main-message';
 import { PageTemplate } from '@/app/ui/page-template';
-import { Qrcode } from '@/app/ui/qrcode';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
@@ -69,11 +68,7 @@ export function CardDetailPage() {
       }
     >
       <div className="h-full w-full grid grid-col grid-rows-[1fr_auto]">
-        {card.codeFormat === 'QR' ? (
-          <Qrcode code={card.code} />
-        ) : (
-          <Barcode code={card.code} codeFormat={card.codeFormat} />
-        )}
+        <CodePicture code={card.code} codeFormat={card.codeFormat} />
         <div
           className="bg-base-300 p-6"
           style={card.bgColor ? { backgroundColor: card.bgColor } : {}}

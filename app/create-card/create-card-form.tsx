@@ -18,6 +18,7 @@ import {
   Routes,
   SvgProps,
 } from '@/app/lib/shared';
+import { CodePicture } from '@/app/ui/code-picture';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
@@ -127,6 +128,8 @@ export default function CreateCardForm() {
     cameraModalRef.current?.showModal();
   }, []);
 
+  const code = watch(CreateCardFormNames.Code);
+  const codeFormat = watch(CreateCardFormNames.CodeFormat);
   return (
     <>
       <form
@@ -146,6 +149,9 @@ export default function CreateCardForm() {
           router.replace(Routes.MyCards);
         })}
       >
+        {code && codeFormat && (
+          <CodePicture code={code} codeFormat={codeFormat} />
+        )}
         <div className="flex gap-4">
           <TextField
             label="Card code"
