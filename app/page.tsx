@@ -8,7 +8,7 @@ export default function Home() {
   const cookieStore = cookies();
   const landingPage = cookieStore.get(Cookies.LandingPage)?.value;
   if (landingPage) {
-    redirect(landingPage);
+    redirect(Routes.AddCards);
   }
   return (
     <main
