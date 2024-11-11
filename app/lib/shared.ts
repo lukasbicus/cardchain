@@ -31,10 +31,6 @@ export enum Routes {
   AboutAuthor = '/about-author',
 }
 
-export enum Cookies {
-  LandingPage = 'LandingPage',
-}
-
 export const ICON_COLOR = 'oklch(0.4912 0.3096 275.75)';
 
 export enum CardIcon {
