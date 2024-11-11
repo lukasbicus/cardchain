@@ -51,6 +51,7 @@ export function ExportDataPage() {
           register={register}
           placeholder="Name of file with exported data"
           errors={errors}
+          className="pb-4"
         />
 
         <label className="form-control">
