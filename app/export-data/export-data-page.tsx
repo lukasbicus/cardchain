@@ -1,6 +1,7 @@
 'use client';
 import useAppState from '@/app/lib/app-state/app-state';
 import { TextField } from '@/app/ui/text-field';
+import { omit } from 'lodash';
 import { useForm } from 'react-hook-form';
 
 enum ExportFormNames {
@@ -27,10 +28,14 @@ export function ExportDataPage() {
     },
   });
   const [state] = useAppState();
-  const processExport = ({ fileName }: ExportForm) => {
+  const processExport = ({ fileName, withNotes }: ExportForm) => {
     console.log(state);
 
-    const jsonString = JSON.stringify(state.cards, null, 2);
+    const cardsToExport = state.cards.map(c =>
+      omit(c, withNotes ? ['id', 'favorite'] : ['id', 'favorite', 'note'])
+    );
+
+    const jsonString = JSON.stringify(cardsToExport, null, 2);
     const blob = new Blob([jsonString], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -64,7 +69,11 @@ export function ExportDataPage() {
             {...register(ExportFormNames.WithNotes)}
           />
           <span className="text-sm pt-2 px-1 text-base-content/50">
-            Notes can include sensitive personal data like passwords
+            Please be aware that your notes may contain sensitive information
+            such as passwords or PINs. If you choose to include notes in your
+            export, ensure that the exported data is stored securely and handled
+            with caution. If you prefer to keep this information private, we
+            recommend exporting without notes.
           </span>
         </label>
       </div>
