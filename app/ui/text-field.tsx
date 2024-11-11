@@ -39,6 +39,9 @@ export function TextField<T extends FieldValues>({
           This field is required!
         </span>
       )}
+      {!errors[name] && required && (
+        <span className="text-sm pt-2 px-1 text-base-content/25">Required</span>
+      )}
     </label>
   );
 }
