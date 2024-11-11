@@ -82,7 +82,9 @@ export default function CreateCardForm() {
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
-      setValue(CreateCardFormNames.Code, text);
+      setValue(CreateCardFormNames.Code, text, {
+        shouldValidate: true,
+      });
       if (typeof result.format?.format === 'number') {
         setValue(
           CreateCardFormNames.CodeFormat,
