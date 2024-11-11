@@ -92,7 +92,6 @@ export default function Scanner({
   }, [getCameraDevices]);
 
   useEffect(() => {
-    console.log('use effect called');
     let cleanup: () => void;
     if (activeDevice?.id) {
       cleanup = startScanning(activeDevice.id);
