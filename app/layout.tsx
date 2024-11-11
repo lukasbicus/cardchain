@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   title: 'Tilda',
   description: 'Loyalty card app',
   applicationName: 'Tilda',
-  appleWebApp: true,
+  appleWebApp: {
+    capable: true,
+    title: 'Tilda',
+  },
   authors: [{ name: 'Lukas Bicus', url: 'https://github.com/LukasBicus' }],
 };
 
@@ -37,8 +40,8 @@ export default function RootLayout({
         <link
           rel="icon"
           type="image/png"
-          href="/favicon-48x48.png"
-          sizes="48x48"
+          href="/favicon-96x96.png"
+          sizes="96x96"
         />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -47,7 +50,6 @@ export default function RootLayout({
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 h-full max-h-screen`}

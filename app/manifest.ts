@@ -9,13 +9,14 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: '/',
     display: 'standalone',
     theme_color: ICON_COLOR,
-    background_color: ICON_COLOR,
+    background_color: '#fff',
     orientation: 'portrait',
     icons: [
       {
         src: '/web-app-manifest-192x192.png',
         sizes: '192x192',
         type: 'image/png',
+        purpose: 'maskable',
       },
       {
         src: '/web-app-manifest-512x512.png',
