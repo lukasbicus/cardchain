@@ -30,6 +30,7 @@ export enum Routes {
   About = '/about',
   AboutAuthor = '/about-author',
   ExportData = '/export-data',
+  ImportData = '/import-data',
 }
 
 export const ICON_COLOR = 'oklch(0.4912 0.3096 275.75)';
