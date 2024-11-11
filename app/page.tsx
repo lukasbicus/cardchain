@@ -1,15 +1,9 @@
-import { saveLandingPageCookieAndRedirect } from '@/app/actions';
-import { Cookies, Routes } from '@/app/lib/shared';
-import { cookies } from 'next/headers';
+import { GetStartedButton } from '@/app/get-started-button';
+import { Routes } from '@/app/lib/shared';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function Home() {
-  const cookieStore = cookies();
-  const landingPage = cookieStore.get(Cookies.LandingPage)?.value;
-  if (landingPage) {
-    redirect(landingPage);
-  }
   return (
     <main
       className="hero min-h-screen"
@@ -27,11 +21,15 @@ export default function Home() {
             you in charge of your data and cards.
           </p>
           <div className="flex justify-center gap-4">
-            <form action={saveLandingPageCookieAndRedirect}>
-              <button className="btn btn-primary" type="submit">
-                Get Started
-              </button>
-            </form>
+            <Suspense
+              fallback={
+                <Link className="btn btn-primary" href={Routes.AddCards}>
+                  Get Started
+                </Link>
+              }
+            >
+              <GetStartedButton />
+            </Suspense>
             <Link className="btn" href={Routes.About}>
               About
             </Link>

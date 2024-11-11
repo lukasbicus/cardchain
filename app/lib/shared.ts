@@ -26,7 +26,6 @@ export enum Routes {
   Settings = '/settings',
   Offline = '/offline',
   CreateCard = '/create-card',
-  ScanCard = '/scan-card',
   Card = '/card',
   About = '/about',
   AboutAuthor = '/about-author',
