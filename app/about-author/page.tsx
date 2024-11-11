@@ -14,15 +14,6 @@ export default function Page() {
       <div className="px-2 py-6">
         <div className="text-center">
           <Image
-            src="/avatar.png"
-            width="256"
-            height="256"
-            alt="Lukas Bicus"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNkYJCsZyACMI4qpK9CAC7WBfuNZKZrAAAAAElFTkSuQmCC"
-            className="rounded-full max-w-[33%] md:max-w-none inline-block"
-          />
-          <Image
             src="https://2.gravatar.com/avatar/539b51ba48d1d7d21abb176cc32b7c6d8d421185282f1b49458960283d44942c?size=256"
             width="256"
             height="256"
