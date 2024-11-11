@@ -35,7 +35,7 @@ Features:
 - [ ] **Create card page**
   - [x] **implement form**
   - [x] _implement navigation to scan code page_
-  - [ ] _display scanned code_
+  - [x] _display scanned code_
   - [ ] implement color picker
   - [x] **implement creation of card (add it to other cards in local storage (); navigate to my cards page)**
 - [x] **My cards page**
