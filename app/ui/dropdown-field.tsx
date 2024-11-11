@@ -55,7 +55,12 @@ export function DropdownField<T extends FieldValues, U = string>({
                     {currentOption.label}
                   </div>
                 ) : (
-                  <button tabIndex={0} role="button" className="w-full" />
+                  <button
+                    tabIndex={0}
+                    role="button"
+                    className="w-full"
+                    type="button"
+                  />
                 )}
               </div>
               <ul

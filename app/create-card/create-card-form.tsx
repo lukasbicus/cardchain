@@ -205,7 +205,7 @@ export default function CreateCardForm() {
               name={CreateCardFormNames.Color}
               watch={watch}
             />
-            <button className="btn btn-primary btn-square mt-9">
+            <button className="btn btn-primary btn-square mt-9" type="button">
               <IconPalette className="w-6 h-6" />
             </button>
           </div>
@@ -254,6 +254,7 @@ export default function CreateCardForm() {
             <button
               className="btn btn-square btn-ghost"
               onClick={() => cameraModalRef.current?.close()}
+              type="button"
             >
               <IconX className="w-6 h-6" />
             </button>
@@ -261,6 +262,7 @@ export default function CreateCardForm() {
             {devices.length > 1 ? (
               <button
                 className="btn btn-square btn-ghost"
+                type="button"
                 onClick={() => {
                   dispatch({
                     type: CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
