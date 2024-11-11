@@ -7,6 +7,7 @@ import {
   Path,
   UseFormWatch,
 } from 'react-hook-form';
+import styles from './dropdown-field.module.css';
 
 export type Option<U> = {
   label: string | React.ReactNode;
@@ -47,28 +48,23 @@ export function DropdownField<T extends FieldValues, U = string>({
             <div className="label">
               <span className="label-text">{label}</span>
             </div>
-            <div
-              className={clsx('dropdown dropdown-end', dropdownClassName)}
-              key="dropdown"
-            >
+            <div className={clsx('dropdown', dropdownClassName)} key="dropdown">
               <div className="input input-bordered w-full flex items-center">
                 {currentOption ? (
                   <div tabIndex={0} role="button" className="w-full">
                     {currentOption.label}
                   </div>
                 ) : (
-                  <input
-                    tabIndex={0}
-                    type="text"
-                    role="button"
-                    className="w-full"
-                  />
+                  <button tabIndex={0} role="button" className="w-full" />
                 )}
               </div>
               <ul
                 tabIndex={0}
                 ref={dropdownRef}
-                className="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow max-h-80 overflow-auto"
+                className={clsx(
+                  'dropdown-content menu bg-base-100 rounded-box z-[1] w-screen p-2 shadow max-h-80 overflow-auto',
+                  styles['options-list']
+                )}
               >
                 {options.map(option => (
                   <li
