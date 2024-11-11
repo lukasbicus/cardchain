@@ -1,5 +1,6 @@
 'use client';
 
+import { FileImportField } from '@/app/ui/file-import-field';
 import { useForm } from 'react-hook-form';
 
 enum ImportFormNames {
@@ -11,7 +12,11 @@ type ImportForm = {
 };
 
 export function ImportDataPage() {
-  const { register, handleSubmit } = useForm<ImportForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ImportForm>();
   const processFileImport = (data: ImportForm) => {
     console.log('importFile', data);
     const file = data[ImportFormNames.FileList]
@@ -35,16 +40,13 @@ export function ImportDataPage() {
       onSubmit={handleSubmit(processFileImport)}
     >
       <div className="px-4 py-6 bg-base-300">
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text">Pick a file to be imported</span>
-          </div>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-xs"
-            {...register(ImportFormNames.FileList)}
-          />
-        </label>
+        <FileImportField
+          label="File to be imported"
+          name={ImportFormNames.FileList}
+          required
+          register={register}
+          errors={errors}
+        />
       </div>
       <footer className="btm-nav btm-nav-md text-base-content px-4">
         <button className="btn btn-primary w-full" type="submit">
