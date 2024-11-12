@@ -1,3 +1,4 @@
+import { Card } from '@/app/lib/app-state/reducer';
 import { CardIcon } from '@/app/lib/shared';
 import { z, ZodError } from 'zod';
 
@@ -19,7 +20,7 @@ const CardSchema = z.object({
 });
 
 const CardsArraySchema = z.array(CardSchema);
-type ParsedCard = z.infer<typeof CardSchema>;
+export type ParsedCard = z.infer<typeof CardSchema>;
 
 export enum ParseCardsErrors {
   TextIsNotValidJSON = 'textIsNotValidJSON',
@@ -41,4 +42,13 @@ export function parseCards(text: string): Promise<ParsedCard[]> {
       throw error;
     }
   });
+}
+
+export function getUniqParsedCards(
+  parsedCards: ParsedCard[],
+  cards: Card[]
+): ParsedCard[] {
+  return parsedCards.filter(
+    pc => !cards.find(c => c.code === pc.code && c.codeFormat === pc.codeFormat)
+  );
 }
