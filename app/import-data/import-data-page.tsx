@@ -1,6 +1,7 @@
 'use client';
 
 import { FileImportField } from '@/app/ui/file-import-field';
+import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
 enum ImportFormNames {
@@ -15,7 +16,7 @@ export function ImportDataPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<ImportForm>();
   const processFileImport = (data: ImportForm) => {
     console.log('importFile', data);
@@ -49,7 +50,13 @@ export function ImportDataPage() {
         />
       </div>
       <footer className="btm-nav btm-nav-md text-base-content px-4">
-        <button className="btn btn-primary w-full" type="submit">
+        <button
+          className={clsx('btn btn-primary w-full', {
+            disabled: !isValid,
+          })}
+          type="submit"
+          disabled={!isValid}
+        >
           Import data
         </button>
       </footer>
