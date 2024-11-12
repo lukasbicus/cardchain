@@ -32,6 +32,10 @@ export function ImportDataPage() {
       // compare them based on "code" and "formatCode". Add unique records
       const uniqParsedCards = getUniqParsedCards(parsedCards, state.cards);
       console.log(uniqParsedCards);
+      dispatch({
+        type: 'IMPORT_CARDS',
+        payload: uniqParsedCards,
+      });
       // display count of added records in dialog
       // add options to navigate to my cards and to import more data
     } catch (e) {
