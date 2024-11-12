@@ -4,6 +4,7 @@ import { getUniqParsedCards, parseCards } from '@/app/import-data/utils';
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
+import { useErrorDialog } from '@/app/ui/error-dialog-context';
 import { FileImportField, getFileText } from '@/app/ui/file-import-field';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -27,6 +28,7 @@ export function ImportDataPage() {
   const [state, dispatch] = useAppState();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [countOfImportedCards, setCountOfImportedCards] = useState(0);
+  const { openErrorDialog } = useErrorDialog();
   const processFileImport = async (data: ImportForm) => {
     try {
       const text = await getFileText(data[ImportFormNames.FileList][0]);
@@ -36,14 +38,21 @@ export function ImportDataPage() {
       // get current cards from app state
       // compare them based on "code" and "formatCode". Add unique records
       const uniqParsedCards = getUniqParsedCards(parsedCards, state.cards);
-      dispatch({
-        type: 'IMPORT_CARDS',
-        payload: uniqParsedCards,
-      });
-      // display count of added records in dialog
-      // add options to navigate to my cards and to import more data
-      setCountOfImportedCards(uniqParsedCards.length);
-      dialogRef.current?.showModal();
+      if (uniqParsedCards.length === 0) {
+        openErrorDialog({
+          title: 'There is nothing to import',
+          body: 'All cards from imported file are already in app data storage.',
+        });
+      } else {
+        dispatch({
+          type: 'IMPORT_CARDS',
+          payload: uniqParsedCards,
+        });
+        // display count of added records in dialog
+        // add options to navigate to my cards and to import more data
+        setCountOfImportedCards(uniqParsedCards.length);
+        dialogRef.current?.showModal();
+      }
     } catch (e) {
       console.log('error', e, JSON.stringify(e));
     }
