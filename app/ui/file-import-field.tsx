@@ -4,12 +4,15 @@ import { FieldValues, FormState, Path, UseFormRegister } from 'react-hook-form';
 export enum FileImportErrors {
   FileIsNull = 'fileIsNull',
   FileContentIsNotString = 'fileContentIsNotString',
+  FileTypeIsInvalid = 'fileTypeIsInvalid',
 }
 
 export const getFileText = (file: File | null): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (file === null) {
       reject(new Error(FileImportErrors.FileIsNull));
+    } else if (file.type !== 'application/json') {
+      reject(new Error(FileImportErrors.FileTypeIsInvalid));
     } else {
       const reader = new FileReader();
       reader.onload = e => {
