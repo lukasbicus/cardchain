@@ -1,6 +1,6 @@
 'use client';
 
-import { FileImportField } from '@/app/ui/file-import-field';
+import { FileImportField, getFileText } from '@/app/ui/file-import-field';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
@@ -18,30 +18,18 @@ export function ImportDataPage() {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<ImportForm>();
-  const processFileImport = (data: ImportForm) => {
-    console.log('importFile', data);
-    const file = data[ImportFormNames.FileList]
-      ? data[ImportFormNames.FileList][0]
-      : null;
-    // file is null throw an error
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const text = e.target?.result;
-        // file content is not string throw an error
-        if (typeof text === 'string') {
-          console.log('fileContent: ', text as string);
-        }
-        // Process the file content as needed
-      };
-      reader.readAsText(file); // Read the file as text
-
+  const processFileImport = async (data: ImportForm) => {
+    try {
+      const text = await getFileText(data[ImportFormNames.FileList][0]);
+      console.log(text);
       // try to parse a file
       // throw error in case of failure
       // get current cards from app state
       // compare them based on "code" and "formatCode". Add unique records
       // display count of added records in dialog
       // add options to navigate to my cards and to import more data
+    } catch (e) {
+      console.log('error', e, JSON.stringify(e));
     }
   };
   return (

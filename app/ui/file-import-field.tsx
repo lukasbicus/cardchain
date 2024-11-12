@@ -1,6 +1,30 @@
 import clsx from 'clsx';
 import { FieldValues, FormState, Path, UseFormRegister } from 'react-hook-form';
 
+export enum FileImportErrors {
+  FileIsNull = 'fileIsNull',
+  FileContentIsNotString = 'fileContentIsNotString',
+}
+
+export const getFileText = (file: File | null): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    if (file === null) {
+      reject(new Error(FileImportErrors.FileIsNull));
+    } else {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const text = e.target?.result;
+        if (typeof text !== 'string') {
+          reject(new Error(FileImportErrors.FileContentIsNotString));
+        } else {
+          resolve(text);
+        }
+      };
+      reader.readAsText(file);
+    }
+  });
+};
+
 export function FileImportField<T extends FieldValues>({
   label,
   className,
