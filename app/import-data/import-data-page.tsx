@@ -30,14 +30,12 @@ export function ImportDataPage() {
   const processFileImport = async (data: ImportForm) => {
     try {
       const text = await getFileText(data[ImportFormNames.FileList][0]);
-      console.log(text);
       // try to parse a file
       // throw error in case of failure
       const parsedCards = await parseCards(text);
       // get current cards from app state
       // compare them based on "code" and "formatCode". Add unique records
       const uniqParsedCards = getUniqParsedCards(parsedCards, state.cards);
-      console.log(uniqParsedCards);
       dispatch({
         type: 'IMPORT_CARDS',
         payload: uniqParsedCards,
