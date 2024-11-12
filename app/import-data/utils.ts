@@ -1,17 +1,14 @@
 import { CardIcon } from '@/app/lib/shared';
 import { z, ZodError } from 'zod';
 
-// Define the Zod schema for the CardIcon enum
 const CardIconSchema = z.nativeEnum(CardIcon);
 
-// Define the Zod schema for the SvgProps type
 const SvgPropsSchema = z.object({
   src: z.string(),
   width: z.number(),
   height: z.number(),
 });
 
-// Define the Zod schema for the Card type
 const CardSchema = z.object({
   name: z.string(),
   code: z.string(),
@@ -22,14 +19,14 @@ const CardSchema = z.object({
 });
 
 const CardsArraySchema = z.array(CardSchema);
-type CardsData = z.infer<typeof CardsArraySchema>;
+type ParsedCard = z.infer<typeof CardSchema>;
 
 export enum ParseCardsErrors {
   TextIsNotValidJSON = 'textIsNotValidJSON',
   TextDoesNotContainCards = 'textDoesNotContainCards',
 }
 
-export function parseCards(text: string): Promise<CardsData> {
+export function parseCards(text: string): Promise<ParsedCard[]> {
   return new Promise((resolve, reject) => {
     try {
       const parsedJSON = JSON.parse(text);
