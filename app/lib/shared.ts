@@ -33,7 +33,7 @@ export enum Routes {
   ImportData = '/import-data',
 }
 
-export const ICON_COLOR = 'oklch(0.4912 0.3096 275.75)';
+export const PRIMARY_COLOR = 'oklch(0.4912 0.3096 275.75)';
 
 export enum CardIcon {
   Grocery = 'Grocery',
