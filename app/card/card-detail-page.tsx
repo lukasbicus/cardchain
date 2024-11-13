@@ -29,7 +29,7 @@ export function CardDetailPage() {
         <div className="flex h-2/3 w-full items-center justify-center">
           <MainMessage
             title="Card not found"
-            description={`Something went wrong. Found with id ${id} not found.`}
+            description={`Something went wrong. The card with id ${id} not found.`}
           >
             <Link href={Routes.MyCards} replace>
               <button className="btn btn-primary">
