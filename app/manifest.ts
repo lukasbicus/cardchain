@@ -1,4 +1,4 @@
-import { ICON_COLOR } from '@/app/lib/shared';
+import { PRIMARY_COLOR } from '@/app/lib/shared';
 import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'A loyalty card app',
     start_url: '/',
     display: 'standalone',
-    theme_color: ICON_COLOR,
-    background_color: '#fff',
+    theme_color: PRIMARY_COLOR,
+    background_color: PRIMARY_COLOR,
     orientation: 'portrait',
     icons: [
       {
