@@ -14,6 +14,11 @@ export default function MyCards() {
   const query = searchParams.get('query')?.toString();
   const [state, dispatch] = useAppState();
 
+  // add showFavoritesOnly to app state
+  // implement toggle on showFavoritesOnly
+  // if showFavoritesOnly is valid, filter cards by favoriteFilter
+  // if query, filter cards by queryFilter
+
   return (
     <ul className="menu menu-sm rounded-box gap-2">
       {filterByQuery(state.cards, query).map(card => (
