@@ -81,10 +81,16 @@ export default function MyCardsPage() {
           description="Looks like you haven't added any loyalty cards yet. Get started by adding your first cards! You can manually add card details or import them if you have a digital file."
         >
           <div className="flex justify-center justify-self-center gap-4 px-4 w-full">
-            <Link href={Routes.AddCards} className="btn btn-primary w-1/3">
+            <Link
+              href={Routes.AddCards}
+              className="btn btn-primary w-1/3 max-w-36"
+            >
               Add cards
             </Link>
-            <Link href={Routes.ImportData} className="btn btn-primary w-1/3">
+            <Link
+              href={Routes.ImportData}
+              className="btn btn-primary w-1/3 max-w-36"
+            >
               Import cards
             </Link>
           </div>
