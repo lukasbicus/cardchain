@@ -15,7 +15,7 @@ import {
   appReducer,
   AppState,
   initialState,
-} from '@/app/ui/app-state/reducer';
+} from '@/app/ui/app-state';
 
 const AppStateContext = createContext<[AppState, Dispatch<AppActions>]>([
   initialState,

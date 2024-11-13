@@ -1,4 +1,4 @@
-import { AppStateProvider } from '@/app/ui/app-state/app-state-context';
+import { AppStateProvider } from '@/app/ui/app-state';
 import { ErrorDialogProvider } from '@/app/ui/error-dialog-context';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';

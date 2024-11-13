@@ -1,4 +1,4 @@
-import { Card } from '@/app/ui/app-state/reducer';
+import { Card } from '@/app/ui/app-state';
 import { iconsMap } from '@/app/lib/shared';
 import clsx from 'clsx';
 import Image from 'next/image';

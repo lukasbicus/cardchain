@@ -8,7 +8,7 @@ import {
   cardFormReducer,
   CardFormState,
 } from '@/app/ui/card-form/card-form-reducer';
-import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/ui/app-state/codeFormat';
+import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/ui/app-state';
 import { CardIcon, colorNames, iconsMap, SvgProps } from '@/app/lib/shared';
 import { CodePicture } from '@/app/ui/code-picture';
 import { DropdownField } from '@/app/ui/dropdown-field';

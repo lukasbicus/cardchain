@@ -1,5 +1,5 @@
 import { CardIcon } from '@/app/lib/shared';
-import { Card } from '@/app/ui/app-state/reducer';
+import { Card } from '@/app/ui/app-state';
 import { z, ZodError } from 'zod';
 
 const CardIconSchema = z.nativeEnum(CardIcon);

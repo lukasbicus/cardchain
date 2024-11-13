@@ -1,8 +1,7 @@
 'use client';
 
 import { CardIcon, Routes } from '@/app/lib/shared';
-import { useAppState } from '@/app/ui/app-state/app-state-context';
-import { AppActionTypes } from '@/app/ui/app-state/reducer';
+import { AppActionTypes, useAppState } from '@/app/ui/app-state';
 import CardForm, {
   CardFormNames,
   TCardForm,

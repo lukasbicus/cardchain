@@ -4,8 +4,7 @@ import CardForm, {
   CardFormNames,
   TCardForm,
 } from '@/app/ui/card-form/card-form';
-import { useAppState } from '@/app/ui/app-state/app-state-context';
-import { AppActionTypes } from '@/app/ui/app-state/reducer';
+import { AppActionTypes, useAppState } from '@/app/ui/app-state';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { CardIcon, Routes } from '@/app/lib/shared';
 import { useRouter, useSearchParams } from 'next/navigation';
