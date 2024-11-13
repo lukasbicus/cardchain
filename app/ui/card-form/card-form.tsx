@@ -1,13 +1,13 @@
 'use client';
 
-import Scanner from '@/app/ui/scanner';
+import Scanner from '@/app/ui/card-form/scanner';
 import {
   initialState,
-  CreateCardFormActions,
-  CreateCardFormActionTypes,
-  createCardFormReducer,
-  CreateCardFormState,
-} from '@/app/create-card/createCardFormReducer';
+  CardFormActions,
+  CardFormActionTypes,
+  cardFormReducer,
+  CardFormState,
+} from '@/app/ui/card-form/card-form-reducer';
 import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/ui/app-state/codeFormat';
 import { CardIcon, colorNames, iconsMap, SvgProps } from '@/app/lib/shared';
 import { CodePicture } from '@/app/ui/code-picture';
@@ -73,8 +73,8 @@ export default function CardForm({
     defaultValues,
   });
   const [{ devices, activeDevice, isModalVisible }, dispatch] = useReducer<
-    Reducer<CreateCardFormState, CreateCardFormActions>
-  >(createCardFormReducer, initialState);
+    Reducer<CardFormState, CardFormActions>
+  >(cardFormReducer, initialState);
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
@@ -104,7 +104,7 @@ export default function CardForm({
         ) {
           if (cameraModal) {
             dispatch({
-              type: CreateCardFormActionTypes.UPDATE_MODAL_VISIBILITY,
+              type: CardFormActionTypes.UPDATE_MODAL_VISIBILITY,
               payload: cameraModal.open,
             });
           }
@@ -254,7 +254,7 @@ export default function CardForm({
                 type="button"
                 onClick={() => {
                   dispatch({
-                    type: CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
+                    type: CardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
                   });
                 }}
               >
