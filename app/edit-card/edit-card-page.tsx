@@ -1,5 +1,6 @@
 'use client';
 
+import { EditCardForm } from '@/app/edit-card/edit-card-form';
 import { useAppState } from '@/app/ui/app-state/app-state-context';
 import { Routes } from '@/app/lib/shared';
 import { CardNotFoundPage } from '@/app/ui/card-not-found-page';
@@ -17,9 +18,14 @@ export function EditCardPage() {
   }
   return (
     <PageTemplate
-      header={<SecondaryHeader title={card!.name} href={Routes.MyCards} />}
+      header={
+        <SecondaryHeader
+          title={card!.name}
+          href={{ pathname: Routes.Card, query: { id: card.id } }}
+        />
+      }
     >
-      Form
+      <EditCardForm originalCard={card} />
     </PageTemplate>
   );
 }
