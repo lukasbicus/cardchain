@@ -1,6 +1,6 @@
 'use client';
 
-import { filterByQuery } from '@/app/lib/filterByQuery';
+import { filterByQuery } from '@/app/lib/filters';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
 import Image from 'next/image';

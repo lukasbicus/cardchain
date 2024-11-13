@@ -2,7 +2,7 @@
 
 import useAppState from '@/app/lib/app-state/app-state';
 import { AppActionTypes } from '@/app/lib/app-state/reducer';
-import { filterByQuery } from '@/app/lib/filterByQuery';
+import { filterByQuery } from '@/app/lib/filters';
 import { Routes } from '@/app/lib/shared';
 import { CompanyIcon } from '@/app/ui/company-icon';
 import { IconStar, IconStarFilled } from '@tabler/icons-react';
