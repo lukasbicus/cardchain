@@ -30,7 +30,7 @@ function getVisibleCards(appState: AppState, query: string): Card[] {
   return filter(appState.cards, combinedFilter);
 }
 
-export default function MyCards() {
+export default function MyCardsPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get('query')?.toString() ?? '';
   const [state, dispatch] = useAppState();
