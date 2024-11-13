@@ -9,6 +9,7 @@ import {
   EditCardAction,
   ImportCardsAction,
   ToggleCardFavoriteAction,
+  ToggleShowFavoritesOnlyAction,
 } from '@/app/lib/app-state/reducer';
 import { CardIcon } from '@/app/lib/shared';
 import { describe, expect, it } from '@jest/globals';
@@ -28,7 +29,7 @@ const dummyCard: Card = {
 
 describe('appReducer', () => {
   it('should handle AddCardAction', () => {
-    const initialState = { cards: [] };
+    const initialState: AppState = { cards: [], showFavoritesOnly: false };
     const newCard: Omit<Card, 'id'> = {
       bgColor: '#4523C9',
       icon: CardIcon.Retail,
@@ -49,10 +50,11 @@ describe('appReducer', () => {
   });
 
   it('should handle EditCardAction', () => {
-    const initialState = {
+    const initialState: AppState = {
       cards: [
         { ...dummyCard, name: 'Initial Card', id: 'card1', code: 'ABC123' },
       ],
+      showFavoritesOnly: false,
     };
     const updatedCard = { ...initialState.cards[0], name: 'Updated Card' };
     const editAction: EditCardAction = {
@@ -69,10 +71,11 @@ describe('appReducer', () => {
   });
 
   it('should handle DeleteCardAction', () => {
-    const initialState = {
+    const initialState: AppState = {
       cards: [
         { ...dummyCard, name: 'Card to Delete', id: 'card1', code: 'ABC123' },
       ],
+      showFavoritesOnly: false,
     };
     const deleteAction: DeleteCardAction = {
       type: AppActionTypes.DeleteCard,
@@ -93,7 +96,7 @@ describe('appReducer', () => {
   });
 
   it('should handle ImportCardsAction', () => {
-    const initialState = { cards: [] };
+    const initialState: AppState = { cards: [], showFavoritesOnly: false };
     const parsedCards: Omit<Card, 'id' | 'favorite'>[] = [
       {
         bgColor: '#4523C9',
@@ -138,6 +141,7 @@ describe('appReducer', () => {
     };
     const initialState: AppState = {
       cards: [initialCard],
+      showFavoritesOnly: false,
     };
 
     const addAction: ToggleCardFavoriteAction = {
@@ -152,5 +156,22 @@ describe('appReducer', () => {
 
     const state2 = appReducer(state1, addAction);
     expect(state2.cards[0]).toMatchObject({ ...initialCard, favorite: false });
+  });
+
+  it('should handle ToggleShowFavoritesOnlyAction', () => {
+    const initialState: AppState = {
+      cards: [],
+      showFavoritesOnly: false,
+    };
+
+    const addAction: ToggleShowFavoritesOnlyAction = {
+      type: AppActionTypes.ToggleShowFavoritesOnly,
+    };
+
+    const state1 = appReducer(initialState, addAction);
+    expect(state1).toMatchObject({ ...initialState, showFavoritesOnly: true });
+
+    const state2 = appReducer(state1, addAction);
+    expect(state2).toMatchObject({ ...state1, showFavoritesOnly: false });
   });
 });

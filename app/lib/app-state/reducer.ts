@@ -18,10 +18,12 @@ export enum AppActionTypes {
   DeleteCard = 'deleteCard',
   ImportCards = 'importCards',
   ToggleCardFavorite = 'toggleCardFavorite',
+  ToggleShowFavoritesOnly = 'toggleShowFavoritesOnly',
 }
 
 export type AppState = {
   cards: Card[];
+  showFavoritesOnly: boolean;
 };
 
 export type AddCardAction = {
@@ -48,16 +50,21 @@ export type ToggleCardFavoriteAction = {
   type: AppActionTypes.ToggleCardFavorite;
   payload: { id: string };
 };
+export type ToggleShowFavoritesOnlyAction = {
+  type: AppActionTypes.ToggleShowFavoritesOnly;
+};
 
 export type AppActions =
   | AddCardAction
   | EditCardAction
   | DeleteCardAction
   | ImportCardsAction
-  | ToggleCardFavoriteAction;
+  | ToggleCardFavoriteAction
+  | ToggleShowFavoritesOnlyAction;
 
 export const initialState: AppState = {
   cards: [],
+  showFavoritesOnly: false,
 };
 
 export const appReducer = (
@@ -103,6 +110,8 @@ export const appReducer = (
             : { ...card, favorite: !card.favorite }
         ),
       };
+    case AppActionTypes.ToggleShowFavoritesOnly:
+      return { ...state, showFavoritesOnly: !state.showFavoritesOnly };
     default:
       return state;
   }
