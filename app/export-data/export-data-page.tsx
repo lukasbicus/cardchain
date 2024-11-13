@@ -29,8 +29,6 @@ export function ExportDataPage() {
   });
   const [state] = useAppState();
   const processExport = ({ fileName, withNotes }: ExportForm) => {
-    console.log(state);
-
     const cardsToExport = state.cards.map(c =>
       omit(c, withNotes ? ['id', 'favorite'] : ['id', 'favorite', 'note'])
     );

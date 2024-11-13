@@ -5,6 +5,7 @@ import {
   Card,
   DeleteCardAction,
   EditCardAction,
+  ImportCardsAction,
 } from '@/app/lib/app-state/reducer';
 import { CardIcon } from '@/app/lib/shared';
 import { describe, expect, it } from '@jest/globals';
@@ -83,5 +84,38 @@ describe('appReducer', () => {
     // @ts-expect-error: Testing for unknown action type
     const state = appReducer(initialState, unknownAction);
     expect(state).toEqual(initialState);
+  });
+
+  it('should handle IMPORT_CARDS', () => {
+    const initialState = { cards: [] };
+    const parsedCards: Omit<Card, 'id' | 'favorite'>[] = [
+      {
+        bgColor: '#4523C9',
+        icon: CardIcon.Retail,
+        codeFormat: mapHtml5QrcodeFormatToJsbarcodeFormat(
+          Html5QrcodeSupportedFormats.QR_CODE
+        ),
+        name: 'Test Card',
+        code: 'ABC123',
+      },
+      {
+        bgColor: '#00A309',
+        icon: CardIcon.Car,
+        codeFormat: mapHtml5QrcodeFormatToJsbarcodeFormat(
+          Html5QrcodeSupportedFormats.CODABAR
+        ),
+        name: 'Car service',
+        code: 'XS78DB',
+      },
+    ];
+    const addAction: ImportCardsAction = {
+      type: 'IMPORT_CARDS',
+      payload: parsedCards,
+    };
+
+    const state = appReducer(initialState, addAction);
+    expect(state.cards).toHaveLength(2);
+    expect(state.cards[0]).toMatchObject(parsedCards[0]);
+    expect(state.cards[1]).toMatchObject(parsedCards[1]);
   });
 });

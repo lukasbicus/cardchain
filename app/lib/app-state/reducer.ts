@@ -31,7 +31,16 @@ export type DeleteCardAction = {
   payload: { id: string };
 };
 
-export type AppActions = AddCardAction | EditCardAction | DeleteCardAction;
+export type ImportCardsAction = {
+  type: 'IMPORT_CARDS';
+  payload: Omit<Card, 'id' | 'favorite'>[];
+};
+
+export type AppActions =
+  | AddCardAction
+  | EditCardAction
+  | DeleteCardAction
+  | ImportCardsAction;
 
 export const initialState: AppState = {
   cards: [],
@@ -60,6 +69,16 @@ export const appReducer = (
       return {
         ...state,
         cards: state.cards.filter(card => card.id !== action.payload.id),
+      };
+    case 'IMPORT_CARDS':
+      return {
+        ...state,
+        cards: state.cards.concat(
+          action.payload.map(c => ({
+            ...c,
+            id: uuid(),
+          }))
+        ),
       };
     default:
       return state;

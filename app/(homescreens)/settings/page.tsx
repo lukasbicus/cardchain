@@ -10,6 +10,9 @@ export default function Page() {
         <Link href={Routes.ExportData}>
           <button className="btn btn-primary w-full">Export data</button>
         </Link>
+        <Link href={Routes.ImportData}>
+          <button className="btn btn-primary w-full">Import data</button>
+        </Link>
         <Link href={Routes.About}>
           <button className="btn btn-primary w-full">About</button>
         </Link>

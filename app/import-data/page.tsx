@@ -1,4 +1,4 @@
-import { ExportDataPage } from '@/app/export-data/export-data-page';
+import { ImportDataPage } from '@/app/import-data/import-data-page';
 import { Routes } from '@/app/lib/shared';
 import { Loading } from '@/app/ui/loading';
 import { PageTemplate } from '@/app/ui/page-template';
@@ -8,10 +8,10 @@ import { Suspense } from 'react';
 export default function Page() {
   return (
     <PageTemplate
-      header={<SecondaryHeader title="Export data" href={Routes.Settings} />}
+      header={<SecondaryHeader title="Import data" href={Routes.Settings} />}
     >
       <Suspense fallback={<Loading />}>
-        <ExportDataPage />
+        <ImportDataPage />
       </Suspense>
     </PageTemplate>
   );

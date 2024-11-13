@@ -59,14 +59,16 @@ Features:
   - [ ] implement pin favorites on top switch + functionality
   - [ ] implement order cards functionality
   - [ ] implement app language switch functionality
-  - [ ] implement navigation to export data page
-  - [ ] implement navigation to import data page
+  - [x] implement navigation to export data page
+  - [x] implement navigation to import data page
   - [x] _implement navigation to about page_
   - [x] **implement navigation to about author page**
   - [ ] _implement navigation to help page_
   - [ ] implement theme switching
-- [ ] _Export data page_
-- [ ] _Import data page_
+- [x] _Export data page_
+  - [ ] export encrypted data
+- [x] _Import data page_
+  - [ ] import encrypted data
 - [x] _About page_
 - [x] **About author page**
 - [ ] Help page
