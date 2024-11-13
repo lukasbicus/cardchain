@@ -119,7 +119,7 @@ export function ImportDataPage() {
       <ConfirmDialog
         ref={dialogRef}
         title="Import successful"
-        body={`Count of successfully imported cards: ${countOfImportedCards}. Lets check them in my cards section. Click close, if you want to import more cards.`}
+        body={`You have successfully imported ${countOfImportedCards} ${countOfImportedCards === 1 ? 'card' : 'cards'}. Lets check them in my cards section. Click close, if you want to import more cards.`}
         confirmButtonLabel="Go to my cards"
         cancelButtonLabel="Close"
         onConfirmButtonClick={() => {
