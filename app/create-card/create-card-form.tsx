@@ -8,7 +8,7 @@ import {
   createCardFormReducer,
   CreateCardFormState,
 } from '@/app/create-card/createCardFormReducer';
-import useAppState from '@/app/lib/app-state/app-state';
+import { useAppState } from '@/app/ui/app-state-context';
 import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/lib/app-state/codeFormat';
 import { AppActionTypes } from '@/app/lib/app-state/reducer';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';

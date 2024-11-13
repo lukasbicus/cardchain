@@ -1,3 +1,4 @@
+import { AppStateProvider } from '@/app/ui/app-state-context';
 import { ErrorDialogProvider } from '@/app/ui/error-dialog-context';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
@@ -56,7 +57,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 h-full max-h-screen`}
       >
-        <ErrorDialogProvider>{children}</ErrorDialogProvider>
+        <AppStateProvider>
+          <ErrorDialogProvider>{children}</ErrorDialogProvider>
+        </AppStateProvider>
       </body>
     </html>
   );

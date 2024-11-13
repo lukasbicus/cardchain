@@ -1,6 +1,6 @@
 'use client';
 
-import useAppState from '@/app/lib/app-state/app-state';
+import { useAppState } from '@/app/ui/app-state-context';
 import { Routes } from '@/app/lib/shared';
 import { CardNotFoundPage } from '@/app/ui/card-not-found-page';
 import { PageTemplate } from '@/app/ui/page-template';

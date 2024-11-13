@@ -4,7 +4,7 @@ import { AppActionTypes } from '@/app/lib/app-state/reducer';
 import { CardNotFoundPage } from '@/app/ui/card-not-found-page';
 import { CodePicture } from '@/app/ui/code-picture';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
-import useAppState from '@/app/lib/app-state/app-state';
+import { useAppState } from '@/app/ui/app-state-context';
 import { Routes } from '@/app/lib/shared';
 import { CompanyIcon } from '@/app/ui/company-icon';
 import { PageTemplate } from '@/app/ui/page-template';
