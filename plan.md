@@ -42,8 +42,8 @@ Features:
   - [x] **display list of cards**
   - [ ] display grid of cards
   - [x] **filter collection based on search**
-  - [ ] filter collection based on favorites
-  - [ ] _implement (un) mark favorite_
+  - [x] filter collection based on favorites
+  - [x] _implement (un) mark favorite_
   - [x] **implement navigation to card detail**
 - [x] **Card detail page**
   - [x] **display page with bar / qr code**
@@ -76,3 +76,5 @@ Features:
 # bugs
 
 - [x] company icons are not available in offline mode
+- [ ] prefer cameras in environment direction
+- [ ] move app state to the context

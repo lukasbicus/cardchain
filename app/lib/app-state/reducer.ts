@@ -12,38 +12,59 @@ export type Card = {
   codeFormat: string;
 };
 
+export enum AppActionTypes {
+  AddCard = 'addCard',
+  EditCard = 'editCard',
+  DeleteCard = 'deleteCard',
+  ImportCards = 'importCards',
+  ToggleCardFavorite = 'toggleCardFavorite',
+  ToggleShowFavoritesOnly = 'toggleShowFavoritesOnly',
+}
+
 export type AppState = {
   cards: Card[];
+  showFavoritesOnly: boolean;
 };
 
 export type AddCardAction = {
-  type: 'ADD_CARD';
+  type: AppActionTypes.AddCard;
   payload: Omit<Card, 'id'>;
 };
 
 export type EditCardAction = {
-  type: 'EDIT_CARD';
+  type: AppActionTypes.EditCard;
   payload: { id: string; updatedCard: Card };
 };
 
 export type DeleteCardAction = {
-  type: 'DELETE_CARD';
+  type: AppActionTypes.DeleteCard;
   payload: { id: string };
 };
 
 export type ImportCardsAction = {
-  type: 'IMPORT_CARDS';
+  type: AppActionTypes.ImportCards;
   payload: Omit<Card, 'id' | 'favorite'>[];
+};
+
+export type ToggleCardFavoriteAction = {
+  type: AppActionTypes.ToggleCardFavorite;
+  payload: { id: string };
+};
+export type ToggleShowFavoritesOnlyAction = {
+  type: AppActionTypes.ToggleShowFavoritesOnly;
 };
 
 export type AppActions =
   | AddCardAction
   | EditCardAction
   | DeleteCardAction
-  | ImportCardsAction;
+  | ImportCardsAction
+  | ToggleCardFavoriteAction
+  | ToggleShowFavoritesOnlyAction;
 
 export const initialState: AppState = {
   cards: [],
+  showFavoritesOnly: false,
 };
 
 export const appReducer = (
@@ -51,12 +72,12 @@ export const appReducer = (
   action: AppActions
 ): AppState => {
   switch (action.type) {
-    case 'ADD_CARD':
+    case AppActionTypes.AddCard:
       return {
         ...state,
         cards: [...state.cards, { ...action.payload, id: uuid() }],
       };
-    case 'EDIT_CARD':
+    case AppActionTypes.EditCard:
       return {
         ...state,
         cards: state.cards.map(card =>
@@ -65,12 +86,12 @@ export const appReducer = (
             : card
         ),
       };
-    case 'DELETE_CARD':
+    case AppActionTypes.DeleteCard:
       return {
         ...state,
         cards: state.cards.filter(card => card.id !== action.payload.id),
       };
-    case 'IMPORT_CARDS':
+    case AppActionTypes.ImportCards:
       return {
         ...state,
         cards: state.cards.concat(
@@ -80,6 +101,17 @@ export const appReducer = (
           }))
         ),
       };
+    case AppActionTypes.ToggleCardFavorite:
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card.id !== action.payload.id
+            ? card
+            : { ...card, favorite: !card.favorite }
+        ),
+      };
+    case AppActionTypes.ToggleShowFavoritesOnly:
+      return { ...state, showFavoritesOnly: !state.showFavoritesOnly };
     default:
       return state;
   }

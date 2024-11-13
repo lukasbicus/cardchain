@@ -13,8 +13,8 @@ export function MainMessage({
 }) {
   return (
     <div className={clsx('text-center', className)}>
-      <p className="text-xl py-4">{title}</p>
-      <p className="text-sm text-gray-500 pb-4">{description}</p>
+      <p className="text-xl p-4">{title}</p>
+      <p className="text-sm text-gray-500 pb-4 px-4">{description}</p>
       {children}
     </div>
   );

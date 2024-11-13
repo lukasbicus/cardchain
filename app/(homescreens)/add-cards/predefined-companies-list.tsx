@@ -1,6 +1,6 @@
 'use client';
 
-import { filterByQuery } from '@/app/lib/filterByQuery';
+import { getNameFilter } from '@/app/lib/filters';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
 import Image from 'next/image';
@@ -10,9 +10,13 @@ import { useSearchParams } from 'next/navigation';
 export function PredefinedCompaniesList() {
   const searchParams = useSearchParams();
   const query = searchParams.get('query')?.toString();
+
+  const companies = query
+    ? predefinedCompanies.filter(getNameFilter(query))
+    : predefinedCompanies;
   return (
     <ul className="menu menu-lg rounded-box text-base-content">
-      {filterByQuery(predefinedCompanies, query).map(company => (
+      {companies.map(company => (
         <li key={company.name}>
           <Link
             href={{
