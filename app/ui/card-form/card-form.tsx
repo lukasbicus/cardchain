@@ -59,7 +59,6 @@ export default function CardForm({
   defaultValues?: TCardForm;
   submitButtonLabel: string;
   onSubmit: (form: TCardForm) => void;
-  hideIconDropdown?: boolean;
   hideColorDropdown?: boolean;
   openScannerOnInit?: boolean;
 }) {
