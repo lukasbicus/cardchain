@@ -30,7 +30,6 @@ export const ErrorDialogProvider = ({
   const [errorProps, setErrorProps] = useState<ErrorDialogProps | null>(null);
 
   const openErrorDialog = useCallback((props: ErrorDialogProps) => {
-    console.log('openErrorDialog props ', props);
     setErrorProps(props);
   }, []);
 
