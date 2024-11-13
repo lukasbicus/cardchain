@@ -144,17 +144,17 @@ describe('appReducer', () => {
       showFavoritesOnly: false,
     };
 
-    const addAction: ToggleCardFavoriteAction = {
+    const toggleCardFavoriteAction: ToggleCardFavoriteAction = {
       type: AppActionTypes.ToggleCardFavorite,
       payload: {
         id: initialState.cards[0].id,
       },
     };
 
-    const state1 = appReducer(initialState, addAction);
+    const state1 = appReducer(initialState, toggleCardFavoriteAction);
     expect(state1.cards[0]).toMatchObject({ ...initialCard, favorite: true });
 
-    const state2 = appReducer(state1, addAction);
+    const state2 = appReducer(state1, toggleCardFavoriteAction);
     expect(state2.cards[0]).toMatchObject({ ...initialCard, favorite: false });
   });
 
@@ -164,14 +164,14 @@ describe('appReducer', () => {
       showFavoritesOnly: false,
     };
 
-    const addAction: ToggleShowFavoritesOnlyAction = {
+    const toggleShowFavoritesOnlyAction: ToggleShowFavoritesOnlyAction = {
       type: AppActionTypes.ToggleShowFavoritesOnly,
     };
 
-    const state1 = appReducer(initialState, addAction);
+    const state1 = appReducer(initialState, toggleShowFavoritesOnlyAction);
     expect(state1).toMatchObject({ ...initialState, showFavoritesOnly: true });
 
-    const state2 = appReducer(state1, addAction);
+    const state2 = appReducer(state1, toggleShowFavoritesOnlyAction);
     expect(state2).toMatchObject({ ...state1, showFavoritesOnly: false });
   });
 });
