@@ -1,15 +1,14 @@
 'use client';
 
-import { AppActionTypes } from '@/app/lib/app-state/reducer';
+import { CardNotFoundPage } from '@/app/ui/card-not-found-page';
 import { CodePicture } from '@/app/ui/code-picture';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
-import useAppState from '@/app/lib/app-state/app-state';
+import { useAppState, AppActionTypes } from '@/app/ui/app-state';
 import { Routes } from '@/app/lib/shared';
 import { CompanyIcon } from '@/app/ui/company-icon';
-import { MainMessage } from '@/app/ui/main-message';
 import { PageTemplate } from '@/app/ui/page-template';
 import { SecondaryHeader } from '@/app/ui/secondary-header';
-import { IconCards, IconEdit, IconTrash } from '@tabler/icons-react';
+import { IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef } from 'react';
@@ -22,25 +21,7 @@ export function CardDetailPage() {
   const deleteDialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   if (!card) {
-    return (
-      <PageTemplate
-        header={<SecondaryHeader title="Card detail" href={Routes.MyCards} />}
-      >
-        <div className="flex h-2/3 w-full items-center justify-center">
-          <MainMessage
-            title="Card not found"
-            description={`Something went wrong. Found with id ${id} not found.`}
-          >
-            <Link href={Routes.MyCards} replace>
-              <button className="btn btn-primary">
-                <IconCards className="w-6 h-6" />
-                My cards
-              </button>
-            </Link>
-          </MainMessage>
-        </div>
-      </PageTemplate>
-    );
+    return <CardNotFoundPage id={id} title="Card detail" />;
   }
   return (
     <PageTemplate
@@ -58,10 +39,15 @@ export function CardDetailPage() {
               >
                 <IconTrash />
               </button>
-              <Link href={Routes.MyCards} replace>
-                <button className="btn btn-square btn-ghost">
-                  <IconEdit />
-                </button>
+              <Link
+                href={{
+                  pathname: Routes.EditCard,
+                  query: { id: card.id },
+                }}
+                replace
+                className="btn btn-square btn-ghost"
+              >
+                <IconEdit />
               </Link>
             </div>
           }

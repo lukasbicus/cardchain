@@ -1,4 +1,5 @@
-import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/lib/app-state/codeFormat';
+import { CardIcon } from '@/app/lib/shared';
+import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/ui/app-state/codeFormat';
 import {
   AddCardAction,
   AppActionTypes,
@@ -10,8 +11,7 @@ import {
   ImportCardsAction,
   ToggleCardFavoriteAction,
   ToggleShowFavoritesOnlyAction,
-} from '@/app/lib/app-state/reducer';
-import { CardIcon } from '@/app/lib/shared';
+} from '@/app/ui/app-state/reducer';
 import { describe, expect, it } from '@jest/globals';
 import { Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { v4 as uuid } from 'uuid';

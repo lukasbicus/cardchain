@@ -1,8 +1,12 @@
 'use client';
 
 import { CardsList } from '@/app/(homescreens)/my-cards/cards-list';
-import useAppState from '@/app/lib/app-state/app-state';
-import { AppActionTypes, AppState, Card } from '@/app/lib/app-state/reducer';
+import {
+  AppActionTypes,
+  AppState,
+  Card,
+  useAppState,
+} from '@/app/ui/app-state';
 import { favoriteFilter, getNameFilter } from '@/app/lib/filters';
 import { Routes } from '@/app/lib/shared';
 import { MainMessage } from '@/app/ui/main-message';
@@ -77,10 +81,16 @@ export default function MyCardsPage() {
           description="Looks like you haven't added any loyalty cards yet. Get started by adding your first cards! You can manually add card details or import them if you have a digital file."
         >
           <div className="flex justify-center justify-self-center gap-4 px-4 w-full">
-            <Link href={Routes.AddCards} className="btn btn-primary w-1/4">
+            <Link
+              href={Routes.AddCards}
+              className="btn btn-primary w-1/3 max-w-36"
+            >
               Add cards
             </Link>
-            <Link href={Routes.ImportData} className="btn btn-primary w-1/4">
+            <Link
+              href={Routes.ImportData}
+              className="btn btn-primary w-1/3 max-w-36"
+            >
               Import cards
             </Link>
           </div>

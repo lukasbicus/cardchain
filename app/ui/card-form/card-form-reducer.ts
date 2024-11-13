@@ -1,53 +1,53 @@
 import { CameraDevice } from 'html5-qrcode';
 
-export type CreateCardFormState = {
+export type CardFormState = {
   devices: CameraDevice[];
   activeDevice: CameraDevice | null;
   isModalVisible: boolean;
 };
 
-export enum CreateCardFormActionTypes {
+export enum CardFormActionTypes {
   SET_DEVICES = 'SET_DEVICES',
   TOGGLE_ACTIVE_DEVICE = 'TOGGLE_ACTIVE_DEVICE',
   UPDATE_MODAL_VISIBILITY = 'UPDATE_MODAL_VISIBILITY',
 }
 
 export type SetDevicesAction = {
-  type: CreateCardFormActionTypes.SET_DEVICES;
+  type: CardFormActionTypes.SET_DEVICES;
   payload: CameraDevice[];
 };
 
 export type ToggleActiveDeviceAction = {
-  type: CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE;
+  type: CardFormActionTypes.TOGGLE_ACTIVE_DEVICE;
 };
 export type UpdateModalVisibilityAction = {
-  type: CreateCardFormActionTypes.UPDATE_MODAL_VISIBILITY;
+  type: CardFormActionTypes.UPDATE_MODAL_VISIBILITY;
   payload: boolean;
 };
 
-export type CreateCardFormActions =
+export type CardFormActions =
   | SetDevicesAction
   | ToggleActiveDeviceAction
   | UpdateModalVisibilityAction;
 
-export const initialState: CreateCardFormState = {
+export const initialState: CardFormState = {
   activeDevice: null,
   devices: [],
   isModalVisible: false,
 };
 
-export const createCardFormReducer = (
-  state: CreateCardFormState,
-  action: CreateCardFormActions
-): CreateCardFormState => {
+export const cardFormReducer = (
+  state: CardFormState,
+  action: CardFormActions
+): CardFormState => {
   switch (action.type) {
-    case CreateCardFormActionTypes.SET_DEVICES:
+    case CardFormActionTypes.SET_DEVICES:
       return {
         ...state,
         devices: action.payload,
         activeDevice: action.payload[0] ?? null,
       };
-    case CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE:
+    case CardFormActionTypes.TOGGLE_ACTIVE_DEVICE:
       if (state.activeDevice === null || state.devices.length < 2) {
         return state;
       }
@@ -59,7 +59,7 @@ export const createCardFormReducer = (
         ...state,
         activeDevice: state.devices[nextIndex],
       };
-    case CreateCardFormActionTypes.UPDATE_MODAL_VISIBILITY:
+    case CardFormActionTypes.UPDATE_MODAL_VISIBILITY:
       return {
         ...state,
         isModalVisible: action.payload,

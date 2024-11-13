@@ -1,15 +1,15 @@
 import { describe, expect, it } from '@jest/globals';
 import {
-  CreateCardFormActionTypes,
-  createCardFormReducer,
-  CreateCardFormState,
+  CardFormActionTypes,
+  cardFormReducer,
+  CardFormState,
   SetDevicesAction,
   ToggleActiveDeviceAction,
   UpdateModalVisibilityAction,
-} from './createCardFormReducer';
+} from './card-form-reducer';
 
-describe('createCardFormReducer', () => {
-  const initialState: CreateCardFormState = {
+describe('cardFormReducer', () => {
+  const initialState: CardFormState = {
     devices: [],
     activeDevice: null,
     isModalVisible: false,
@@ -21,10 +21,10 @@ describe('createCardFormReducer', () => {
       { id: '2', label: 'Camera 2' },
     ];
     const action: SetDevicesAction = {
-      type: CreateCardFormActionTypes.SET_DEVICES,
+      type: CardFormActionTypes.SET_DEVICES,
       payload: devices,
     };
-    const state = createCardFormReducer(initialState, action);
+    const state = cardFormReducer(initialState, action);
     expect(state.devices).toEqual(devices);
     expect(state.activeDevice).toEqual(devices[0]);
   });
@@ -34,39 +34,36 @@ describe('createCardFormReducer', () => {
       { id: '1', label: 'Camera 1' },
       { id: '2', label: 'Camera 2' },
     ];
-    const stateWithDevices: CreateCardFormState = {
+    const stateWithDevices: CardFormState = {
       ...initialState,
       devices: devices,
       activeDevice: devices[0],
     };
     const action: ToggleActiveDeviceAction = {
-      type: CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
+      type: CardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
     };
-    const stateAfterToggle = createCardFormReducer(stateWithDevices, action);
+    const stateAfterToggle = cardFormReducer(stateWithDevices, action);
     expect(stateAfterToggle.activeDevice).toEqual(devices[1]);
 
     // Toggle again to loop back to the first device
-    const stateAfterSecondToggle = createCardFormReducer(
-      stateAfterToggle,
-      action
-    );
+    const stateAfterSecondToggle = cardFormReducer(stateAfterToggle, action);
     expect(stateAfterSecondToggle.activeDevice).toEqual(devices[0]);
   });
 
   it('should handle TOGGLE_ACTIVE_DEVICE action for initial state', () => {
     const action: ToggleActiveDeviceAction = {
-      type: CreateCardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
+      type: CardFormActionTypes.TOGGLE_ACTIVE_DEVICE,
     };
-    const stateAfterToggle = createCardFormReducer(initialState, action);
+    const stateAfterToggle = cardFormReducer(initialState, action);
     expect(stateAfterToggle.activeDevice).toEqual(null);
   });
 
   it('should handle UPDATE_MODAL_VISIBILITY action for initial state', () => {
     const action: UpdateModalVisibilityAction = {
-      type: CreateCardFormActionTypes.UPDATE_MODAL_VISIBILITY,
+      type: CardFormActionTypes.UPDATE_MODAL_VISIBILITY,
       payload: true,
     };
-    const stateAfterToggle = createCardFormReducer(initialState, action);
+    const stateAfterToggle = cardFormReducer(initialState, action);
     expect(stateAfterToggle.isModalVisible).toEqual(true);
   });
 
@@ -74,7 +71,7 @@ describe('createCardFormReducer', () => {
     const unknownAction = { type: 'UNKNOWN_ACTION' };
 
     // @ts-expect-error: Testing for unknown action type
-    const state = createCardFormReducer(initialState, unknownAction);
+    const state = cardFormReducer(initialState, unknownAction);
     expect(state).toEqual(initialState);
   });
 });

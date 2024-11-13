@@ -1,6 +1,6 @@
 'use client';
 
-import useAppState from '@/app/lib/app-state/app-state';
+import { useAppState } from '@/app/ui/app-state';
 import { Routes } from '@/app/lib/shared';
 import Link from 'next/link';
 

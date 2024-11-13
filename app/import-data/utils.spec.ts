@@ -4,7 +4,7 @@ import {
   ParseCardsErrors,
   ParsedCard,
 } from '@/app/import-data/utils';
-import { Card } from '@/app/lib/app-state/reducer';
+import { Card } from '@/app/ui/app-state/reducer';
 import { describe, expect, it } from '@jest/globals';
 import { v4 as uuid } from 'uuid';
 

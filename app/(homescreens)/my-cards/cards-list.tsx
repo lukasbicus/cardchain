@@ -1,6 +1,6 @@
 'use client';
 
-import { AppActions, AppActionTypes, Card } from '@/app/lib/app-state/reducer';
+import { AppActions, AppActionTypes, Card } from '@/app/ui/app-state';
 import { Routes } from '@/app/lib/shared';
 import { CompanyIcon } from '@/app/ui/company-icon';
 import { IconStar, IconStarFilled } from '@tabler/icons-react';
