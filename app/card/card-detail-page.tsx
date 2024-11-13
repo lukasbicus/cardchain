@@ -58,10 +58,15 @@ export function CardDetailPage() {
               >
                 <IconTrash />
               </button>
-              <Link href={Routes.MyCards} replace>
-                <button className="btn btn-square btn-ghost">
-                  <IconEdit />
-                </button>
+              <Link
+                href={{
+                  pathname: Routes.EditCard,
+                  query: { id: card.id },
+                }}
+                replace
+                className="btn btn-square btn-ghost"
+              >
+                <IconEdit />
               </Link>
             </div>
           }
