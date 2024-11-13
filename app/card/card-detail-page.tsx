@@ -1,6 +1,7 @@
 'use client';
 
 import { AppActionTypes } from '@/app/lib/app-state/reducer';
+import { CardNotFoundPage } from '@/app/ui/card-not-found-page';
 import { CodePicture } from '@/app/ui/code-picture';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import useAppState from '@/app/lib/app-state/app-state';
@@ -22,25 +23,7 @@ export function CardDetailPage() {
   const deleteDialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   if (!card) {
-    return (
-      <PageTemplate
-        header={<SecondaryHeader title="Card detail" href={Routes.MyCards} />}
-      >
-        <div className="flex h-2/3 w-full items-center justify-center">
-          <MainMessage
-            title="Card not found"
-            description={`Something went wrong. The card with id ${id} not found.`}
-          >
-            <Link href={Routes.MyCards} replace>
-              <button className="btn btn-primary">
-                <IconCards className="w-6 h-6" />
-                My cards
-              </button>
-            </Link>
-          </MainMessage>
-        </div>
-      </PageTemplate>
-    );
+    return <CardNotFoundPage id={id} title="Card detail" />;
   }
   return (
     <PageTemplate
