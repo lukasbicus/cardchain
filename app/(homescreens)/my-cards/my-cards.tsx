@@ -5,7 +5,14 @@ import { AppActionTypes } from '@/app/lib/app-state/reducer';
 import { filterByQuery } from '@/app/lib/filters';
 import { Routes } from '@/app/lib/shared';
 import { CompanyIcon } from '@/app/ui/company-icon';
-import { IconStar, IconStarFilled } from '@tabler/icons-react';
+import { PageTemplate } from '@/app/ui/page-template';
+import { PrimaryHeader } from '@/app/ui/primary-header';
+import { Search } from '@/app/ui/search';
+import {
+  IconStar,
+  IconStarFilled,
+  IconStarHalfFilled,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -20,48 +27,76 @@ export default function MyCards() {
   // if query, filter cards by queryFilter
 
   return (
-    <ul className="menu menu-sm rounded-box gap-2">
-      {filterByQuery(state.cards, query).map(card => (
-        <li key={card.id}>
-          <Link
-            href={{
-              pathname: Routes.Card,
-              query: { id: card.id },
-            }}
-            className="grid grid-cols-[auto_1fr_auto] justify-between flex-row gap-2 border items-center"
-            style={
-              card.bgColor
-                ? {
-                    backgroundColor: card.bgColor,
-                  }
-                : undefined
-            }
-          >
-            <span className="w-10 h-10">
-              <CompanyIcon {...card} />
-            </span>
-            <span className="text-xl">{card.name}</span>
-            <button
-              className="btn btn-ghost btn-circle btn-primary"
-              onClick={e => {
-                e.preventDefault();
-                dispatch({
-                  type: AppActionTypes.ToggleCardFavorite,
-                  payload: {
-                    id: card.id,
-                  },
-                });
+    <PageTemplate
+      header={
+        <PrimaryHeader
+          title="My cards"
+          actions={
+            <>
+              <button
+                className="btn btn-circle btn-ghost btn-primary "
+                onClick={() => {
+                  dispatch({
+                    type: AppActionTypes.ToggleShowFavoritesOnly,
+                  });
+                }}
+              >
+                {state.showFavoritesOnly ? (
+                  <IconStarFilled className="w-6 h-6" />
+                ) : (
+                  <IconStarHalfFilled className="w-6 h-6" />
+                )}
+              </button>
+            </>
+          }
+        >
+          <Search className="flex-1" />
+        </PrimaryHeader>
+      }
+    >
+      <ul className="menu menu-sm rounded-box gap-2">
+        {filterByQuery(state.cards, query).map(card => (
+          <li key={card.id}>
+            <Link
+              href={{
+                pathname: Routes.Card,
+                query: { id: card.id },
               }}
+              className="grid grid-cols-[auto_1fr_auto] justify-between flex-row gap-2 border items-center"
+              style={
+                card.bgColor
+                  ? {
+                      backgroundColor: card.bgColor,
+                    }
+                  : undefined
+              }
             >
-              {card.favorite ? (
-                <IconStarFilled className="h-6 w-6" />
-              ) : (
-                <IconStar className="h-6 w-6" />
-              )}
-            </button>
-          </Link>
-        </li>
-      ))}
-    </ul>
+              <span className="w-10 h-10">
+                <CompanyIcon {...card} />
+              </span>
+              <span className="text-xl">{card.name}</span>
+              <button
+                className="btn btn-ghost btn-circle btn-primary"
+                onClick={e => {
+                  e.preventDefault();
+                  dispatch({
+                    type: AppActionTypes.ToggleCardFavorite,
+                    payload: {
+                      id: card.id,
+                    },
+                  });
+                }}
+              >
+                {card.favorite ? (
+                  <IconStarFilled className="h-6 w-6" />
+                ) : (
+                  <IconStar className="h-6 w-6" />
+                )}
+              </button>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </PageTemplate>
   );
 }
