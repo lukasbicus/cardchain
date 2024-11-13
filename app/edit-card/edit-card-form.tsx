@@ -1,6 +1,6 @@
 'use client';
 
-import Scanner from '@/app/create-card/scanner';
+import Scanner from '@/app/ui/scanner';
 import {
   initialState,
   CreateCardFormActions,
