@@ -77,3 +77,4 @@ Features:
 
 - [x] company icons are not available in offline mode
 - [ ] prefer cameras in environment direction
+- [ ] move app state to the context
