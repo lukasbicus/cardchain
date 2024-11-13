@@ -1,21 +1,22 @@
 'use client';
 
-import useAppState from '@/app/lib/app-state/app-state';
-import { filterByQuery } from '@/app/lib/filterByQuery';
+import { AppActions, AppActionTypes, Card } from '@/app/lib/app-state/reducer';
 import { Routes } from '@/app/lib/shared';
-import { IconStar } from '@tabler/icons-react';
 import { CompanyIcon } from '@/app/ui/company-icon';
+import { IconStar, IconStarFilled } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { Dispatch } from 'react';
 
-export default function MyCards() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get('query')?.toString();
-  const [state] = useAppState();
-
+export function CardsList({
+  cards,
+  dispatch,
+}: {
+  cards: Card[];
+  dispatch: Dispatch<AppActions>;
+}) {
   return (
     <ul className="menu menu-sm rounded-box gap-2">
-      {filterByQuery(state.cards, query).map(card => (
+      {cards.map(card => (
         <li key={card.id}>
           <Link
             href={{
@@ -35,8 +36,23 @@ export default function MyCards() {
               <CompanyIcon {...card} />
             </span>
             <span className="text-xl">{card.name}</span>
-            <button className="btn btn-ghost btn-square btn-primary">
-              <IconStar className="h-6 w-6" />
+            <button
+              className="btn btn-ghost btn-circle btn-primary"
+              onClick={e => {
+                e.preventDefault();
+                dispatch({
+                  type: AppActionTypes.ToggleCardFavorite,
+                  payload: {
+                    id: card.id,
+                  },
+                });
+              }}
+            >
+              {card.favorite ? (
+                <IconStarFilled className="h-6 w-6" />
+              ) : (
+                <IconStar className="h-6 w-6" />
+              )}
             </button>
           </Link>
         </li>

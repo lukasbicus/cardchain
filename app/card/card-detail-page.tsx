@@ -1,5 +1,6 @@
 'use client';
 
+import { AppActionTypes } from '@/app/lib/app-state/reducer';
 import { CodePicture } from '@/app/ui/code-picture';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import useAppState from '@/app/lib/app-state/app-state';
@@ -113,7 +114,7 @@ export function CardDetailPage() {
         confirmButtonLabel="Delete"
         onConfirmButtonClick={() => {
           dispatch({
-            type: 'DELETE_CARD',
+            type: AppActionTypes.DeleteCard,
             payload: { id: card.id },
           });
           router.replace(Routes.MyCards);

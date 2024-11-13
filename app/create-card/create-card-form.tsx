@@ -10,6 +10,7 @@ import {
 } from '@/app/create-card/createCardFormReducer';
 import useAppState from '@/app/lib/app-state/app-state';
 import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/lib/app-state/codeFormat';
+import { AppActionTypes } from '@/app/lib/app-state/reducer';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import {
   CardIcon,
@@ -138,7 +139,7 @@ export default function CreateCardForm() {
         className="px-4 py-6 w-full h-full"
         onSubmit={handleSubmit(data => {
           appDispatch({
-            type: 'ADD_CARD',
+            type: AppActionTypes.AddCard,
             payload: {
               name: data[CreateCardFormNames.Name],
               code: data[CreateCardFormNames.Code],
