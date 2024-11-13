@@ -46,13 +46,13 @@ export function FileImportField<T extends FieldValues>({
   required?: boolean;
 }) {
   return (
-    <label className={clsx('form-control w-full max-w-xs', className)}>
+    <label className={clsx('form-control w-full', className)}>
       <div className="label">
         <span className="label-text">{label}</span>
       </div>
       <input
         type="file"
-        className="file-input file-input-bordered w-full max-w-xs"
+        className="file-input file-input-bordered w-full"
         disabled={disabled}
         {...register(name, { required })}
       />
