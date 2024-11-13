@@ -8,16 +8,8 @@ import {
   createCardFormReducer,
   CreateCardFormState,
 } from '@/app/create-card/createCardFormReducer';
-import { useAppState } from '@/app/ui/app-state/app-state-context';
 import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/ui/app-state/codeFormat';
-import { AppActionTypes, Card } from '@/app/ui/app-state/reducer';
-import {
-  CardIcon,
-  colorNames,
-  iconsMap,
-  Routes,
-  SvgProps,
-} from '@/app/lib/shared';
+import { CardIcon, colorNames, iconsMap, SvgProps } from '@/app/lib/shared';
 import { CodePicture } from '@/app/ui/code-picture';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
@@ -29,11 +21,11 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import { Html5QrcodeResult } from 'html5-qrcode';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-enum EditCardFormNames {
+export enum CardFormNames {
   Name = 'name',
   Code = 'code',
   CodeFormat = 'codeFormat',
@@ -42,16 +34,35 @@ enum EditCardFormNames {
   Icon = 'Icon',
 }
 
-type EditCardForm = {
-  [EditCardFormNames.Name]: string;
-  [EditCardFormNames.Code]: string;
-  [EditCardFormNames.CodeFormat]: string;
-  [EditCardFormNames.Note]: string;
-  [EditCardFormNames.Color]: string | null;
-  [EditCardFormNames.Icon]: string | SvgProps | null;
+export type TCardForm = {
+  [CardFormNames.Name]: string;
+  [CardFormNames.Code]: string;
+  [CardFormNames.CodeFormat]: string;
+  [CardFormNames.Note]: string;
+  [CardFormNames.Color]: string | null;
+  [CardFormNames.Icon]: string | SvgProps | null;
 };
 
-export function EditCardForm({ originalCard }: { originalCard: Card }) {
+export function isSvg(
+  value: CardIcon | null | SvgProps | string
+): value is SvgProps {
+  return !(typeof value === 'string' || value === null);
+}
+
+export default function CardForm({
+  defaultValues,
+  submitButtonLabel,
+  onSubmit,
+  hideColorDropdown,
+  openScannerOnInit,
+}: {
+  defaultValues?: TCardForm;
+  submitButtonLabel: string;
+  onSubmit: (form: TCardForm) => void;
+  hideIconDropdown?: boolean;
+  hideColorDropdown?: boolean;
+  openScannerOnInit?: boolean;
+}) {
   const {
     register,
     handleSubmit,
@@ -59,30 +70,21 @@ export function EditCardForm({ originalCard }: { originalCard: Card }) {
     watch,
     setValue,
     formState: { errors: formErrors },
-  } = useForm<EditCardForm>({
-    defaultValues: {
-      [EditCardFormNames.Name]: originalCard.name,
-      [EditCardFormNames.Code]: originalCard.code,
-      [EditCardFormNames.CodeFormat]: originalCard.codeFormat,
-      [EditCardFormNames.Note]: originalCard.note,
-      [EditCardFormNames.Color]: originalCard.bgColor,
-      [EditCardFormNames.Icon]: originalCard.icon,
-    },
+  } = useForm<TCardForm>({
+    defaultValues,
   });
-  const [, appDispatch] = useAppState();
   const [{ devices, activeDevice, isModalVisible }, dispatch] = useReducer<
     Reducer<CreateCardFormState, CreateCardFormActions>
   >(createCardFormReducer, initialState);
-  const router = useRouter();
   const cameraModalRef = useRef<HTMLDialogElement>(null);
   const handleCodeDetected = useCallback(
     (text: string, { result }: Html5QrcodeResult) => {
-      setValue(EditCardFormNames.Code, text, {
+      setValue(CardFormNames.Code, text, {
         shouldValidate: true,
       });
       if (typeof result.format?.format === 'number') {
         setValue(
-          EditCardFormNames.CodeFormat,
+          CardFormNames.CodeFormat,
           mapHtml5QrcodeFormatToJsbarcodeFormat(result.format.format)
         );
       }
@@ -121,30 +123,23 @@ export function EditCardForm({ originalCard }: { originalCard: Card }) {
     };
   }, []);
 
-  const code = watch(EditCardFormNames.Code);
-  const codeFormat = watch(EditCardFormNames.CodeFormat);
+  useEffect(() => {
+    if (openScannerOnInit) {
+      cameraModalRef.current?.showModal();
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const code = watch(CardFormNames.Code);
+  const codeFormat = watch(CardFormNames.CodeFormat);
+  const defaultValueForIcon = defaultValues
+    ? defaultValues[CardFormNames.Icon]
+    : null;
   return (
     <>
       <form
         className="px-4 py-6 w-full h-full"
-        onSubmit={handleSubmit(data => {
-          appDispatch({
-            type: AppActionTypes.EditCard,
-            payload: {
-              id: originalCard.id,
-              updatedCard: {
-                id: originalCard.id,
-                name: data[EditCardFormNames.Name],
-                code: data[EditCardFormNames.Code],
-                note: data[EditCardFormNames.Note] || undefined,
-                bgColor: data[EditCardFormNames.Color] || null,
-                icon: (data[EditCardFormNames.Icon] as CardIcon) || null,
-                codeFormat: data[EditCardFormNames.CodeFormat],
-              },
-            },
-          });
-          router.replace(`${Routes.Card}?id=${originalCard.id}`);
-        })}
+        onSubmit={handleSubmit(onSubmit)}
       >
         {code && codeFormat && (
           <CodePicture code={code} codeFormat={codeFormat} />
@@ -152,7 +147,7 @@ export function EditCardForm({ originalCard }: { originalCard: Card }) {
         <div className="flex gap-4">
           <TextField
             label="Card code"
-            name={EditCardFormNames.Code}
+            name={CardFormNames.Code}
             register={register}
             disabled
             errors={formErrors}
@@ -170,56 +165,76 @@ export function EditCardForm({ originalCard }: { originalCard: Card }) {
         </div>
         <TextField
           label="Card name"
-          name={EditCardFormNames.Name}
+          name={CardFormNames.Name}
           register={register}
           required
           errors={formErrors}
         />
         <TextAreaField
           label="Note"
-          name={EditCardFormNames.Note}
+          name={CardFormNames.Note}
           register={register}
         />
-        <div className="flex gap-4">
+        {hideColorDropdown ? (
+          <input type="hidden" {...register(CardFormNames.Color)} />
+        ) : (
+          <div className="flex gap-4">
+            <DropdownField
+              label="Background color"
+              dropdownClassName="dropdown-top"
+              options={Object.entries(colorNames).map(([hex, name]) => ({
+                label: (
+                  <div className="flex gap-2 items-center">
+                    <div className="w-4 h-4" style={{ backgroundColor: hex }} />
+                    <span>{name}</span>
+                  </div>
+                ),
+                value: hex,
+              }))}
+              control={control}
+              name={CardFormNames.Color}
+              watch={watch}
+            />
+            <button className="btn btn-primary btn-square mt-9" type="button">
+              <IconPalette className="w-6 h-6" />
+            </button>
+          </div>
+        )}
+        {isSvg(defaultValueForIcon) ? (
+          <label className={'form-control w-full'}>
+            <div className="label">
+              <span className="label-text">Company logo</span>
+            </div>
+            <div className="bg-background">
+              <input type="hidden" {...register(CardFormNames.Icon)} />
+              <Image
+                {...defaultValueForIcon}
+                alt="Company icon"
+                className="w-24 h-24"
+              />
+            </div>
+          </label>
+        ) : (
           <DropdownField
-            label="Background color"
+            label="Icon"
             dropdownClassName="dropdown-top"
-            options={Object.entries(colorNames).map(([hex, name]) => ({
+            options={Object.entries(iconsMap).map(([key, Icon]) => ({
               label: (
-                <div className="flex gap-2 items-center">
-                  <div className="w-4 h-4" style={{ backgroundColor: hex }} />
-                  <span>{name}</span>
-                </div>
+                <span>
+                  <Icon className="w-6 h-6" />
+                </span>
               ),
-              value: hex,
+              value: key,
             }))}
             control={control}
-            name={EditCardFormNames.Color}
+            name={CardFormNames.Icon}
             watch={watch}
           />
-          <button className="btn btn-primary btn-square mt-9" type="button">
-            <IconPalette className="w-6 h-6" />
-          </button>
-        </div>
-        <DropdownField
-          label="Icon"
-          dropdownClassName="dropdown-top"
-          options={Object.entries(iconsMap).map(([key, Icon]) => ({
-            label: (
-              <span>
-                <Icon className="w-6 h-6" />
-              </span>
-            ),
-            value: key,
-          }))}
-          control={control}
-          name={EditCardFormNames.Icon}
-          watch={watch}
-        />
+        )}
         <div className="h-32" />
         <footer className="btm-nav btm-nav-md text-base-content px-4">
           <button className="btn btn-primary w-full" type="submit">
-            Save card
+            {submitButtonLabel}
           </button>
         </footer>
       </form>
