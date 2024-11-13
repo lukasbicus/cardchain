@@ -5,8 +5,8 @@ import {
   parseCards,
   ParseCardsErrors,
 } from '@/app/import-data/utils';
-import { useAppState } from '@/app/ui/app-state-context';
-import { AppActionTypes } from '@/app/lib/app-state/reducer';
+import { useAppState } from '@/app/ui/app-state/app-state-context';
+import { AppActionTypes } from '@/app/ui/app-state/reducer';
 import { Routes } from '@/app/lib/shared';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import { useErrorDialog } from '@/app/ui/error-dialog-context';

@@ -1,8 +1,8 @@
 'use client';
 
 import { CardsList } from '@/app/(homescreens)/my-cards/cards-list';
-import { useAppState } from '@/app/ui/app-state-context';
-import { AppActionTypes, AppState, Card } from '@/app/lib/app-state/reducer';
+import { useAppState } from '@/app/ui/app-state/app-state-context';
+import { AppActionTypes, AppState, Card } from '@/app/ui/app-state/reducer';
 import { favoriteFilter, getNameFilter } from '@/app/lib/filters';
 import { Routes } from '@/app/lib/shared';
 import { MainMessage } from '@/app/ui/main-message';
