@@ -1,11 +1,19 @@
 'use client';
 
-import { getUniqParsedCards, parseCards } from '@/app/import-data/utils';
+import {
+  getUniqParsedCards,
+  parseCards,
+  ParseCardsErrors,
+} from '@/app/import-data/utils';
 import useAppState from '@/app/lib/app-state/app-state';
 import { Routes } from '@/app/lib/shared';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import { useErrorDialog } from '@/app/ui/error-dialog-context';
-import { FileImportField, getFileText } from '@/app/ui/file-import-field';
+import {
+  FileImportErrors,
+  FileImportField,
+  getFileText,
+} from '@/app/ui/file-import-field';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
@@ -54,7 +62,29 @@ export function ImportDataPage() {
         dialogRef.current?.showModal();
       }
     } catch (e) {
-      console.log('error', e, JSON.stringify(e));
+      if (e instanceof Error) {
+        console.error(e);
+        switch (e.message) {
+          case FileImportErrors.FileTypeIsInvalid:
+          case FileImportErrors.FileContentIsNotString:
+          case ParseCardsErrors.TextDoesNotContainCards:
+          case ParseCardsErrors.TextIsNotValidJSON:
+            openErrorDialog({
+              title: 'Invalid import file',
+              body: "Please check the imported file. It doesn't follow format required for import of cards.",
+            });
+            break;
+          case FileImportErrors.FileIsNull:
+            openErrorDialog({
+              title: 'Missing import file',
+              body: 'Please provide import file in valid format.',
+            });
+            break;
+          default:
+            throw e;
+        }
+      }
+      throw e;
     }
   };
   const router = useRouter();
