@@ -83,8 +83,9 @@ export function ImportDataPage() {
           default:
             throw e;
         }
+      } else {
+        throw e;
       }
-      throw e;
     }
   };
   const router = useRouter();

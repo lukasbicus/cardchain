@@ -15,8 +15,9 @@ export type ErrorDialogProps = {
 };
 
 const ErrorDialogContext = createContext({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  openErrorDialog: (props: ErrorDialogProps) => {},
+  openErrorDialog: (props: ErrorDialogProps) => {
+    console.log(props);
+  },
 });
 
 export const useErrorDialog = () => useContext(ErrorDialogContext);
