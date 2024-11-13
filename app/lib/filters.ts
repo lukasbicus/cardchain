@@ -10,3 +10,9 @@ export function filterByQuery<T extends { name: string }>(
   const q = deburr(query.toLowerCase());
   return cards.filter(card => deburr(card.name.toLowerCase()).includes(q));
 }
+
+export function favoriteFilter<T extends { favorite?: boolean }>(
+  o: T
+): boolean {
+  return Boolean(o.favorite);
+}
