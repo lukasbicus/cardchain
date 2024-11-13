@@ -1,6 +1,7 @@
 import { mapHtml5QrcodeFormatToJsbarcodeFormat } from '@/app/lib/app-state/codeFormat';
 import {
   AddCardAction,
+  AppActionTypes,
   appReducer,
   Card,
   DeleteCardAction,
@@ -35,7 +36,10 @@ describe('appReducer', () => {
       name: 'Test Card',
       code: 'ABC123',
     };
-    const addAction: AddCardAction = { type: 'ADD_CARD', payload: newCard };
+    const addAction: AddCardAction = {
+      type: AppActionTypes.AddCard,
+      payload: newCard,
+    };
 
     const state = appReducer(initialState, addAction);
     expect(state.cards).toHaveLength(1);
@@ -50,7 +54,7 @@ describe('appReducer', () => {
     };
     const updatedCard = { ...initialState.cards[0], name: 'Updated Card' };
     const editAction: EditCardAction = {
-      type: 'EDIT_CARD',
+      type: AppActionTypes.EditCard,
       payload: { id: 'card1', updatedCard },
     };
 
@@ -69,7 +73,7 @@ describe('appReducer', () => {
       ],
     };
     const deleteAction: DeleteCardAction = {
-      type: 'DELETE_CARD',
+      type: AppActionTypes.DeleteCard,
       payload: { id: 'card1' },
     };
 
@@ -109,7 +113,7 @@ describe('appReducer', () => {
       },
     ];
     const addAction: ImportCardsAction = {
-      type: 'IMPORT_CARDS',
+      type: AppActionTypes.ImportCards,
       payload: parsedCards,
     };
 

@@ -12,27 +12,34 @@ export type Card = {
   codeFormat: string;
 };
 
+export enum AppActionTypes {
+  AddCard = 'addCard',
+  EditCard = 'editCard',
+  DeleteCard = 'deleteCard',
+  ImportCards = 'importCards',
+}
+
 export type AppState = {
   cards: Card[];
 };
 
 export type AddCardAction = {
-  type: 'ADD_CARD';
+  type: AppActionTypes.AddCard;
   payload: Omit<Card, 'id'>;
 };
 
 export type EditCardAction = {
-  type: 'EDIT_CARD';
+  type: AppActionTypes.EditCard;
   payload: { id: string; updatedCard: Card };
 };
 
 export type DeleteCardAction = {
-  type: 'DELETE_CARD';
+  type: AppActionTypes.DeleteCard;
   payload: { id: string };
 };
 
 export type ImportCardsAction = {
-  type: 'IMPORT_CARDS';
+  type: AppActionTypes.ImportCards;
   payload: Omit<Card, 'id' | 'favorite'>[];
 };
 
@@ -51,12 +58,12 @@ export const appReducer = (
   action: AppActions
 ): AppState => {
   switch (action.type) {
-    case 'ADD_CARD':
+    case AppActionTypes.AddCard:
       return {
         ...state,
         cards: [...state.cards, { ...action.payload, id: uuid() }],
       };
-    case 'EDIT_CARD':
+    case AppActionTypes.EditCard:
       return {
         ...state,
         cards: state.cards.map(card =>
@@ -65,12 +72,12 @@ export const appReducer = (
             : card
         ),
       };
-    case 'DELETE_CARD':
+    case AppActionTypes.DeleteCard:
       return {
         ...state,
         cards: state.cards.filter(card => card.id !== action.payload.id),
       };
-    case 'IMPORT_CARDS':
+    case AppActionTypes.ImportCards:
       return {
         ...state,
         cards: state.cards.concat(

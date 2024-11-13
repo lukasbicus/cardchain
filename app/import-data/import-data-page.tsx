@@ -6,6 +6,7 @@ import {
   ParseCardsErrors,
 } from '@/app/import-data/utils';
 import useAppState from '@/app/lib/app-state/app-state';
+import { AppActionTypes } from '@/app/lib/app-state/reducer';
 import { Routes } from '@/app/lib/shared';
 import { ConfirmDialog } from '@/app/ui/confirm-dialog';
 import { useErrorDialog } from '@/app/ui/error-dialog-context';
@@ -53,7 +54,7 @@ export function ImportDataPage() {
         });
       } else {
         dispatch({
-          type: 'IMPORT_CARDS',
+          type: AppActionTypes.ImportCards,
           payload: uniqParsedCards,
         });
         // display count of added records in dialog
