@@ -20,38 +20,36 @@ export default function CreateCardForm() {
   const router = useRouter();
 
   return (
-    <>
-      <CardForm
-        submitButtonLabel="Create card"
-        defaultValues={
-          predefinedCompany
-            ? {
-                [CardFormNames.Name]: predefinedCompany.name,
-                [CardFormNames.Code]: '',
-                [CardFormNames.CodeFormat]: '',
-                [CardFormNames.Note]: '',
-                [CardFormNames.Color]: null,
-                [CardFormNames.Icon]: predefinedCompany.svg,
-              }
-            : undefined
-        }
-        onSubmit={(form: TCardForm) => {
-          appDispatch({
-            type: AppActionTypes.AddCard,
-            payload: {
-              name: form[CardFormNames.Name],
-              code: form[CardFormNames.Code],
-              note: form[CardFormNames.Note] || undefined,
-              bgColor: form[CardFormNames.Color] || null,
-              icon: (form[CardFormNames.Icon] as CardIcon) || null,
-              codeFormat: form[CardFormNames.CodeFormat],
-            },
-          });
-          router.replace(Routes.MyCards);
-        }}
-        hideColorDropdown={Boolean(predefinedCompany)}
-        openScannerOnInit
-      />
-    </>
+    <CardForm
+      submitButtonLabel="Create card"
+      defaultValues={
+        predefinedCompany
+          ? {
+              [CardFormNames.Name]: predefinedCompany.name,
+              [CardFormNames.Code]: '',
+              [CardFormNames.CodeFormat]: '',
+              [CardFormNames.Note]: '',
+              [CardFormNames.Color]: null,
+              [CardFormNames.Icon]: predefinedCompany.svg,
+            }
+          : undefined
+      }
+      onSubmit={(form: TCardForm) => {
+        appDispatch({
+          type: AppActionTypes.AddCard,
+          payload: {
+            name: form[CardFormNames.Name],
+            code: form[CardFormNames.Code],
+            note: form[CardFormNames.Note] || undefined,
+            bgColor: form[CardFormNames.Color] || null,
+            icon: (form[CardFormNames.Icon] as CardIcon) || null,
+            codeFormat: form[CardFormNames.CodeFormat],
+          },
+        });
+        router.replace(Routes.MyCards);
+      }}
+      hideColorDropdown={Boolean(predefinedCompany)}
+      openScannerOnInit
+    />
   );
 }
