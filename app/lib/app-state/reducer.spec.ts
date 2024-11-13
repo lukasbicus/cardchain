@@ -7,6 +7,7 @@ import {
   DeleteCardAction,
   EditCardAction,
   ImportCardsAction,
+  ToggleCardFavoriteAction,
 } from '@/app/lib/app-state/reducer';
 import { CardIcon } from '@/app/lib/shared';
 import { describe, expect, it } from '@jest/globals';
@@ -121,5 +122,34 @@ describe('appReducer', () => {
     expect(state.cards).toHaveLength(2);
     expect(state.cards[0]).toMatchObject(parsedCards[0]);
     expect(state.cards[1]).toMatchObject(parsedCards[1]);
+  });
+
+  it('should handle ToggleCardFavoriteAction', () => {
+    const initialCard = {
+      bgColor: '#4523C9',
+      icon: CardIcon.Retail,
+      codeFormat: mapHtml5QrcodeFormatToJsbarcodeFormat(
+        Html5QrcodeSupportedFormats.QR_CODE
+      ),
+      id: uuid(),
+      name: 'Test Card',
+      code: 'ABC123',
+    };
+    const initialState: AppState = {
+      cards: [initialCard],
+    };
+
+    const addAction: ToggleCardFavoriteAction = {
+      type: AppActionTypes.ToggleCardFavorite,
+      payload: {
+        id: initialState.cards[0].id,
+      },
+    };
+
+    const state1 = appReducer(initialState, addAction);
+    expect(state1.cards[0]).toMatchObject({ ...initialCard, favorite: true });
+
+    const state2 = appReducer(state1, addAction);
+    expect(state2.cards[0]).toMatchObject({ ...initialCard, favorite: false });
   });
 });

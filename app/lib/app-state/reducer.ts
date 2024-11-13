@@ -17,6 +17,7 @@ export enum AppActionTypes {
   EditCard = 'editCard',
   DeleteCard = 'deleteCard',
   ImportCards = 'importCards',
+  ToggleCardFavorite = 'toggleCardFavorite',
 }
 
 export type AppState = {
@@ -43,11 +44,17 @@ export type ImportCardsAction = {
   payload: Omit<Card, 'id' | 'favorite'>[];
 };
 
+export type ToggleCardFavoriteAction = {
+  type: AppActionTypes.ToggleCardFavorite;
+  payload: { id: string };
+};
+
 export type AppActions =
   | AddCardAction
   | EditCardAction
   | DeleteCardAction
-  | ImportCardsAction;
+  | ImportCardsAction
+  | ToggleCardFavoriteAction;
 
 export const initialState: AppState = {
   cards: [],
@@ -85,6 +92,15 @@ export const appReducer = (
             ...c,
             id: uuid(),
           }))
+        ),
+      };
+    case AppActionTypes.ToggleCardFavorite:
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card.id !== action.payload.id
+            ? card
+            : { ...card, favorite: !card.favorite }
         ),
       };
     default:
