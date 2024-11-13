@@ -3,6 +3,7 @@ import {
   AddCardAction,
   AppActionTypes,
   appReducer,
+  AppState,
   Card,
   DeleteCardAction,
   EditCardAction,
@@ -26,7 +27,7 @@ const dummyCard: Card = {
 };
 
 describe('appReducer', () => {
-  it('should handle ADD_CARD', () => {
+  it('should handle AddCardAction', () => {
     const initialState = { cards: [] };
     const newCard: Omit<Card, 'id'> = {
       bgColor: '#4523C9',
@@ -47,7 +48,7 @@ describe('appReducer', () => {
     expect(state.cards[0]).toMatchObject(newCard);
   });
 
-  it('should handle EDIT_CARD', () => {
+  it('should handle EditCardAction', () => {
     const initialState = {
       cards: [
         { ...dummyCard, name: 'Initial Card', id: 'card1', code: 'ABC123' },
@@ -67,7 +68,7 @@ describe('appReducer', () => {
     });
   });
 
-  it('should handle DELETE_CARD', () => {
+  it('should handle DeleteCardAction', () => {
     const initialState = {
       cards: [
         { ...dummyCard, name: 'Card to Delete', id: 'card1', code: 'ABC123' },
@@ -91,7 +92,7 @@ describe('appReducer', () => {
     expect(state).toEqual(initialState);
   });
 
-  it('should handle IMPORT_CARDS', () => {
+  it('should handle ImportCardsAction', () => {
     const initialState = { cards: [] };
     const parsedCards: Omit<Card, 'id' | 'favorite'>[] = [
       {
@@ -113,12 +114,12 @@ describe('appReducer', () => {
         code: 'XS78DB',
       },
     ];
-    const addAction: ImportCardsAction = {
+    const importAction: ImportCardsAction = {
       type: AppActionTypes.ImportCards,
       payload: parsedCards,
     };
 
-    const state = appReducer(initialState, addAction);
+    const state = appReducer(initialState, importAction);
     expect(state.cards).toHaveLength(2);
     expect(state.cards[0]).toMatchObject(parsedCards[0]);
     expect(state.cards[1]).toMatchObject(parsedCards[1]);
