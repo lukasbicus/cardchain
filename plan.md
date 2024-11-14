@@ -75,10 +75,10 @@ Features:
 
 # bugs
 
-- [ ] disable app zoom
+- [x] disable app zoom
 - [ ] hide PWA top top bar
 - [ ] buy a domain?
-- [ ] update author section - engage bug reporting + feature requests
+- [x] update author section - engage bug reporting + feature requests
 - [x] create card
   - [x] fix color/icon selection on mobile
   - [x] remove palette button for picking colors
