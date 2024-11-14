@@ -30,20 +30,14 @@ export default function Page() {
         <div className="card flex flex-col gap-2 px-4 py-6  bg-base-300">
           <p>Hello, everyone!</p>
           <p>
-            I'm the mind behind the app you're currently enjoying. My goal was
-            to create a tool that not only serves your needs but also enhances
-            your everyday experiences. I sincerely hope that you find it useful
-            and delightful.
+            {`I'm the mind behind the app you're currently enjoying. My goal was to create a tool that not only serves your needs but also enhances your everyday experiences. I sincerely hope that you find it useful and delightful.`}
           </p>
           <p>
-            Your feedback is invaluable to me. If you encounter any issues or
-            have suggestions for new features, I'd love to hear from you. Feel
-            free to connect with me on LinkedIn or shoot me an email at
-            ing.lukas.bicus@gmail.com.
+            {`Your feedback is invaluable to me. If you encounter any issues or have suggestions for new features, I'd love to hear from you. Feel free to connect with me on LinkedIn or shoot me an email at `}
+            <b>ing.lukas.bicus@gmail.com.</b>
           </p>
           <p>
-            Curious about what else I'm working on? Take a peek at my projects
-            and professional journey:
+            {`Curious about what else I'm working on? Take a peek at my projects and professional journey:`}
           </p>
           <div className="flex flex-col gap-2 md:flex-row md:justify-center p-4">
             <Link
@@ -64,8 +58,9 @@ export default function Page() {
             </Link>
           </div>
           <p>
-            Thank you for your support, and I look forward to making your
-            experience even better with each update.
+            {
+              'Thank you for your support, and I look forward to making your experience even better with each update.'
+            }
           </p>
           <p>
             Warm regards, <br />
