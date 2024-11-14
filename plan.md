@@ -84,9 +84,9 @@ Features:
   - [ ] remove palette button for picking colors
 - [x] add cards page
   - [x] remove grid button
-- [ ] card detail page
-  - [ ] implement toggle note functionality
-  - [ ] change info bar design
+- [x] card detail page
+  - [x] implement toggle note functionality
+  - [x] change info bar design
 - [x] company icons are not available in offline mode
 - [ ] prefer cameras in environment direction
 - [x] move app state to the context
