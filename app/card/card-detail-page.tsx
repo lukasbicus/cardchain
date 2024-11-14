@@ -62,15 +62,14 @@ export function CardDetailPage() {
         >
           <div className="flex gap-6 items-center">
             <CompanyIcon {...card} className="w-16 h-16" />
-            <label className="form-control flex-1">
+            <label className="form-control flex-1 pointer-events-none">
               <div className="label">
                 <span className="label-text">Card name</span>
               </div>
               <input
                 type="text"
-                disabled
                 value={card.name}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full input-ghost pointer-events-none"
               />
             </label>
           </div>
@@ -81,14 +80,13 @@ export function CardDetailPage() {
             </div>
             <input type="checkbox" className="toggle" defaultChecked />
           </label>
-          <label className="form-control">
+          <label className="form-control pointer-events-none">
             <div className="label">
               <span className="label-text">Card note</span>
             </div>
             <textarea
-              className="textarea textarea-bordered h-24"
+              className="textarea textarea-bordered h-24 textarea-ghost pointer-events-none"
               value={card.note}
-              disabled
             />
           </label>
         </div>
