@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     title: 'Tilda',
+    statusBarStyle: 'black',
   },
   authors: [{ name: 'Lukas Bicus', url: 'https://github.com/LukasBicus' }],
 };
