@@ -57,6 +57,7 @@ export default function MyCardsPage() {
                     type: AppActionTypes.ToggleShowFavoritesOnly,
                   });
                 }}
+                disabled={state.cards.length === 0}
               >
                 {state.showFavoritesOnly ? (
                   <IconStarFilled className="w-6 h-6" />
