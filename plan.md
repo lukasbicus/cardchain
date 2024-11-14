@@ -79,8 +79,8 @@ Features:
 - [ ] hide PWA top top bar
 - [ ] buy a domain?
 - [ ] update author section - engage bug reporting + feature requests
-- [ ] create card
-  - [ ] fix color/icon selection on mobile
+- [x] create card
+  - [x] fix color/icon selection on mobile
   - [x] remove palette button for picking colors
 - [x] add cards page
   - [x] remove grid button
