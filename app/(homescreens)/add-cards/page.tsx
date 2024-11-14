@@ -4,7 +4,7 @@ import { Loading } from '@/app/ui/loading';
 import { PageTemplate } from '@/app/ui/page-template';
 import { PrimaryHeader } from '@/app/ui/primary-header';
 import { Search } from '@/app/ui/search';
-import { IconLayoutGrid, IconPlus } from '@tabler/icons-react';
+import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -23,14 +23,9 @@ export default function Page() {
             </Link>
           }
         >
-          <>
-            <Suspense fallback={<Loading />}>
-              <Search className="flex-1" />
-            </Suspense>
-            <button className="btn btn-circle btn-ghost">
-              <IconLayoutGrid className="w-6 h-6" />
-            </button>
-          </>
+          <Suspense fallback={<Loading />}>
+            <Search className="flex-1" />
+          </Suspense>
         </PrimaryHeader>
       }
     >

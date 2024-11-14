@@ -82,8 +82,8 @@ Features:
 - [ ] create card
   - [ ] fix color/icon selection on mobile
   - [ ] remove palette button for picking colors
-- [ ] add cards page
-  - [ ] remove grid button
+- [x] add cards page
+  - [x] remove grid button
 - [ ] card detail page
   - [ ] implement toggle note functionality
   - [ ] change info bar design
