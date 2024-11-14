@@ -75,6 +75,18 @@ Features:
 
 # bugs
 
+- [ ] disable app zoom
+- [ ] hide PWA top top bar
+- [ ] buy a domain?
+- [ ] update author section - engage bug reporting + feature requests
+- [ ] create card
+  - [ ] fix color/icon selection on mobile
+  - [ ] remove palette button for picking colors
+- [ ] add cards page
+  - [ ] remove grid button
+- [ ] card detail page
+  - [ ] implement toggle note functionality
+  - [ ] change info bar design
 - [x] company icons are not available in offline mode
 - [ ] prefer cameras in environment direction
 - [x] move app state to the context
