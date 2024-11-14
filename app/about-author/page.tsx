@@ -27,17 +27,28 @@ export default function Page() {
           <h1 className="text-2xl md:text-3xl font-bold">Lukáš Bičuš</h1>
           <span className="text-xl">The fullstack developer</span>
         </div>
-        <div className="flex flex-col gap-2 px-2 py-3 mb-3 w-full bg-base-300">
-          <p className="px-2 pb-3">
-            Seasoned Software Developer with over a decade of experience in
-            JavaScript and 8 years specializing in React. I like clean code,
-            test driven development and code reviews. My expertise spans both
-            frontend and backend development.
+        <div className="card flex flex-col gap-2 px-4 py-6 w-full bg-base-300">
+          <p>Hello, everyone!</p>
+          <p>
+            I'm the mind behind the app you're currently enjoying. My goal was
+            to create a tool that not only serves your needs but also enhances
+            your everyday experiences. I sincerely hope that you find it useful
+            and delightful.
           </p>
-          <div className="flex flex-col gap-2 w-full md:flex-row">
+          <p>
+            Your feedback is invaluable to me. If you encounter any issues or
+            have suggestions for new features, I'd love to hear from you. Feel
+            free to connect with me on LinkedIn or shoot me an email at
+            ing.lukas.bicus@gmail.com.
+          </p>
+          <p>
+            Curious about what else I'm working on? Take a peek at my projects
+            and professional journey:
+          </p>
+          <div className="flex flex-col gap-2 md:flex-row md:justify-center p-4">
             <Link
               href="https://github.com/lukasbicus/"
-              className="btn btn-primary w-full md:w-auto flex-grow"
+              className="btn btn-primary w-full md:w-auto"
               target="_blank"
             >
               <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
@@ -45,21 +56,21 @@ export default function Page() {
             </Link>
             <Link
               href="https://www.linkedin.com/in/lukasbicus/"
-              className="btn btn-primary w-full md:w-auto flex-grow"
+              className="btn btn-primary w-full md:w-auto"
               target="_blank"
             >
               <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
               Linked in
             </Link>
           </div>
-        </div>
-        <div className="flex flex-col gap-2 px-2 py-3 w-full bg-base-300">
-          <h3 className="pt-2 text-xl">Support me</h3>
-          <p className="py-3">
-            Your support helps me to keep creating content. Thank you for your
-            generosity!
+          <p>
+            Thank you for your support, and I look forward to making your
+            experience even better with each update.
           </p>
-          <p>Bank account: SK85 8330 0000 0023 0179 7796</p>
+          <p>
+            Warm regards, <br />
+            Lukáš Bičuš
+          </p>
         </div>
       </div>
     </PageTemplate>
