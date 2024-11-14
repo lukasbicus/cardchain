@@ -14,12 +14,7 @@ import { CodePicture } from '@/app/ui/code-picture';
 import { DropdownField } from '@/app/ui/dropdown-field';
 import { TextAreaField } from '@/app/ui/text-area-field';
 import { TextField } from '@/app/ui/text-field';
-import {
-  IconCamera,
-  IconPalette,
-  IconRefresh,
-  IconX,
-} from '@tabler/icons-react';
+import { IconCamera, IconRefresh, IconX } from '@tabler/icons-react';
 import { Html5QrcodeResult } from 'html5-qrcode';
 import Image from 'next/image';
 import { Reducer, useCallback, useEffect, useReducer, useRef } from 'react';
@@ -177,27 +172,22 @@ export default function CardForm({
         {hideColorDropdown ? (
           <input type="hidden" {...register(CardFormNames.Color)} />
         ) : (
-          <div className="flex gap-4">
-            <DropdownField
-              label="Background color"
-              dropdownClassName="dropdown-top"
-              options={Object.entries(colorNames).map(([hex, name]) => ({
-                label: (
-                  <div className="flex gap-2 items-center">
-                    <div className="w-4 h-4" style={{ backgroundColor: hex }} />
-                    <span>{name}</span>
-                  </div>
-                ),
-                value: hex,
-              }))}
-              control={control}
-              name={CardFormNames.Color}
-              watch={watch}
-            />
-            <button className="btn btn-primary btn-square mt-9" type="button">
-              <IconPalette className="w-6 h-6" />
-            </button>
-          </div>
+          <DropdownField
+            label="Background color"
+            dropdownClassName="dropdown-top"
+            options={Object.entries(colorNames).map(([hex, name]) => ({
+              label: (
+                <div className="flex gap-2 items-center">
+                  <div className="w-4 h-4" style={{ backgroundColor: hex }} />
+                  <span>{name}</span>
+                </div>
+              ),
+              value: hex,
+            }))}
+            control={control}
+            name={CardFormNames.Color}
+            watch={watch}
+          />
         )}
         {isSvg(defaultValueForIcon) ? (
           <label className={'form-control w-full'}>
