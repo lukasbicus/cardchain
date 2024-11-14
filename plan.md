@@ -6,7 +6,7 @@ Features:
 2. nice to have are with italics
 3. optional are with normal font
 
-- [ ] **Welcome page**
+- [x] **Welcome page**
   - [x] **add navigation to add cards page**
   - [x] **add navigation to about page**
 - [ ] Utils
@@ -49,11 +49,11 @@ Features:
   - [x] **display page with bar / qr code**
   - [ ] implement switch note visibility
   - [x] _implement delete card dialog + remove card from local storage_
-  - [ ] _implement navigation to edit card page_
+  - [x] _implement navigation to edit card page_
   - [ ] implement increment of display count
-- [ ] _Edit card page_
-  - [ ] _implement edit form_
-  - [ ] _implement edit card submit (in local storage)_
+- [x] _Edit card page_
+  - [x] _implement edit form_
+  - [x] _implement edit card submit (in local storage)_
 - [x] **Settings page**
   - [x] **display dummy page**
   - [ ] implement pin favorites on top switch + functionality
