@@ -27,7 +27,7 @@ export default function Page() {
           <h1 className="text-2xl md:text-3xl font-bold">Lukáš Bičuš</h1>
           <span className="text-xl">The fullstack developer</span>
         </div>
-        <div className="card flex flex-col gap-2 px-4 py-6 w-full bg-base-300">
+        <div className="card flex flex-col gap-2 px-4 py-6  bg-base-300">
           <p>Hello, everyone!</p>
           <p>
             I'm the mind behind the app you're currently enjoying. My goal was
@@ -48,7 +48,7 @@ export default function Page() {
           <div className="flex flex-col gap-2 md:flex-row md:justify-center p-4">
             <Link
               href="https://github.com/lukasbicus/"
-              className="btn btn-primary w-full md:w-auto"
+              className="btn btn-primary md:w-auto"
               target="_blank"
             >
               <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
@@ -56,7 +56,7 @@ export default function Page() {
             </Link>
             <Link
               href="https://www.linkedin.com/in/lukasbicus/"
-              className="btn btn-primary w-full md:w-auto"
+              className="btn btn-primary md:w-auto"
               target="_blank"
             >
               <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
