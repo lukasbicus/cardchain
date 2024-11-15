@@ -98,6 +98,7 @@ export enum Colors {
   Tan = '#D2B48C',
   LightSlateGray = '#778899',
   Burlywood = '#DEB887',
+  White = '#FFFFFF',
 }
 
 export const colorNames = {
@@ -116,6 +117,7 @@ export const colorNames = {
   [Colors.Tan]: 'Tan',
   [Colors.LightSlateGray]: 'Light slate gray',
   [Colors.Burlywood]: 'Burlywood',
+  [Colors.White]: 'White',
 };
 
 export type SvgProps = {
