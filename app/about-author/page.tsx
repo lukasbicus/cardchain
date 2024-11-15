@@ -27,17 +27,34 @@ export default function Page() {
           <h1 className="text-2xl md:text-3xl font-bold">Lukáš Bičuš</h1>
           <span className="text-xl">The fullstack developer</span>
         </div>
-        <div className="card flex flex-col gap-2 px-4 py-6  bg-base-300">
+        <div className="card flex flex-col gap-2 px-4 py-6 bg-base-300">
           <p>Hello, everyone!</p>
-          <p>
-            {`I'm the mind behind the app you're currently enjoying. My goal was to create a tool that not only serves your needs but also enhances your everyday experiences. I sincerely hope that you find it useful and delightful.`}
+          <p className="text-justify">
+            {`I'm the creator of the app you're currently exploring. My ambition was to craft a tool that's both functional and enjoyable, hoping it adds value to your daily routine. I'm thrilled to have you on board and I hope you're loving the experience.`}
           </p>
-          <p>
-            {`Your feedback is invaluable to me. If you encounter any issues or have suggestions for new features, I'd love to hear from you. Feel free to connect with me on LinkedIn or shoot me an email at `}
-            <b>ing.lukas.bicus@gmail.com.</b>
+          <p className="text-justify">
+            This project is a labor of love and is open source, which means
+            anyone interested can view, contribute, or learn from the code. You
+            can find the repository here:{' '}
+            <Link
+              href="https://github.com/lukasbicus/tilda"
+              className="font-bold underline"
+            >
+              Tilda on github
+            </Link>
           </p>
-          <p>
-            {`Curious about what else I'm working on? Take a peek at my projects and professional journey:`}
+          <p className="text-justify">
+            {`I'm always on the lookout for ways to improve and evolve the app, so your input is incredibly important. If you've stumbled upon a bug, have ideas for new features, or just want to share your thoughts, please don't hesitate to reach out. You can contact me via LinkedIn, email me directly at `}
+            <Link
+              href="mailto:ing.lukas.bicus@gmail.com"
+              className="font-bold underline"
+            >
+              ing.lukas.bicus@gmail.com
+            </Link>
+            {`, or even contribute to the project on GitHub.`}
+          </p>
+          <p className="text-justify">
+            {`For a glimpse into my other projects or to connect professionally, visit my profiles:`}
           </p>
           <div className="flex flex-col gap-2 md:flex-row md:justify-center p-4">
             <Link
@@ -57,14 +74,14 @@ export default function Page() {
               Linked in
             </Link>
           </div>
-          <p>
+          <p className="text-justify">
             {
-              'Thank you for your support, and I look forward to making your experience even better with each update.'
+              'Your support and feedback are what drive the continuous improvement of this app. Thank you for being a part of this journey.'
             }
           </p>
           <p>
-            Warm regards, <br />
-            Lukáš Bičuš
+            Warmest regards, <br />
+            <span className="italic">Lukáš Bičuš</span>
           </p>
         </div>
       </div>
