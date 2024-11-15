@@ -17,12 +17,12 @@ export default function Page() {
             height={512}
             className="w-1/2 object-cover max-w-56"
           />
-          <h1 className="text-3xl">Tilda</h1>
+          <h1 className="text-3xl">Cardchain</h1>
           <span className="text-xl">The loyalty card application</span>
         </div>
 
         <div className="px-4 py-6 bg-base-300">
-          <h2 className="text-2xl font-bold">About Tilda</h2>
+          <h2 className="text-2xl font-bold">About Cardchain</h2>
           <p className="pt-3 pb-6">
             {
               "Welcome to the future of loyalty card management! Our cutting-edge application is designed to revolutionize the way you store and use your loyalty cards. With a focus on convenience, security, and versatility, we're proud to introduce an app that's not just another digital wallet - it's your personal pocket-sized companion for all your shopping needs. Here's what makes our app stand out:"

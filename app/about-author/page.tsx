@@ -40,7 +40,7 @@ export default function Page() {
               href="https://github.com/lukasbicus/tilda"
               className="font-bold underline"
             >
-              Tilda on github
+              Cardchain on github
             </Link>
           </p>
           <p className="text-justify">
