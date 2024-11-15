@@ -76,7 +76,7 @@ Features:
 # bugs
 
 - [x] disable app zoom
-- [ ] hide PWA top top bar
+- [x] hide PWA top top bar
 - [ ] buy a domain?
 - [x] update author section - engage bug reporting + feature requests
 - [x] create card
