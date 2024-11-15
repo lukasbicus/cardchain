@@ -8,7 +8,7 @@ export default function Home() {
     <main
       className="hero min-h-screen"
       style={{
-        backgroundImage: 'url(hero.jpg)',
+        backgroundImage: 'url(hero.avif)',
       }}
     >
       <div className="hero-overlay bg-opacity-60"> </div>
