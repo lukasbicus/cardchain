@@ -1,6 +1,6 @@
-# Tilda
+# Cardchain
 
-Tilda is an loyalty card PWA.
+Cardchain is an loyalty card PWA.
 
 ## Getting Started
 

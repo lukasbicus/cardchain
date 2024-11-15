@@ -16,12 +16,12 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Tilda',
+  title: 'Cardchain',
   description: 'Loyalty card app',
-  applicationName: 'Tilda',
+  applicationName: 'Cardchain',
   appleWebApp: {
     capable: true,
-    title: 'Tilda',
+    title: 'Cardchain',
     statusBarStyle: 'black',
   },
   authors: [{ name: 'Lukas Bicus', url: 'https://github.com/LukasBicus' }],

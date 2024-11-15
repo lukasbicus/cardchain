@@ -78,7 +78,7 @@ export default function MyCardsPage() {
     >
       {state.cards.length === 0 ? (
         <MainMessage
-          title="Welcome to Tilda"
+          title="Welcome to Cardchain"
           description="Looks like you haven't added any loyalty cards yet. Get started by adding your first cards! You can manually add card details or import them if you have a digital file."
         >
           <div className="flex justify-center justify-self-center gap-4 px-4 w-full">

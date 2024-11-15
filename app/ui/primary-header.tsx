@@ -15,7 +15,7 @@ export function PrimaryHeader({
         <div className="navbar-start">
           <Image
             src="/logo.svg"
-            alt="Tilda logo"
+            alt="Cardchain logo"
             className="w-8 rounded-lg bg-white"
             width={24}
             height={24}
