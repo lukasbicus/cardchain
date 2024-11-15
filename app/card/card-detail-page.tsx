@@ -93,7 +93,7 @@ export function CardDetailPage() {
             </div>
             <textarea
               className="textarea textarea-bordered h-24 textarea-ghost pointer-events-none"
-              value={isNoteVisible ? card.note : '****'}
+              value={card.note ? (isNoteVisible ? card.note : '****') : ''}
             />
           </label>
         </div>
