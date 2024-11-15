@@ -11,7 +11,7 @@ import { SecondaryHeader } from '@/app/ui/secondary-header';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export function CardDetailPage() {
   const searchParams = useSearchParams();
@@ -20,6 +20,8 @@ export function CardDetailPage() {
   const card = state.cards.find(c => c.id === id);
   const deleteDialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
+  const [isNoteVisible, setIsNoteVisible] = useState(false);
+
   if (!card) {
     return <CardNotFoundPage id={id} title="Card detail" />;
   }
@@ -62,15 +64,14 @@ export function CardDetailPage() {
         >
           <div className="flex gap-6 items-center">
             <CompanyIcon {...card} className="w-16 h-16" />
-            <label className="form-control flex-1">
+            <label className="form-control flex-1 pointer-events-none">
               <div className="label">
                 <span className="label-text">Card name</span>
               </div>
               <input
                 type="text"
-                disabled
                 value={card.name}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full input-ghost pointer-events-none"
               />
             </label>
           </div>
@@ -79,16 +80,20 @@ export function CardDetailPage() {
             <div className="label">
               <span className="label-text">Toggle note visibility</span>
             </div>
-            <input type="checkbox" className="toggle" defaultChecked />
+            <input
+              type="checkbox"
+              className="toggle"
+              checked={isNoteVisible}
+              onChange={() => setIsNoteVisible(!isNoteVisible)}
+            />
           </label>
-          <label className="form-control">
+          <label className="form-control pointer-events-none">
             <div className="label">
               <span className="label-text">Card note</span>
             </div>
             <textarea
-              className="textarea textarea-bordered h-24"
-              value={card.note}
-              disabled
+              className="textarea textarea-bordered h-24 textarea-ghost pointer-events-none"
+              value={card.note ? (isNoteVisible ? card.note : '****') : ''}
             />
           </label>
         </div>
