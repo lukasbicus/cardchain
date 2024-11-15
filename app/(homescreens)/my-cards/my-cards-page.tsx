@@ -1,6 +1,7 @@
 'use client';
 
 import { CardsList } from '@/app/(homescreens)/my-cards/cards-list';
+import { sortAlphabetically } from '@/app/lib/sorts';
 import {
   AppActionTypes,
   AppState,
@@ -96,7 +97,12 @@ export default function MyCardsPage() {
           description="No cards found for given filter. Adjust your filter to see other cards."
         />
       ) : (
-        <CardsList cards={visibleCards} dispatch={dispatch} />
+        <CardsList
+          cards={visibleCards.sort(({ name: nameA }, { name: nameB }) =>
+            sortAlphabetically(nameA, nameB)
+          )}
+          dispatch={dispatch}
+        />
       )}
     </PageTemplate>
   );

@@ -49,11 +49,11 @@ export function DropdownField<T extends FieldValues, U = string>({
               <span className="label-text">{label}</span>
             </div>
             <div className={clsx('dropdown', dropdownClassName)} key="dropdown">
-              <div className="input input-bordered w-full flex items-center">
+              <div className="input input-bordered w-full flex items-center px-0">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost w-full text-right px-0 justify-start"
+                  className="btn btn-ghost w-full text-right justify-start"
                 >
                   {currentOption ? currentOption.label : ''}
                 </div>

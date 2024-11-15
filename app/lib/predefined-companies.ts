@@ -81,22 +81,6 @@ export const predefinedCompanies: {
     },
   },
   {
-    name: 'O2',
-    svg: {
-      src: '/company-logos/o2.svg',
-      width: 2500,
-      height: 2500,
-    },
-  },
-  {
-    name: 'Rossmann',
-    svg: {
-      src: '/company-logos/rossmann.svg',
-      width: 116.6,
-      height: 14.3,
-    },
-  },
-  {
     name: 'Tesco',
     svg: {
       src: '/company-logos/tesco.svg',

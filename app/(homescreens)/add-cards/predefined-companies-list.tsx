@@ -3,6 +3,7 @@
 import { getNameFilter } from '@/app/lib/filters';
 import { predefinedCompanies } from '@/app/lib/predefined-companies';
 import { Routes } from '@/app/lib/shared';
+import { sortAlphabetically } from '@/app/lib/sorts';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -16,20 +17,28 @@ export function PredefinedCompaniesList() {
     : predefinedCompanies;
   return (
     <ul className="menu menu-lg rounded-box text-base-content">
-      {companies.map(company => (
-        <li key={company.name}>
-          <Link
-            href={{
-              pathname: Routes.CreateCard,
-              query: { predefinedCompany: company.name },
-            }}
-            prefetch={false}
-          >
-            <Image {...company.svg} alt={company.name} className="w-10 h-10" />
-            <span className="text-xl">{company.name}</span>
-          </Link>
-        </li>
-      ))}
+      {companies
+        .sort(({ name: nameA }, { name: nameB }) =>
+          sortAlphabetically(nameA, nameB)
+        )
+        .map(company => (
+          <li key={company.name}>
+            <Link
+              href={{
+                pathname: Routes.CreateCard,
+                query: { predefinedCompany: company.name },
+              }}
+              prefetch={false}
+            >
+              <Image
+                {...company.svg}
+                alt={company.name}
+                className="w-10 h-10"
+              />
+              <span className="text-xl">{company.name}</span>
+            </Link>
+          </li>
+        ))}
     </ul>
   );
 }
