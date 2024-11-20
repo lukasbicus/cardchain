@@ -13,7 +13,9 @@
     "test:jest": "jest",
     "test": "npm run lint && npm run format:check && npm run tsc && npm run test:jest",
     "export-image-paths": "node exportImagePaths.js",
-    "prebuild": "npm run export-image-paths"
+    "prebuild": "npm run export-image-paths",
+    "e2e:run-tests": "playwright test",
+    "e2e:show-tests-results": "playwright show-report"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -37,11 +39,13 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.13",
+    "@types/node": "^22.9.0",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",

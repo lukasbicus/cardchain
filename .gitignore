@@ -41,3 +41,8 @@ next-env.d.ts
 /public/swe-worker*
 
 certificates
+
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
